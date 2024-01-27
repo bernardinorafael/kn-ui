@@ -3,12 +3,11 @@ import Link from 'next/link'
 import { cn } from '../util'
 
 type SidebarItemProps = React.ComponentProps<typeof Link> & {
-  label: string
   isActive?: boolean
 }
 
 export function SidebarItem(props: SidebarItemProps) {
-  const { className, label, isActive, ...rest } = props
+  const { className, children, isActive, ...rest } = props
 
   return (
     <Link
@@ -19,7 +18,10 @@ export function SidebarItem(props: SidebarItemProps) {
       )}
       {...rest}
     >
-      <span className="pt-1 text-sm font-medium">{label}</span>
+      <span className="flex items-center justify-center gap-2 pt-1 text-sm font-medium">
+        {children}
+      </span>
+
       {isActive && (
         <div className="ml-auto h-[20px] w-1 rounded-bl-lg rounded-tl-lg bg-zinc-950" />
       )}

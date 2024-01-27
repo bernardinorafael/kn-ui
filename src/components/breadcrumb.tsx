@@ -8,6 +8,7 @@ export function Breadcrumb() {
   const mappedPath: Record<string, string> = {
     products: 'produtos',
     new: 'criar produto',
+    dashboard: 'dashboard',
   }
 
   const pathnames = pathname.split('/').slice(1)
