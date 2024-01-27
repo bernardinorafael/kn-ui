@@ -13,7 +13,7 @@ export function Sidebar() {
   return (
     <aside className="h-full w-[260px] border-r border-zinc-300">
       <section className="flex h-11 items-center border-b border-zinc-300 px-4">
-        <h2 className="text-2xl font-semibold">dashboard</h2>
+        <h2 className="text-xl font-semibold">dashboard</h2>
       </section>
 
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
@@ -36,17 +36,9 @@ export function Sidebar() {
       </section>
 
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
-        <span className="text-sm font-medium text-zinc-400">contas</span>
+        <span className="text-sm font-medium text-zinc-400">minha conta</span>
         <div className="flex flex-col gap-1">
           <SidebarItem href="#">preferências</SidebarItem>
-          <SidebarItem href="#">gerenciar acesso</SidebarItem>
-        </div>
-      </section>
-
-      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
-        <span className="text-sm font-medium text-zinc-400">gerencial</span>
-        <div className="flex flex-col gap-1">
-          <SidebarItem href="#">relatórios</SidebarItem>
         </div>
       </section>
 
