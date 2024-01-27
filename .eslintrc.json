@@ -1,3 +1,32 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["@rocketseat/eslint-config/next", "next/core-web-vitals"],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn"],
+      "config": "tailwind.config.js"
+    }
+  },
+
+  "rules": {
+    "no-undef": "off",
+    "camelcase": "off",
+    "no-useless-constructor": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 85,
+        "tabWidth": 2,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "always",
+        "semi": false,
+        "proseWrap": "never",
+        "endOfLine": "auto"
+      }
+    ],
+
+    "@next/next/no-html-link-for-pages": "off",
+    "react/jsx-key": "off",
+    "tailwindcss/no-custom-classname": "off"
+  }
 }
