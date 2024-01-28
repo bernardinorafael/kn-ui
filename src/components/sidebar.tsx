@@ -38,7 +38,12 @@ export function Sidebar() {
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
         <span className="text-sm font-medium text-zinc-400">minha conta</span>
         <div className="flex flex-col gap-1">
-          <SidebarItem href="#">preferências</SidebarItem>
+          <SidebarItem
+            href={ROUTES.profile.home}
+            isActive={pathname.startsWith(ROUTES.profile.home)}
+          >
+            preferências
+          </SidebarItem>
         </div>
       </section>
 

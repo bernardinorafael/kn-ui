@@ -9,6 +9,7 @@ export function Breadcrumb() {
     products: 'produtos',
     new: 'criar produto',
     dashboard: 'dashboard',
+    profile: 'minha conta',
   }
 
   const pathnames = pathname.split('/').slice(1)

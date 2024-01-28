@@ -1,0 +1,9 @@
+import { ProfileModule } from '@/src/modules/profile'
+
+export default function Home() {
+  return (
+    <div className="p-4">
+      <ProfileModule />
+    </div>
+  )
+}

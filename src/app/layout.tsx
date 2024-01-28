@@ -5,6 +5,7 @@ import './globals.css'
 
 import { Breadcrumb } from '../components/breadcrumb'
 import { Sidebar } from '../components/sidebar'
+import { Toaster } from '../components/ui/sonner'
 import { cn } from '../util'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,11 +22,13 @@ export default function RootLayout({
       <body className={cn('h-screen antialiased', inter.className)}>
         <div className="flex h-full items-center">
           <Sidebar />
-          <main className="h-full w-full">
+          <div className="h-screen w-full overflow-y-auto">
             <Breadcrumb />
             {children}
-          </main>
+          </div>
         </div>
+
+        <Toaster />
       </body>
     </html>
   )

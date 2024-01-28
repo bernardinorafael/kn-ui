@@ -5,4 +5,7 @@ export const ROUTES = {
     home: '/products',
     new: '/products/new',
   },
+  profile: {
+    home: '/profile',
+  },
 }
