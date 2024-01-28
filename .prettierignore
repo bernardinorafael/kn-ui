@@ -4,4 +4,4 @@ node_modules
 build
 coverage
 html
-src/components/ui
+# src/components/ui

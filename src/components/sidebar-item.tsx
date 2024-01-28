@@ -19,7 +19,8 @@ export function SidebarItem(props: SidebarItemProps) {
     <Link
       className={cn(
         'flex cursor-default items-center text-zinc-500 hover:text-black',
-        { 'text-black': isActive },
+        'dark:hover:text-white',
+        { 'text-black dark:text-white': isActive },
         className,
       )}
       {...rest}
@@ -31,7 +32,7 @@ export function SidebarItem(props: SidebarItemProps) {
       {isActive && (
         <div
           className={cn(
-            'ml-auto h-[20px] w-1 rounded-bl-lg rounded-tl-lg bg-zinc-950',
+            'ml-auto h-[20px] w-1 rounded-bl-lg rounded-tl-lg bg-zinc-950 dark:bg-white',
             { 'bg-red-500': isPlanPage },
           )}
         />

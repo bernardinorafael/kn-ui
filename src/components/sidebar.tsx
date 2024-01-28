@@ -11,12 +11,12 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="h-full w-[260px] border-r border-zinc-300">
-      <section className="flex h-11 items-center border-b border-zinc-300 px-4">
+    <aside className="h-full w-[260px] border-r border-zinc-300 dark:border-zinc-800">
+      <section className="flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800">
         <h2 className="text-xl font-semibold">dashboard</h2>
       </section>
 
-      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
+      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
         <span className="text-sm font-medium tracking-tight text-zinc-400">
           principal
         </span>
@@ -37,7 +37,7 @@ export function Sidebar() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
+      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
         <span className="text-sm font-medium tracking-tight text-zinc-400">
           minha conta
         </span>
@@ -59,7 +59,7 @@ export function Sidebar() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
+      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
         <SidebarItem href="#">
           <LogOut size={14} />
           sair

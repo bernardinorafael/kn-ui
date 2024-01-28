@@ -15,8 +15,6 @@ import { UpdatePasswordSchema } from '../schemas/update-password-schema'
 
 type UpdatePasswordInput = z.infer<typeof UpdatePasswordSchema>
 
-const currentPassword = 'abc123'
-
 export function UpdatePasswordForm() {
   const form = useForm<UpdatePasswordInput>({
     resolver: zodResolver(UpdatePasswordSchema),
@@ -25,7 +23,7 @@ export function UpdatePasswordForm() {
   async function handleUpdatePassword(data: UpdatePasswordInput) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    if (data.password !== currentPassword) {
+    if (data.password !== 'abc123') {
       toast.error('a senha atual está incorreta!', {
         description: `verifique as informações e tente novamente.`,
       })
@@ -83,7 +81,7 @@ export function UpdatePasswordForm() {
         </InputBox>
       </form>
 
-      <footer className="flex items-start justify-end gap-2 border-t border-zinc-200 p-4">
+      <footer className="flex items-start justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800">
         <Button
           size="sm"
           variant="outline"

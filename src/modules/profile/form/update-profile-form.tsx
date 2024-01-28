@@ -6,6 +6,7 @@ import { FormError } from '@/src/components/form-error'
 import { LoadingButton } from '@/src/components/loading-button'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
+import { cn } from '@/src/util'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { mask } from 'remask'
@@ -98,7 +99,12 @@ export function UpdateProfileForm() {
         </InputBox>
       </form>
 
-      <footer className="flex items-start justify-end gap-2 border-t border-zinc-200 p-4">
+      <footer
+        className={cn(
+          'flex items-start justify-end gap-2 border-t',
+          'border-zinc-200 p-4 dark:border-zinc-800',
+        )}
+      >
         <Button
           size="sm"
           variant="outline"

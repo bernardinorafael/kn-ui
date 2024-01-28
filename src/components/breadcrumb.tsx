@@ -16,7 +16,7 @@ export function Breadcrumb() {
   const pathnames = pathname.split('/').slice(1)
 
   return (
-    <nav className="flex h-11 items-center border-b border-zinc-300 px-4">
+    <nav className="flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800">
       {pathnames.map((element, i) => {
         const isLast = i === pathnames.length - 1
         return (
