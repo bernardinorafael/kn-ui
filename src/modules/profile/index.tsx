@@ -7,9 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/src/components/ui/select'
-import { mask } from 'remask'
 
 import { ProfileBox } from './components/profile-box'
+import { UpdatePasswordForm } from './form/update-password-form'
 import { UpdateProfileForm } from './form/update-profile-form'
 
 export function ProfileModule() {
@@ -31,7 +31,7 @@ export function ProfileModule() {
             <Input
               disabled
               className="max-w-[520px] 992px:max-w-[380px]"
-              value="103******06"
+              value="***.845.109-**"
             />
           </div>
         </div>
@@ -39,36 +39,7 @@ export function ProfileModule() {
 
       <UpdateProfileForm />
 
-      <ProfileBox title="alterar senha">
-        <div className="flex flex-col gap-2 p-4">
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-zinc-500">senha atual</span>
-            <Input
-              className="max-w-[520px] 992px:max-w-[380px]"
-              placeholder="************"
-              type="password"
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-zinc-500">nova senha</span>
-            <Input
-              className="max-w-[520px] 992px:max-w-[380px]"
-              placeholder="************"
-              type="password"
-            />
-          </div>
-        </div>
-
-        <footer className="flex items-start justify-end gap-2 border-t border-zinc-200 p-4">
-          <Button disabled variant="outline" size="sm">
-            cancelar
-          </Button>
-          <Button disabled size="sm">
-            salvar
-          </Button>
-        </footer>
-      </ProfileBox>
+      <UpdatePasswordForm />
 
       <ProfileBox title="tema da interface">
         <div className="flex flex-col gap-2 p-4">

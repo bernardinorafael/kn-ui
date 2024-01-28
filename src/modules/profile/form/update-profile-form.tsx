@@ -39,7 +39,7 @@ export function UpdateProfileForm() {
   async function handleEditProfile(data: UpdateProfileInput) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    toast.success('Suas informações foram atualizadas!')
+    toast.success('suas informações foram atualizadas!')
     console.log(data)
   }
 
