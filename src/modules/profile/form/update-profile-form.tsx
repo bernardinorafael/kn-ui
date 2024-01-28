@@ -2,7 +2,9 @@
 
 import React from 'react'
 
+import { Box } from '@/src/components/box'
 import { FormError } from '@/src/components/form-error'
+import { InputBox } from '@/src/components/input-box'
 import { LoadingButton } from '@/src/components/loading-button'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
@@ -13,8 +15,6 @@ import { mask } from 'remask'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { InputBox } from '../components/input-box'
-import { ProfileBox } from '../components/profile-box'
 import { UpdateProfileSchema } from '../schemas/update-profile-schema'
 
 const user = {
@@ -56,7 +56,7 @@ export function UpdateProfileForm() {
   const isSubmitButtonDisabled = form.formState.isSubmitting || isFormDirty
 
   return (
-    <ProfileBox title="informações do perfil">
+    <Box title="informações do perfil">
       <form
         id="update-profile"
         className="flex flex-col gap-2 p-4"
@@ -65,7 +65,7 @@ export function UpdateProfileForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">nome</label>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
             <Input {...form.register('name')} />
             {errors.name && <FormError>{errors.name.message}</FormError>}
           </div>
@@ -74,7 +74,7 @@ export function UpdateProfileForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">sobrenome</label>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
             <Input {...form.register('surname')} />
             {errors.surname && <FormError>{errors.surname.message}</FormError>}
           </div>
@@ -83,7 +83,7 @@ export function UpdateProfileForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">e-mail</label>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
             <Input {...form.register('email')} />
             {errors.email && <FormError>{errors.email.message}</FormError>}
           </div>
@@ -92,7 +92,7 @@ export function UpdateProfileForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">telefone</label>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
             <Input {...form.register('phone')} />
             {errors.phone && <FormError>{errors.phone.message}</FormError>}
           </div>
@@ -122,6 +122,6 @@ export function UpdateProfileForm() {
           {form.formState.isSubmitting ? <LoadingButton /> : 'salvar'}
         </Button>
       </footer>
-    </ProfileBox>
+    </Box>
   )
 }

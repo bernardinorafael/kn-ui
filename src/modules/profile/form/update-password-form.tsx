@@ -1,16 +1,17 @@
 'use client'
 
+import { Box } from '@/src/components/box'
 import { FormError } from '@/src/components/form-error'
+import { InputBox } from '@/src/components/input-box'
 import { LoadingButton } from '@/src/components/loading-button'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
+import { cn } from '@/src/util'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { InputBox } from '../components/input-box'
-import { ProfileBox } from '../components/profile-box'
 import { UpdatePasswordSchema } from '../schemas/update-password-schema'
 
 type UpdatePasswordInput = z.infer<typeof UpdatePasswordSchema>
@@ -46,7 +47,7 @@ export function UpdatePasswordForm() {
   const isSubmitButtonDisabled = form.formState.isSubmitting || isFormDirty
 
   return (
-    <ProfileBox title="alterar senha">
+    <Box title="alterar senha">
       <form
         id="update-password"
         className="flex flex-col gap-2 p-4"
@@ -55,7 +56,7 @@ export function UpdatePasswordForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">senha atual</label>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
             <Input
               type="password"
               placeholder="********"
@@ -68,7 +69,7 @@ export function UpdatePasswordForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">nova senha</label>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
             <Input
               type="password"
               placeholder="********"
@@ -81,7 +82,12 @@ export function UpdatePasswordForm() {
         </InputBox>
       </form>
 
-      <footer className="flex items-start justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800">
+      <footer
+        className={cn(
+          'flex items-start justify-end gap-2 border-t border-zinc-200',
+          'p-4 dark:border-zinc-800',
+        )}
+      >
         <Button
           size="sm"
           variant="outline"
@@ -99,6 +105,6 @@ export function UpdatePasswordForm() {
           {form.formState.isSubmitting ? <LoadingButton /> : 'salvar'}
         </Button>
       </footer>
-    </ProfileBox>
+    </Box>
   )
 }

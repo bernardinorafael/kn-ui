@@ -1,5 +1,6 @@
 'use client'
 
+import { Box } from '@/src/components/box'
 import {
   Select,
   SelectContent,
@@ -9,18 +10,16 @@ import {
 } from '@/src/components/ui/select'
 import { useTheme } from 'next-themes'
 
-import { ProfileBox } from './profile-box'
-
 export function ToggleTheme() {
   const { setTheme, theme } = useTheme()
 
   return (
-    <ProfileBox title="tema da interface">
+    <Box title="tema da interface">
       <div className="flex flex-col gap-2 p-4">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-zinc-500">tema</span>
 
-          <div className="w-full max-w-[520px] 992px:max-w-[380px]">
+          <div className="992px:max-w-[380px] w-full max-w-[520px]">
             <Select
               onValueChange={(value) => setTheme(value)}
               defaultValue={theme || 'system'}
@@ -37,6 +36,6 @@ export function ToggleTheme() {
           </div>
         </div>
       </div>
-    </ProfileBox>
+    </Box>
   )
 }

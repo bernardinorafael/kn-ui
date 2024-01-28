@@ -6,7 +6,7 @@ type ProfileBoxProps = React.ComponentProps<'section'> & {
   title: string
 }
 
-export function ProfileBox({ title, children, className }: ProfileBoxProps) {
+export function Box({ title, children, className }: ProfileBoxProps) {
   return (
     <section
       className={cn(
