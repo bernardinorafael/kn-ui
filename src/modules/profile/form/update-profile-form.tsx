@@ -2,6 +2,7 @@
 
 import React from 'react'
 
+import { FormError } from '@/src/components/form-error'
 import { LoadingButton } from '@/src/components/loading-button'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
@@ -22,10 +23,19 @@ const user = {
 }
 
 const UpdateProfileSchema = z.object({
-  name: z.string().min(3),
-  surname: z.string().min(3),
-  email: z.string().email(),
-  phone: z.string().min(1),
+  name: z
+    .string()
+    .min(3, 'Seu nome precisa ter no mínimo 3 letras.')
+    .regex(/^\S+$/, 'Insira apenas seu primeiro nome.')
+    .transform((name) => name.trim()),
+  surname: z
+    .string()
+    .min(3, 'Seu sobrenome precisa ter no mínimo 3 letras.')
+    .transform((surname) => surname.trim()),
+  email: z.string().email('Favor inserir um e-mail válido.'),
+  phone: z
+    .string()
+    .regex(/^\(\d{2}\)\s9\s\d{4}-\d{4}$/, 'Favor inserir um telefone válido.'),
 })
 
 type UpdateProfileInput = z.infer<typeof UpdateProfileSchema>
@@ -53,6 +63,8 @@ export function UpdateProfileForm() {
     form.setValue('phone', mask(phone, '(99) 9 9999-9999'))
   }, [form, phone])
 
+  const errors = form.formState.errors
+
   const isFormDirty = Object.keys(form.formState.dirtyFields).length === 0
   const isCancelButtonDisabled = isFormDirty || form.formState.isSubmitting
   const isSubmitButtonDisabled = form.formState.isSubmitting || isFormDirty
@@ -66,34 +78,38 @@ export function UpdateProfileForm() {
       >
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">nome</label>
-          <Input
-            className="992px:max-w-[380px] max-w-[520px]"
-            {...form.register('name')}
-          />
+
+          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+            <Input {...form.register('name')} />
+            {errors.name && <FormError>{errors.name.message}</FormError>}
+          </div>
         </InputBox>
 
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">sobrenome</label>
-          <Input
-            className="992px:max-w-[380px] max-w-[520px]"
-            {...form.register('surname')}
-          />
+
+          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+            <Input {...form.register('surname')} />
+            {errors.surname && <FormError>{errors.surname.message}</FormError>}
+          </div>
         </InputBox>
 
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">e-mail</label>
-          <Input
-            className="992px:max-w-[380px] max-w-[520px]"
-            {...form.register('email')}
-          />
+
+          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+            <Input {...form.register('email')} />
+            {errors.email && <FormError>{errors.email.message}</FormError>}
+          </div>
         </InputBox>
 
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">telefone</label>
-          <Input
-            className="992px:max-w-[380px] max-w-[520px]"
-            {...form.register('phone')}
-          />
+
+          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+            <Input {...form.register('phone')} />
+            {errors.phone && <FormError>{errors.phone.message}</FormError>}
+          </div>
         </InputBox>
       </form>
 
