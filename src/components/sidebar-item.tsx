@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 import { cn } from '../util'
 
@@ -8,6 +11,9 @@ type SidebarItemProps = React.ComponentProps<typeof Link> & {
 
 export function SidebarItem(props: SidebarItemProps) {
   const { className, children, isActive, ...rest } = props
+
+  const pathname = usePathname()
+  const isPlanPage = pathname.startsWith('/plan')
 
   return (
     <Link
@@ -23,7 +29,12 @@ export function SidebarItem(props: SidebarItemProps) {
       </span>
 
       {isActive && (
-        <div className="ml-auto h-[20px] w-1 rounded-bl-lg rounded-tl-lg bg-zinc-950" />
+        <div
+          className={cn(
+            'ml-auto h-[20px] w-1 rounded-bl-lg rounded-tl-lg bg-zinc-950',
+            { 'bg-red-500': isPlanPage },
+          )}
+        />
       )}
     </Link>
   )

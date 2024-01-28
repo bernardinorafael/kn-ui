@@ -8,4 +8,5 @@ export const ROUTES = {
   profile: {
     home: '/profile',
   },
+  plan: '/plan',
 }

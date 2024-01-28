@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-import { LogOut } from 'lucide-react'
+import { Crown, LogOut } from 'lucide-react'
 
 import { ROUTES } from '../constants/routes'
 import { SidebarItem } from './sidebar-item'
@@ -17,7 +17,9 @@ export function Sidebar() {
       </section>
 
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
-        <span className="text-sm font-medium text-zinc-400">principal</span>
+        <span className="text-sm font-medium tracking-tight text-zinc-400">
+          principal
+        </span>
         <div className="flex flex-col gap-1">
           <SidebarItem
             href={ROUTES.dashboard}
@@ -36,13 +38,23 @@ export function Sidebar() {
       </section>
 
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0">
-        <span className="text-sm font-medium text-zinc-400">minha conta</span>
+        <span className="text-sm font-medium tracking-tight text-zinc-400">
+          minha conta
+        </span>
         <div className="flex flex-col gap-1">
           <SidebarItem
             href={ROUTES.profile.home}
             isActive={pathname.startsWith(ROUTES.profile.home)}
           >
             preferências
+          </SidebarItem>
+
+          <SidebarItem
+            href={ROUTES.plan}
+            isActive={pathname.startsWith(ROUTES.plan)}
+          >
+            mudar plano
+            <Crown className="text-red-500" size={14} />
           </SidebarItem>
         </div>
       </section>

@@ -10,6 +10,7 @@ export function Breadcrumb() {
     new: 'criar produto',
     dashboard: 'dashboard',
     profile: 'minha conta',
+    plan: 'meu plano',
   }
 
   const pathnames = pathname.split('/').slice(1)
