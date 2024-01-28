@@ -14,29 +14,14 @@ import { z } from 'zod'
 
 import { InputBox } from '../components/input-box'
 import { ProfileBox } from '../components/profile-box'
+import { UpdateProfileSchema } from '../schemas/update-profile-schema'
 
 const user = {
   name: 'rafael',
   surname: 'bernardino',
-  email: 'rafael_bernardino@gmail.com',
+  email: 'rafaelferreirab2@gmail.com',
   phone: '48988566239',
 }
-
-const UpdateProfileSchema = z.object({
-  name: z
-    .string()
-    .min(3, 'Seu nome precisa ter no mínimo 3 letras.')
-    .regex(/^\S+$/, 'Insira apenas seu primeiro nome.')
-    .transform((name) => name.trim()),
-  surname: z
-    .string()
-    .min(3, 'Seu sobrenome precisa ter no mínimo 3 letras.')
-    .transform((surname) => surname.trim()),
-  email: z.string().email('Favor inserir um e-mail válido.'),
-  phone: z
-    .string()
-    .regex(/^\(\d{2}\)\s9\s\d{4}-\d{4}$/, 'Favor inserir um telefone válido.'),
-})
 
 type UpdateProfileInput = z.infer<typeof UpdateProfileSchema>
 
@@ -54,7 +39,7 @@ export function UpdateProfileForm() {
   async function handleEditProfile(data: UpdateProfileInput) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
-    toast('Seu perfil foi editado com sucesso!')
+    toast.success('Suas informações foram atualizadas!')
     console.log(data)
   }
 

@@ -21,7 +21,7 @@ export function ProfileModule() {
             <span className="text-sm font-medium text-zinc-500">username</span>
             <Input
               disabled
-              className="992px:max-w-[380px] max-w-[520px]"
+              className="max-w-[520px] 992px:max-w-[380px]"
               value="bernardinorafael"
             />
           </div>
@@ -30,8 +30,8 @@ export function ProfileModule() {
             <span className="text-sm font-medium text-zinc-500">cpf</span>
             <Input
               disabled
-              className="992px:max-w-[380px] max-w-[520px]"
-              value={mask('10383445906', '999.999.999-99')}
+              className="max-w-[520px] 992px:max-w-[380px]"
+              value="103******06"
             />
           </div>
         </div>
@@ -44,7 +44,7 @@ export function ProfileModule() {
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-zinc-500">senha atual</span>
             <Input
-              className="992px:max-w-[380px] max-w-[520px]"
+              className="max-w-[520px] 992px:max-w-[380px]"
               placeholder="************"
               type="password"
             />
@@ -53,7 +53,7 @@ export function ProfileModule() {
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-zinc-500">nova senha</span>
             <Input
-              className="992px:max-w-[380px] max-w-[520px]"
+              className="max-w-[520px] 992px:max-w-[380px]"
               placeholder="************"
               type="password"
             />
@@ -75,7 +75,7 @@ export function ProfileModule() {
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-zinc-500">tema</span>
 
-            <div className="992px:max-w-[380px] w-full max-w-[520px]">
+            <div className="w-full max-w-[520px] 992px:max-w-[380px]">
               <Select>
                 <SelectTrigger className="w-[240px]">
                   <SelectValue placeholder="selecionar" />

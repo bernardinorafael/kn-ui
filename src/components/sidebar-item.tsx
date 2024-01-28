@@ -18,7 +18,7 @@ export function SidebarItem(props: SidebarItemProps) {
   return (
     <Link
       className={cn(
-        'flex items-center text-zinc-500 hover:text-black',
+        'flex cursor-default items-center text-zinc-500 hover:text-black',
         { 'text-black': isActive },
         className,
       )}
