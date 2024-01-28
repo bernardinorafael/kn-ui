@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { Crown, LogOut } from 'lucide-react'
 
 import { ROUTES } from '../constants/routes'
+import { cn } from '../util'
 import { SidebarItem } from './sidebar-item'
 
 export function Sidebar() {
@@ -12,7 +13,11 @@ export function Sidebar() {
 
   return (
     <aside className="h-full w-[260px] border-r border-zinc-300 dark:border-zinc-800">
-      <section className="flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800">
+      <section
+        className={cn(
+          'flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800',
+        )}
+      >
         <h2 className="text-xl font-semibold">dashboard</h2>
       </section>
 

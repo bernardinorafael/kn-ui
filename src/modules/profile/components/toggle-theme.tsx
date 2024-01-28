@@ -25,7 +25,7 @@ export function ToggleTheme() {
               onValueChange={(value) => setTheme(value)}
               defaultValue={theme || 'system'}
             >
-              <SelectTrigger className="w-[240px]">
+              <SelectTrigger className="w-[260px]">
                 <SelectValue placeholder="selecionar" />
               </SelectTrigger>
               <SelectContent>
