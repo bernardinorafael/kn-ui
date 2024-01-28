@@ -1,3 +1,11 @@
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/src/components/ui/dropdown-menu'
 import { api } from '@/src/lib/axios'
 import { Product } from '@/src/types/product'
 import { cn } from '@/src/util'
@@ -23,9 +31,19 @@ export async function ProductsList() {
             <span>{product.brand}</span>
             <span>{product.current_stock}</span>
 
-            <button className="ml-auto cursor-default">
-              <MoreVertical size={18} />
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="ml-auto cursor-default">
+                  <MoreVertical size={18} />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>edição de produto</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>editar</DropdownMenuItem>
+                <DropdownMenuItem>desativar</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         )
       })}
