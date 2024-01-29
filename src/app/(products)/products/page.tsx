@@ -3,25 +3,23 @@
 import React from 'react'
 import Link from 'next/link'
 
+import { QuerySearch } from '@/src/components/query-search'
 import { Alert, AlertDescription, AlertTitle } from '@/src/components/ui/alert'
 import { Button } from '@/src/components/ui/button'
-import { Input } from '@/src/components/ui/input'
 import { ROUTES } from '@/src/constants/routes'
 import { ProductsList } from '@/src/modules/products/components/products-list'
 import { ProductsListSkeleton } from '@/src/modules/products/components/products-list-skeleton'
 import { Terminal } from 'lucide-react'
 
-export default function ProductPage() {
+export default function ProductPage({
+  searchParams,
+}: {
+  searchParams: { q: string }
+}) {
   return (
     <div className="flex flex-col gap-6 p-4">
       <section className="flex items-center justify-between">
-        <div className="flex w-full max-w-[50%] items-center gap-2">
-          <Input placeholder="pesquisar produto" />
-          <Button size="default" variant="outline">
-            buscar
-          </Button>
-        </div>
-
+        <QuerySearch queryKey="q" placeholder="buscar produto" />
         <Button asChild>
           <Link href={ROUTES.product.new}>criar produto</Link>
         </Button>
@@ -37,7 +35,7 @@ export default function ProductPage() {
 
       <section className="flex flex-col gap-3">
         <React.Suspense fallback={<ProductsListSkeleton />}>
-          <ProductsList />
+          <ProductsList query={searchParams.q} />
         </React.Suspense>
       </section>
     </div>
