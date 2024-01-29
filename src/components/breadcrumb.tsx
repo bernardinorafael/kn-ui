@@ -11,6 +11,7 @@ export function Breadcrumb() {
     dashboard: 'dashboard',
     profile: 'minha conta',
     plan: 'meu plano',
+    edit: 'editar produto',
   }
 
   const pathnames = pathname.split('/').slice(1)
@@ -20,12 +21,10 @@ export function Breadcrumb() {
       {pathnames.map((element, i) => {
         const isLast = i === pathnames.length - 1
         return (
-          <>
-            <span key={i} className="text-xs text-zinc-400">
-              {`${mappedPath[element]}`}
-            </span>
-            {!isLast && <span className="mx-1 text-xs text-zinc-400"> / </span>}
-          </>
+          <div key={i}>
+            <span className="text-xs text-zinc-400">{`${mappedPath[element]}`}</span>
+            {!isLast && <span className="mx-1 text-xs text-zinc-400">/</span>}
+          </div>
         )
       })}
     </nav>

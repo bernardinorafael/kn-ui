@@ -1,50 +1,34 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/src/components/ui/dropdown-menu'
+import Link from 'next/link'
+
+import { ROUTES } from '@/src/constants/routes'
 import { api } from '@/src/lib/axios'
 import { Product } from '@/src/types/product'
-import { cn } from '@/src/util'
-import { MoreVertical } from 'lucide-react'
+import { cn, formatCurrency } from '@/src/util'
 
 export async function ProductsList() {
-  const response = await api.get<Product[]>('/products')
-  const products = response.data
+  const response = await api.get<Product[]>('/products', {
+    params: { _sort: '-created_at' },
+  })
 
   return (
     <>
-      {products.map((product) => {
+      {response.data.map((product) => {
         return (
-          <div
+          <Link
+            href={`${ROUTES.product.edit}/${product.id}`}
             key={product.id}
             className={cn(
-              'grid grid-cols-4 rounded border border-zinc-200',
+              'grid cursor-default grid-cols-4 rounded border border-zinc-200',
               'bg-zinc-100 px-4 py-3 text-sm text-zinc-800 hover:bg-zinc-200',
               'dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800',
+              { 'pointer-events-none opacity-30': product.active === false },
             )}
           >
             <span>{product.name}</span>
-            <span>{product.brand}</span>
             <span>{product.current_stock}</span>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="ml-auto cursor-default">
-                  <MoreVertical size={18} />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>edição de produto</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>editar</DropdownMenuItem>
-                <DropdownMenuItem>desativar</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+            <span>{formatCurrency(product.price)}</span>
+            <span className="ml-auto">{product.active ? `ativo` : `inativo`}</span>
+          </Link>
         )
       })}
     </>

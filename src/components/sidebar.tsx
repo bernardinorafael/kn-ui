@@ -28,21 +28,7 @@ export function Sidebar() {
           'flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800',
         )}
       >
-        <h2 className="text-xl font-semibold">dashboard</h2>
-      </section>
-
-      <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
-        <span className="text-sm font-medium tracking-tight text-zinc-400">
-          principal
-        </span>
-        <div className="flex flex-col gap-1">
-          <SidebarItem
-            href={ROUTES.dashboard}
-            isActive={pathname.endsWith(ROUTES.dashboard)}
-          >
-            dashboard
-          </SidebarItem>
-        </div>
+        <h2 className="text-xl font-semibold">estoque</h2>
       </section>
 
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
@@ -56,8 +42,18 @@ export function Sidebar() {
           >
             meus produtos
           </SidebarItem>
-          <SidebarItem href={ROUTES.product.home}>categorias</SidebarItem>
-          <SidebarItem href={ROUTES.product.home}>marcas</SidebarItem>
+          <SidebarItem
+            href={ROUTES.categories}
+            isActive={pathname.startsWith(ROUTES.categories)}
+          >
+            categorias
+          </SidebarItem>
+          <SidebarItem
+            href={ROUTES.brands}
+            isActive={pathname.startsWith(ROUTES.brands)}
+          >
+            marcas
+          </SidebarItem>
         </div>
       </section>
 

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Box } from '@/src/components/box'
 import { CurrencyInput } from '@/src/components/currency-input'
 import { FormError } from '@/src/components/form-error'
-import { LoadingButton } from '@/src/components/loading-button'
+import { Loading } from '@/src/components/loading'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import { Label } from '@/src/components/ui/label'
@@ -205,7 +205,7 @@ export function NewProductModule() {
           form="new-product"
           disabled={form.formState.isSubmitting}
         >
-          {form.formState.isSubmitting ? <LoadingButton /> : 'cadastrar'}
+          {form.formState.isSubmitting ? <Loading /> : 'cadastrar'}
         </Button>
       </footer>
     </Box>

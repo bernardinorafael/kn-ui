@@ -3,7 +3,7 @@
 import { Box } from '@/src/components/box'
 import { FormError } from '@/src/components/form-error'
 import { InputBox } from '@/src/components/input-box'
-import { LoadingButton } from '@/src/components/loading-button'
+import { Loading } from '@/src/components/loading'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import { cn } from '@/src/util'
@@ -102,7 +102,7 @@ export function UpdatePasswordForm() {
           form="update-password"
           disabled={isSubmitButtonDisabled}
         >
-          {form.formState.isSubmitting ? <LoadingButton /> : 'salvar'}
+          {form.formState.isSubmitting ? <Loading /> : 'salvar'}
         </Button>
       </footer>
     </Box>
