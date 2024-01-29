@@ -35,8 +35,12 @@ export async function ProductsList({ query }: ProductsListProps) {
           )
         })
       ) : (
-        <div className="flex w-full flex-col items-center justify-center p-10">
-          <h2 className="text-xl font-semibold">nenhum resultado encontrado</h2>
+        <div
+          className={cn(
+            'flex w-full flex-col items-center justify-center rounded-lg border p-10',
+          )}
+        >
+          <h2 className="text-xl font-semibold">nenhum resultado encontrado.</h2>
           <p className="text-zinc-500 dark:text-zinc-200">
             você pesquisou por: <strong>{query}</strong>
           </p>
