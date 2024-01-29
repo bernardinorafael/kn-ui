@@ -3,15 +3,25 @@
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/src/components/ui/button'
+import { ChevronLeft } from 'lucide-react'
 
-export default function Page({ params }: { params: { id: string } }) {
+type PageParams = {
+  params: {
+    id: string
+  }
+}
+
+export default function EditProductPage({ params }: PageParams) {
   const router = useRouter()
 
   return (
     <div className="flex items-center gap-4 p-4">
-      <h2>product: {params.id}</h2>
+      <h1>product: {params.id}</h1>
 
-      <Button onClick={() => router.back()}>Voltar</Button>
+      <Button variant="link" onClick={() => router.back()}>
+        <ChevronLeft size={16} />
+        voltar
+      </Button>
     </div>
   )
 }

@@ -1,18 +1,16 @@
 import Link from 'next/link'
 
 import { ROUTES } from '@/src/constants/routes'
-import { api } from '@/src/lib/axios'
-import { Product } from '@/src/types/product'
 import { cn, formatCurrency } from '@/src/util'
 
+import { getProducts } from '../helpers/get-products'
+
 export async function ProductsList() {
-  const response = await api.get<Product[]>('/products', {
-    params: { _sort: '-created_at' },
-  })
+  const products = await getProducts()
 
   return (
     <>
-      {response.data.map((product) => {
+      {products.map((product) => {
         return (
           <Link
             href={`${ROUTES.product.edit}/${product.id}`}
