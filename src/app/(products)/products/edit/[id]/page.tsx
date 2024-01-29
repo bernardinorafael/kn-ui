@@ -2,9 +2,8 @@
 
 import { useRouter } from 'next/navigation'
 
-import { Alert, AlertDescription, AlertTitle } from '@/src/components/ui/alert'
 import { Button } from '@/src/components/ui/button'
-import { ChevronLeft, Terminal } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 
 type PageParams = {
   params: {
@@ -25,17 +24,6 @@ export default function EditProductPage({ params }: PageParams) {
           voltar
         </Button>
       </div>
-
-      <section>
-        <Alert className="self-start">
-          <Terminal className="h-4 w-4" />
-          <AlertTitle>este é um teste!</AlertTitle>
-          <AlertDescription>
-            lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci,
-            eligendi!
-          </AlertDescription>
-        </Alert>
-      </section>
     </div>
   )
 }
