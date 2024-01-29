@@ -12,3 +12,10 @@ export function formatCurrency(amount: number, fractionDigits?: number) {
     minimumFractionDigits: fractionDigits || 2,
   }).format(amount)
 }
+
+export function createQueryString(name: string, value: string) {
+  const params = new URLSearchParams()
+  params.set(name, value)
+
+  return params.toString()
+}
