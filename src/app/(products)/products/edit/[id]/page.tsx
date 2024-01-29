@@ -19,7 +19,7 @@ export default function EditProductPage({ params }: PageParams) {
       <div className="flex items-center gap-4">
         <h1>product: {params.id}</h1>
 
-        <Button variant="link" onClick={() => router.back()}>
+        <Button variant="outline" onClick={() => router.back()}>
           <ChevronLeft size={16} />
           voltar
         </Button>
