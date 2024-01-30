@@ -1,13 +1,18 @@
 import { redirect } from 'next/navigation'
 
+import { Breadcrumb } from '../components/breadcrumb'
 import { ROUTES } from '../constants/routes'
 
 export default async function HomePage() {
   redirect(ROUTES.product.home)
 
   return (
-    <div>
-      <h1>dashboard</h1>
-    </div>
+    <>
+      <Breadcrumb path={['início']} />
+
+      <div>
+        <h1>dashboard</h1>
+      </div>
+    </>
   )
 }

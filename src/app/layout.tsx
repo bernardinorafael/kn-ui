@@ -3,7 +3,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import { Breadcrumb } from '../components/breadcrumb'
 import { Sidebar } from '../components/sidebar'
 import { Toaster } from '../components/ui/sonner'
 import Providers from '../provider'
@@ -12,7 +11,7 @@ import { cn } from '../util'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'unknown',
+  title: 'kn.co',
 }
 
 export default function RootLayout({
@@ -24,10 +23,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex h-full items-center">
             <Sidebar />
-            <div className="h-screen w-full overflow-y-auto">
-              <Breadcrumb />
-              {children}
-            </div>
+            <main className="h-screen w-full overflow-y-auto">{children}</main>
           </div>
 
           <Toaster />
