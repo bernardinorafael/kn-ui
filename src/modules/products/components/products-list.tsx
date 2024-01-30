@@ -28,7 +28,9 @@ export async function ProductsList({ query }: ProductsListProps) {
               )}
             >
               <span>{product.name}</span>
-              <span>{product.current_stock}</span>
+              <span>
+                {product.current_stock} / {product.stock}
+              </span>
               <span>{formatCurrency(product.price)}</span>
               <span className="ml-auto">{product.active ? `ativo` : `inativo`}</span>
             </Link>
