@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { Box } from '@/src/components/box'
@@ -20,7 +21,6 @@ import {
 import { Textarea } from '@/src/components/ui/textarea'
 import { ROUTES } from '@/src/constants/routes'
 import { api } from '@/src/lib/axios'
-import { cn } from '@/src/util'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { isAxiosError } from 'axios'
 import { Controller, useForm } from 'react-hook-form'
@@ -34,7 +34,6 @@ type NewProductInput = z.infer<typeof NewProductSchema>
 
 export function NewProductModule() {
   const router = useRouter()
-
   const [currencyValue, setCurrencyValue] = React.useState('')
 
   const form = useForm<NewProductInput>({
@@ -187,19 +186,10 @@ export function NewProductModule() {
         </Label>
       </form>
 
-      <footer
-        className={cn(
-          'flex justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800',
-        )}
-      >
-        <Button
-          variant="outline"
-          onClick={() => router.replace(ROUTES.product.home)}
-          disabled={form.formState.isSubmitting}
-        >
-          cancelar
+      <footer className="flex justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800">
+        <Button asChild variant="outline" disabled={form.formState.isSubmitting}>
+          <Link href={ROUTES.product.home}>cancelar</Link>
         </Button>
-
         <Button
           type="submit"
           form="new-product"

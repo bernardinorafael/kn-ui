@@ -22,13 +22,13 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="h-full w-[260px] border-r border-zinc-300 dark:border-zinc-800">
+    <aside className="h-full w-[390px] border-r border-zinc-300 dark:border-zinc-800 1600px:w-[290px]">
       <section
         className={cn(
           'flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800',
         )}
       >
-        <h2 className="text-xl font-semibold">estoque</h2>
+        <h2 className="text-xl font-semibold">kn.co</h2>
       </section>
 
       <section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">

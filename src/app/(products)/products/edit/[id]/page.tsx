@@ -20,7 +20,6 @@ type PageParams = {
 
 export default async function EditProductPage({ params }: PageParams) {
   const product = await getProduct(params.id)
-
   const balance = (product.current_stock / product.stock) * 100
 
   return (
