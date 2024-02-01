@@ -3,6 +3,7 @@
 import React from 'react'
 
 import { Breadcrumb } from '@/src/components/breadcrumb'
+import { FormError } from '@/src/components/form-error'
 import { Loading } from '@/src/components/loading'
 import { Button } from '@/src/components/ui/button'
 import {
@@ -32,7 +33,9 @@ import { z } from 'zod'
 
 const CreateCategorySchema = z.object({
   name: z.string().min(3, 'mínimo de 3 letras para o nome da categoria.'),
-  type: z.enum(['convencional', 'enumerated', 'unique']),
+  type: z.enum(['convencional', 'enumerated', 'unique'], {
+    required_error: 'selecione a grade de tamanhos',
+  }),
   obs: z.string().nullable(),
 })
 
@@ -44,6 +47,8 @@ export default function CategoriesPage() {
   const form = useForm<CreateCategoryInput>({
     resolver: zodResolver(CreateCategorySchema),
   })
+
+  const errors = form.formState.errors
 
   async function handleCreateNewCategory(data: CreateCategoryInput) {
     await api.post('/categories', {
@@ -66,7 +71,13 @@ export default function CategoriesPage() {
 
       <div className="p-4">
         <section className="flex justify-end">
-          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <Dialog
+            open={isDialogOpen}
+            onOpenChange={(open) => {
+              form.reset()
+              setIsDialogOpen(open)
+            }}
+          >
             <DialogTrigger asChild>
               <Button>criar categoria</Button>
             </DialogTrigger>
@@ -81,8 +92,9 @@ export default function CategoriesPage() {
                 onSubmit={form.handleSubmit(handleCreateNewCategory)}
               >
                 <Label className="grid gap-2">
-                  name
+                  nome da categoria
                   <Input autoFocus {...form.register('name')} />
+                  {errors.name && <FormError>{errors.name.message}</FormError>}
                 </Label>
 
                 <Controller
@@ -104,6 +116,7 @@ export default function CategoriesPage() {
                             <SelectItem value="unique">único</SelectItem>
                           </SelectContent>
                         </Select>
+                        {errors.type && <FormError>{errors.type.message}</FormError>}
                       </Label>
                     )
                   }}

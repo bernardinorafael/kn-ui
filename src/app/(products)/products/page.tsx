@@ -37,11 +37,9 @@ export default function ProductPage({
           </AlertDescription>
         </Alert>
 
-        <section className="flex flex-col gap-3">
-          <React.Suspense fallback={<ProductsListSkeleton />}>
-            <ProductsList query={searchParams.q} />
-          </React.Suspense>
-        </section>
+        <React.Suspense fallback={<ProductsListSkeleton />}>
+          <ProductsList query={searchParams.q} />
+        </React.Suspense>
       </div>
     </>
   )

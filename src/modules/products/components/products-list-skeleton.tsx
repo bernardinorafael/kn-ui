@@ -3,10 +3,10 @@ import { cn } from '@/src/util'
 
 export function ProductsListSkeleton() {
   return (
-    <>
+    <ol className="flex flex-col gap-3">
       {[...Array(6)].map((_, i) => {
         return (
-          <div
+          <li
             key={i}
             className={cn(
               'grid cursor-default grid-cols-4 items-center rounded border border-zinc-200',
@@ -18,9 +18,9 @@ export function ProductsListSkeleton() {
             <Skeleton className="h-[20px] w-full max-w-[80px]" />
             <Skeleton className="h-[20px] w-full max-w-[110px]" />
             <Skeleton className="h-[20px] w-full max-w-[150px]" />
-          </div>
+          </li>
         )
       })}
-    </>
+    </ol>
   )
 }

@@ -223,6 +223,12 @@
       "type": "unique",
       "obs": null,
       "id": "xR1KhMp"
+    },
+    {
+      "name": "móveis e eletrodomésticos",
+      "type": "unique",
+      "obs": null,
+      "id": "LIVWLAH"
     }
   ]
 }
