@@ -74,8 +74,8 @@ export default function CategoriesPage() {
           <Dialog
             open={isDialogOpen}
             onOpenChange={(open) => {
-              form.reset()
               setIsDialogOpen(open)
+              form.reset()
             }}
           >
             <DialogTrigger asChild>

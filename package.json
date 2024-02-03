@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "next dev -p 3333",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest watch",
+    "test:e2e": "npx playwright test --ui",
     "server": "json-server -w db.json -p 8080"
   },
   "dependencies": {
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@playwright/test": "1.41.2",
     "@rocketseat/eslint-config": "2.1.0",
     "@tanstack/eslint-plugin-query": "5.17.22",
     "@testing-library/dom": "9.3.4",
