@@ -64,8 +64,7 @@ export function UpdateProfileForm() {
       >
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">nome</label>
-
-          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
+          <div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
             <Input {...form.register('name')} />
             {errors.name && <FormError>{errors.name.message}</FormError>}
           </div>
@@ -73,8 +72,7 @@ export function UpdateProfileForm() {
 
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">sobrenome</label>
-
-          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
+          <div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
             <Input {...form.register('surname')} />
             {errors.surname && <FormError>{errors.surname.message}</FormError>}
           </div>
@@ -82,8 +80,7 @@ export function UpdateProfileForm() {
 
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">e-mail</label>
-
-          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
+          <div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
             <Input {...form.register('email')} />
             {errors.email && <FormError>{errors.email.message}</FormError>}
           </div>
@@ -91,8 +88,7 @@ export function UpdateProfileForm() {
 
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">telefone</label>
-
-          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
+          <div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
             <Input {...form.register('phone')} />
             {errors.phone && <FormError>{errors.phone.message}</FormError>}
           </div>

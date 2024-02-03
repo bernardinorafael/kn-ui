@@ -14,7 +14,7 @@ export function ProfileModule() {
             <span className="text-sm font-medium text-zinc-500">username</span>
             <Input
               disabled
-              className="992px:max-w-[380px] max-w-[520px]"
+              className="max-w-[520px] 992px:max-w-[380px]"
               value="bernardinorafael"
             />
           </div>
@@ -23,7 +23,7 @@ export function ProfileModule() {
             <span className="text-sm font-medium text-zinc-500">cpf</span>
             <Input
               disabled
-              className="992px:max-w-[380px] max-w-[520px]"
+              className="max-w-[520px] 992px:max-w-[380px]"
               value="***.845.109-**"
             />
           </div>

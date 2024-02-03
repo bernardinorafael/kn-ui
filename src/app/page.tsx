@@ -9,10 +9,6 @@ export default async function HomePage() {
   return (
     <>
       <Breadcrumb path={['início']} />
-
-      <div>
-        <h1>dashboard</h1>
-      </div>
     </>
   )
 }

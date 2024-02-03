@@ -18,6 +18,20 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        '1600px': { max: '1600px' },
+        '1250px': { max: '1250px' },
+        '1150px': { max: '1150px' },
+        '1050px': { max: '1050px' },
+        '992px': { max: '992px' },
+        '892px': { max: '892px' },
+        '820px': { max: '820px' },
+        '720px': { max: '720px' },
+        '550px': { max: '550px' },
+        '470px': { max: '470px' },
+        '350px': { max: '350px' },
+      },
+
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

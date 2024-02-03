@@ -171,7 +171,7 @@
     {
       "name": "amazon buds 2",
       "size": "un",
-      "active": true,
+      "active": false,
       "created_at": "2024-01-29T23:51:46.402Z",
       "brand": "amazon",
       "color": "black",
@@ -181,6 +181,54 @@
       "obs": null,
       "price": 1399.99,
       "id": "FuAHw0C"
+    },
+    {
+      "name": "repelente de mosquitos",
+      "size": "un",
+      "active": true,
+      "created_at": "2024-01-31T00:20:26.478Z",
+      "brand": "zindex",
+      "color": "pink",
+      "stock": 33,
+      "current_stock": 33,
+      "category": "pink",
+      "obs": "indicado para crianças maiores de 12 anos",
+      "price": 39.99,
+      "id": "qNM72PG"
+    },
+    {
+      "name": "repelente de mosquitos",
+      "size": "un",
+      "active": true,
+      "created_at": "2024-01-31T00:20:57.041Z",
+      "brand": "zindex",
+      "color": "pink",
+      "stock": 33,
+      "current_stock": 33,
+      "category": "pink",
+      "obs": "indicado para crianças maiores de 12 anos",
+      "price": 39.99,
+      "id": "ihrGwh7"
+    }
+  ],
+  "categories": [
+    {
+      "name": "roupas de academia",
+      "type": "convencional",
+      "obs": "grade de tamanhos atualizada",
+      "id": "25ad"
+    },
+    {
+      "name": "celulares e acessórios relacionados",
+      "type": "unique",
+      "obs": null,
+      "id": "xR1KhMp"
+    },
+    {
+      "name": "móveis e eletrodomésticos",
+      "type": "unique",
+      "obs": null,
+      "id": "LIVWLAH"
     }
   ]
 }
