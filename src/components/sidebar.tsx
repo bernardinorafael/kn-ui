@@ -1,7 +1,3 @@
-'use client'
-
-import { usePathname } from 'next/navigation'
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,13 +10,10 @@ import {
 } from '@/src/components/ui/alert-dialog'
 import { Crown, LogOut } from 'lucide-react'
 
-import { ROUTES } from '../constants/routes'
 import { cn } from '../util'
 import { SidebarItem } from './sidebar-item'
 
 export function Sidebar() {
-  const pathname = usePathname()
-
   return (
     <aside className="h-full w-[390px] border-r border-zinc-300 dark:border-zinc-800 1600px:w-[290px]">
       <section
@@ -36,24 +29,9 @@ export function Sidebar() {
           estoque
         </span>
         <div className="flex flex-col gap-1">
-          <SidebarItem
-            href={ROUTES.product.home}
-            isActive={pathname.startsWith(ROUTES.product.home)}
-          >
-            meus produtos
-          </SidebarItem>
-          <SidebarItem
-            href={ROUTES.categories}
-            isActive={pathname.startsWith(ROUTES.categories)}
-          >
-            categorias
-          </SidebarItem>
-          <SidebarItem
-            href={ROUTES.brands}
-            isActive={pathname.startsWith(ROUTES.brands)}
-          >
-            marcas
-          </SidebarItem>
+          <SidebarItem>meus produtos</SidebarItem>
+          <SidebarItem>categorias</SidebarItem>
+          <SidebarItem>marcas</SidebarItem>
         </div>
       </section>
 
@@ -62,17 +40,9 @@ export function Sidebar() {
           minha conta
         </span>
         <div className="flex flex-col gap-1">
-          <SidebarItem
-            href={ROUTES.profile.home}
-            isActive={pathname.startsWith(ROUTES.profile.home)}
-          >
-            preferências
-          </SidebarItem>
+          <SidebarItem>preferências</SidebarItem>
 
-          <SidebarItem
-            href={ROUTES.plan}
-            isActive={pathname.startsWith(ROUTES.plan)}
-          >
+          <SidebarItem>
             mudar plano
             <Crown className="text-red-500" size={14} />
           </SidebarItem>
@@ -86,7 +56,7 @@ export function Sidebar() {
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <SidebarItem href="#">
+            <SidebarItem>
               <LogOut size={14} />
               sair
             </SidebarItem>

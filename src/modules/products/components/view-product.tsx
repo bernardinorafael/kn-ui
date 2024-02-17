@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 import { Box } from '@/src/components/box'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
@@ -8,6 +6,7 @@ import { Textarea } from '@/src/components/ui/textarea'
 import { ROUTES } from '@/src/constants/routes'
 import { Product } from '@/src/types/product'
 import { formatCurrency } from '@/src/util'
+import { Link } from '@tanstack/react-router'
 
 export function ViewProduct({ product }: { product: Product }) {
   return (
@@ -56,7 +55,7 @@ export function ViewProduct({ product }: { product: Product }) {
 
       <footer className="flex justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800">
         <Button asChild variant="outline">
-          <Link href={ROUTES.product.home}>voltar</Link>
+          <Link to={ROUTES.product.home}>voltar</Link>
         </Button>
       </footer>
     </Box>

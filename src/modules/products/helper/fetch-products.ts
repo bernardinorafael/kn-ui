@@ -7,9 +7,6 @@ export const fetchProducts = async (query: string): Promise<Product[]> => {
     `http://localhost:8080/products/?q=${q}&_sort=created_at&_order=desc`,
     {
       cache: 'force-cache',
-      next: {
-        tags: ['products'],
-      },
     },
   )
 

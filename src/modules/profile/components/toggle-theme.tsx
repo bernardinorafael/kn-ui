@@ -1,5 +1,3 @@
-'use client'
-
 import { Box } from '@/src/components/box'
 import {
   Select,
@@ -19,7 +17,7 @@ export function ToggleTheme() {
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-zinc-500">tema</span>
 
-          <div className="992px:max-w-[380px] w-full max-w-[520px]">
+          <div className="w-full max-w-[520px] 992px:max-w-[380px]">
             <Select
               onValueChange={(value) => setTheme(value)}
               defaultValue={theme || 'system'}

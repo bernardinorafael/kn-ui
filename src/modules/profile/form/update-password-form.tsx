@@ -1,5 +1,3 @@
-'use client'
-
 import { Box } from '@/src/components/box'
 import { FormError } from '@/src/components/form-error'
 import { InputBox } from '@/src/components/input-box'
@@ -56,7 +54,7 @@ export function UpdatePasswordForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">senha atual</label>
 
-          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
+          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
             <Input
               type="password"
               placeholder="********"
@@ -69,7 +67,7 @@ export function UpdatePasswordForm() {
         <InputBox>
           <label className="text-sm font-medium text-zinc-500">nova senha</label>
 
-          <div className="992px:max-w-[380px] flex w-full max-w-[520px] flex-col gap-3">
+          <div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
             <Input
               type="password"
               placeholder="********"

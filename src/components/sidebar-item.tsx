@@ -1,26 +1,15 @@
-'use client'
-
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
 import { cn } from '../util'
 
-type SidebarItemProps = React.ComponentProps<typeof Link> & {
-  isActive?: boolean
-}
+type SidebarItemProps = React.ComponentProps<'div'>
 
 export function SidebarItem(props: SidebarItemProps) {
-  const { className, children, isActive, ...rest } = props
-
-  const pathname = usePathname()
-  const isPlanPage = pathname.startsWith('/plan')
+  const { className, children, ...rest } = props
 
   return (
-    <Link
+    <div
       className={cn(
         'flex cursor-default items-center text-zinc-500 hover:text-black',
         'dark:hover:text-white',
-        { 'text-black dark:text-white': isActive },
         className,
       )}
       {...rest}
@@ -28,15 +17,6 @@ export function SidebarItem(props: SidebarItemProps) {
       <span className="flex items-center justify-center gap-2 pt-1 text-sm font-medium">
         {children}
       </span>
-
-      {isActive && (
-        <div
-          className={cn(
-            'ml-auto h-[20px] w-1 rounded-bl-lg rounded-tl-lg bg-zinc-950 dark:bg-white',
-            { 'bg-red-500': isPlanPage },
-          )}
-        />
-      )}
-    </Link>
+    </div>
   )
 }
