@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from '@/src/components/ui/card'
 import { Progress } from '@/src/components/ui/progress'
-import { ViewProduct } from '@/src/modules/products/components/view-product'
 import { cn } from '@/src/util'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -39,23 +38,6 @@ export default async function EditProductPage() {
             </p>
           </CardFooter>
         </Card>
-
-        <ViewProduct
-          product={{
-            stock: 1,
-            name: 'product name',
-            current_stock: 40,
-            obs: null,
-            active: true,
-            brand: 'brand',
-            id: '11',
-            color: 'blue',
-            category: 'category',
-            price: 300,
-            size: 'g',
-            created_at: '2023/12/04',
-          }}
-        />
       </div>
     </>
   )

@@ -4,22 +4,28 @@ import { Breadcrumb } from '@/src/components/breadcrumb.tsx'
 import { Alert, AlertDescription, AlertTitle } from '@/src/components/ui/alert.tsx'
 import { Button } from '@/src/components/ui/button.tsx'
 import { Input } from '@/src/components/ui/input.tsx'
-import { ROUTES } from '@/src/constants/routes.ts'
+import { fetchProducts } from '@/src/modules/products/helper/fetch-products.ts'
 import { ProductsSkeleton } from '@/src/modules/products/skeletons/products-skeleton.tsx'
+import { useQuery } from '@tanstack/react-query'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Terminal } from 'lucide-react'
 
 function ProductPage() {
+  const { data: products } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  })
+
   return (
     <>
       <Breadcrumb path={['produtos']} />
 
       <div className="flex flex-col gap-6 p-4">
         <section className="flex items-center justify-between">
-          <Input className="max-w-[50%]" />
+          <Input placeholder="buscar produto" className="max-w-[50%]" />
 
           <Button asChild>
-            <Link to={ROUTES.product.new}>criar produto</Link>
+            <Link to="/products/new">criar produto</Link>
           </Button>
         </section>
 
@@ -32,7 +38,10 @@ function ProductPage() {
         </Alert>
 
         <React.Suspense fallback={<ProductsSkeleton />}>
-          {/* <ProductsList query="query test" /> */}
+          {products &&
+            products.map((product) => {
+              return <p>{product.id}</p>
+            })}
         </React.Suspense>
       </div>
     </>

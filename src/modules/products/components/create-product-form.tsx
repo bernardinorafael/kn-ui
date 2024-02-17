@@ -15,10 +15,9 @@ import {
   SelectValue,
 } from '@/src/components/ui/select'
 import { Textarea } from '@/src/components/ui/textarea'
-import { ROUTES } from '@/src/constants/routes'
 import { api } from '@/src/lib/axios'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Link } from '@tanstack/react-router'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { isAxiosError } from 'axios'
 import { Controller, useForm } from 'react-hook-form'
 import { currency } from 'remask'
@@ -30,6 +29,7 @@ import { NewProductSchema } from '../schemas/new-product-schema'
 type NewProductInput = z.infer<typeof NewProductSchema>
 
 export function CreateProductForm() {
+  const navigate = useNavigate({ from: '/products/new' })
   const [currencyValue, setCurrencyValue] = React.useState('')
 
   const form = useForm<NewProductInput>({
@@ -61,6 +61,8 @@ export function CreateProductForm() {
       toast.success('produto cadastrado com sucesso!', {
         description: 'seu produto já pode ser visualizado na seção de produtos',
       })
+
+      await navigate({ to: '/products' })
     } catch (err) {
       if (isAxiosError(err)) {
         console.error(err)
@@ -182,7 +184,7 @@ export function CreateProductForm() {
 
       <footer className="flex justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800">
         <Button asChild variant="outline" disabled={form.formState.isSubmitting}>
-          <Link to={ROUTES.product.home}>cancelar</Link>
+          <Link to="/products">cancelar</Link>
         </Button>
         <Button
           type="submit"
