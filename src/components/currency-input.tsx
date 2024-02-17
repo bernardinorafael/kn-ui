@@ -5,8 +5,6 @@ import { currency } from 'remask'
 
 interface InputCurrencyProps {
   value: string
-  locale: string
-  currency: string
   asChild?: boolean
   children: React.ReactNode
   onChange: (value: string) => void
@@ -14,9 +12,12 @@ interface InputCurrencyProps {
 
 export const CurrencyInput = React.forwardRef<HTMLInputElement, InputCurrencyProps>(
   ({ asChild, ...props }: InputCurrencyProps, ref) => {
-    const { locale = 'pt-AO', currency: coin, onChange, value, ...rest } = props
+    const { onChange, value, ...rest } = props
 
-    const currencyOptions = { currency: coin, locale }
+    const currencyOptions = {
+      currency: 'BRL',
+      locale: 'BRL',
+    }
 
     const onChangeCurrencyValue = (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value

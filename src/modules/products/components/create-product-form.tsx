@@ -87,13 +87,7 @@ export function CreateProductForm() {
         <Label className="flex w-full items-center justify-between gap-2">
           preço
           <div className="flex w-full max-w-[520px] flex-col gap-2">
-            <CurrencyInput
-              asChild
-              currency="BRL"
-              locale="pt-BR"
-              value={currencyValue}
-              onChange={setCurrencyValue}
-            >
+            <CurrencyInput asChild value={currencyValue} onChange={setCurrencyValue}>
               <Input {...form.register('price')} />
             </CurrencyInput>
             {errors.price && <FormError>{errors.price.message}</FormError>}

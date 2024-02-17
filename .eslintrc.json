@@ -28,7 +28,7 @@
       }
     ],
 
-    "react/jsx-key": "off",
+    "react/jsx-key": "error",
     "tailwindcss/no-custom-classname": "off"
   }
 }

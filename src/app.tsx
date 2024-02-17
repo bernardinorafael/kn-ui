@@ -7,6 +7,7 @@ import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
 
 import './global.css'
+import '@/src/lib/dayjs.ts'
 
 export const router = createRouter({ routeTree })
 

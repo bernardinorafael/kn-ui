@@ -1,7 +1,7 @@
 import { api } from '@/src/lib/axios.ts'
 import { Product } from '@/src/types/product'
 
-export async function fetchProducts() {
+export async function getProducts() {
   try {
     const response = await api.get<Product[]>('/products')
     return response.data
