@@ -2,7 +2,7 @@ import { env } from '@/src/env'
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: env.SERVER_URL,
+  baseURL: env.VITE_SERVER_URL,
 })
 
 api.interceptors.request.use(async (config) => {

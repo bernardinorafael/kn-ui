@@ -9,22 +9,27 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes'
 import './global.css'
 import '@/src/lib/dayjs.ts'
 
+import { env } from '@/src/env'
+import { ClerkProvider } from '@clerk/clerk-react'
+
 export const router = createRouter({ routeTree })
 
 export function App() {
   return (
-    <TooltipProvider delayDuration={200}>
-      <NextThemesProvider
-        enableSystem
-        disableTransitionOnChange
-        attribute="class"
-        defaultTheme="system"
-      >
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
-        <Toaster />
-      </NextThemesProvider>
-    </TooltipProvider>
+    <ClerkProvider publishableKey={env.VITE_CLERK_PUBLISHABLE_KEY}>
+      <TooltipProvider delayDuration={200}>
+        <NextThemesProvider
+          enableSystem
+          disableTransitionOnChange
+          attribute="class"
+          defaultTheme="system"
+        >
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+          <Toaster />
+        </NextThemesProvider>
+      </TooltipProvider>
+    </ClerkProvider>
   )
 }

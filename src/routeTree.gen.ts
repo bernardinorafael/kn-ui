@@ -17,6 +17,8 @@ import { Route as ProductsIndexImport } from './routes/products/index'
 import { Route as ProfilePlanImport } from './routes/profile/plan'
 import { Route as ProductsNewImport } from './routes/products/new'
 import { Route as ProductsIdImport } from './routes/products/$id'
+import { Route as AuthSignUpImport } from './routes/auth/sign-up'
+import { Route as AuthSignInImport } from './routes/auth/sign-in'
 
 // Create/Update Routes
 
@@ -50,12 +52,30 @@ const ProductsIdRoute = ProductsIdImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthSignUpRoute = AuthSignUpImport.update({
+  path: '/auth/sign-up',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthSignInRoute = AuthSignInImport.update({
+  path: '/auth/sign-in',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/sign-in': {
+      preLoaderRoute: typeof AuthSignInImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/sign-up': {
+      preLoaderRoute: typeof AuthSignUpImport
       parentRoute: typeof rootRoute
     }
     '/products/$id': {
@@ -85,6 +105,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  AuthSignInRoute,
+  AuthSignUpRoute,
   ProductsIdRoute,
   ProductsNewRoute,
   ProfilePlanRoute,
