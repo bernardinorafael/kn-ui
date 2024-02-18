@@ -1,7 +1,8 @@
+import { env } from '@/src/env'
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: env.SERVER_URL,
 })
 
 api.interceptors.request.use(async (config) => {

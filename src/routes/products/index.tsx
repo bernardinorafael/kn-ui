@@ -45,6 +45,7 @@ function ProductPage() {
       <div className="flex flex-col gap-6 p-4">
         <section className="flex items-center justify-between">
           <Input
+            autoFocus
             ref={inputRef}
             className="max-w-[50%]"
             defaultValue={query}
