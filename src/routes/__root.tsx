@@ -1,16 +1,13 @@
 import { Sidebar } from '@/src/components/sidebar'
-import { cn } from '@/src/util'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 
 function RootComponent() {
   return (
-    <div className={cn('h-screen antialiased dark:bg-zinc-950')}>
-      <div className="flex h-full items-center">
-        <Sidebar />
-        <main className="h-screen w-full overflow-y-auto">
-          <Outlet />
-        </main>
-      </div>
+    <div className="flex h-screen items-center antialiased dark:bg-zinc-950">
+      <Sidebar />
+      <main className="h-screen w-full overflow-y-auto">
+        <Outlet />
+      </main>
     </div>
   )
 }

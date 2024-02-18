@@ -29,7 +29,9 @@ export function Sidebar() {
           estoque
         </span>
         <div className="flex flex-col gap-1">
-          <SidebarItem>meus produtos</SidebarItem>
+          <SidebarItem to="/products" activeProps={{ style: { color: '#fff' } }}>
+            meus produtos
+          </SidebarItem>
           <SidebarItem>categorias</SidebarItem>
           <SidebarItem>marcas</SidebarItem>
         </div>
@@ -40,7 +42,9 @@ export function Sidebar() {
           minha conta
         </span>
         <div className="flex flex-col gap-1">
-          <SidebarItem>preferências</SidebarItem>
+          <SidebarItem to="/profile" activeProps={{ style: { color: '#fff' } }}>
+            preferências
+          </SidebarItem>
 
           <SidebarItem>
             mudar plano
