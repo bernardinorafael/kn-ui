@@ -62,7 +62,7 @@ export function CreateProductForm() {
         description: 'seu produto já pode ser visualizado na seção de produtos',
       })
 
-      await navigate({ to: '/products' })
+      await navigate({ to: '/products', search: { query: '' } })
     } catch (err) {
       if (isAxiosError(err)) {
         console.error(err)
@@ -178,7 +178,9 @@ export function CreateProductForm() {
 
       <footer className="flex justify-end gap-2 border-t border-zinc-200 p-4 dark:border-zinc-800">
         <Button asChild variant="outline" disabled={form.formState.isSubmitting}>
-          <Link to="/products">cancelar</Link>
+          <Link search to="/products">
+            cancelar
+          </Link>
         </Button>
         <Button
           type="submit"
