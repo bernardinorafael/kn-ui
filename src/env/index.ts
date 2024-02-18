@@ -32,4 +32,13 @@ if (!_env.success) {
   console.warn('WARN: PLEASE CHECK IF YOU HAVE CORRECTLY CONFIGURED YOUR ENV!')
   throw new Error('INVALID ENVIRONMENT VARIABLES')
 }
+
+for (const key of Object.keys(_env.data)) {
+  if (!key.startsWith('VITE_')) {
+    console.warn(
+      `❌ INVALID PUBLIC ENV VARIABLE NAME: ${key}. IT MUST BEGIN WITH 'VITE_'`,
+    )
+    throw new Error('INVALID PUBLIC ENV VARIABLES NAME')
+  }
+}
 export const env = _env.data
