@@ -5,8 +5,8 @@ import { Alert, AlertDescription, AlertTitle } from '@/src/components/ui/alert.t
 import { Button } from '@/src/components/ui/button.tsx'
 import { Input } from '@/src/components/ui/input.tsx'
 import { ProductsList } from '@/src/modules/products/components/products-list.tsx'
+import { Terminal } from '@phosphor-icons/react'
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { Terminal } from 'lucide-react'
 import { useDebouncedCallback as debounce } from 'use-debounce'
 import { z } from 'zod'
 

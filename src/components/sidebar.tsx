@@ -8,7 +8,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/src/components/ui/alert-dialog'
-import { LogOut } from 'lucide-react'
 
 import { cn } from '../util'
 import { SidebarItem } from './sidebar-item'
@@ -53,10 +52,7 @@ export function Sidebar() {
 
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <SidebarItem>
-              <LogOut size={14} />
-              sair
-            </SidebarItem>
+            <SidebarItem>sair</SidebarItem>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
