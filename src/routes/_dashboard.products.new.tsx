@@ -1,6 +1,10 @@
-import { Breadcrumb } from '@/src/components/breadcrumb'
+import { Breadcrumb } from '@/src/components/breadcrumb.tsx'
 import { CreateProductForm } from '@/src/modules/products/components/create-product-form.tsx'
 import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/_dashboard/products/new')({
+  component: NewProductPage,
+})
 
 export default function NewProductPage() {
   return (
@@ -13,7 +17,3 @@ export default function NewProductPage() {
     </>
   )
 }
-
-export const Route = createFileRoute('/products/new')({
-  component: NewProductPage,
-})

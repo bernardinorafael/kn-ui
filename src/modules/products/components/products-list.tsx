@@ -15,7 +15,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getRouteApi } from '@tanstack/react-router'
 import dayjs from 'dayjs'
 
-const route = getRouteApi('/products/')
+const route = getRouteApi('/_dashboard/products/')
 
 export function ProductsList() {
   const { query } = route.useSearch()

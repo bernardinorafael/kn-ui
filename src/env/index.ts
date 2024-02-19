@@ -2,9 +2,6 @@ import { z, ZodFormattedError } from 'zod'
 
 const EnvSchema = z.object({
   MODE: z.enum(['production', 'development', 'test']).default('development'),
-  VITE_CLERK_PUBLISHABLE_KEY: z.string({
-    required_error: 'env not provided!',
-  }),
   VITE_SERVER_URL: z
     .string({ required_error: 'env not provided!' })
     .url({ message: 'must be an URL format.' }),

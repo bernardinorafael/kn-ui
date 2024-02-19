@@ -1,6 +1,10 @@
-import { Breadcrumb } from '@/src/components/breadcrumb'
+import { Breadcrumb } from '@/src/components/breadcrumb.tsx'
 import { ProfileModule } from '@/src/modules/profile'
 import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/_dashboard/profile')({
+  component: ProfilePage,
+})
 
 function ProfilePage() {
   return (
@@ -13,7 +17,3 @@ function ProfilePage() {
     </>
   )
 }
-
-export const Route = createFileRoute('/profile/')({
-  component: ProfilePage,
-})

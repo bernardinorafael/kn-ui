@@ -8,7 +8,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/src/components/ui/alert-dialog'
-import { Crown, LogOut } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 
 import { cn } from '../util'
 import { SidebarItem } from './sidebar-item'
@@ -32,8 +32,6 @@ export function Sidebar() {
           <SidebarItem to="/products" activeProps={{ style: { color: '#fff' } }}>
             meus produtos
           </SidebarItem>
-          <SidebarItem>categorias</SidebarItem>
-          <SidebarItem>marcas</SidebarItem>
         </div>
       </section>
 
@@ -44,11 +42,6 @@ export function Sidebar() {
         <div className="flex flex-col gap-1">
           <SidebarItem to="/profile" activeProps={{ style: { color: '#fff' } }}>
             preferências
-          </SidebarItem>
-
-          <SidebarItem>
-            mudar plano
-            <Crown className="text-red-500" size={14} />
           </SidebarItem>
         </div>
       </section>

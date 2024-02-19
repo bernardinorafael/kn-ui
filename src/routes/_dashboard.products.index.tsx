@@ -14,6 +14,13 @@ const ProductSearchSchema = z.object({
   query: z.string().catch(''),
 })
 
+export const Route = createFileRoute('/_dashboard/products/')({
+  component: ProductPage,
+  validateSearch(query: Record<string, unknown>) {
+    return ProductSearchSchema.parse(query)
+  },
+})
+
 function ProductPage() {
   const { query } = Route.useSearch()
   const navigate = useNavigate({ from: '/products' })
@@ -71,10 +78,3 @@ function ProductPage() {
     </>
   )
 }
-
-export const Route = createFileRoute('/products/')({
-  component: ProductPage,
-  validateSearch(query: Record<string, unknown>) {
-    return ProductSearchSchema.parse(query)
-  },
-})
