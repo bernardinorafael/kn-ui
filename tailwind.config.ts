@@ -18,6 +18,13 @@ const config = {
       },
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '720px',
+          },
+        },
+      },
       screens: {
         '1600px': { max: '1600px' },
         '1250px': { max: '1250px' },
@@ -88,7 +95,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config
 
 export default config

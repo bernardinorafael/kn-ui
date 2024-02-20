@@ -45,6 +45,7 @@
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
     "@playwright/test": "1.41.2",
     "@rocketseat/eslint-config": "2.1.0",
+    "@tailwindcss/typography": "0.5.10",
     "@tanstack/eslint-plugin-query": "5.17.22",
     "@tanstack/router-vite-plugin": "1.16.5",
     "@testing-library/dom": "9.3.4",
