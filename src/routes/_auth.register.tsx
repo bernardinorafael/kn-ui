@@ -24,7 +24,7 @@ function RegisterPage() {
         </p>
       </div>
 
-      <form className="space-y-2">
+      <form className="space-y-4">
         <Input autoFocus placeholder="seu-email@email.com" />
         <Input placeholder="************" />
         <Input placeholder="************" />

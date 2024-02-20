@@ -1,5 +1,5 @@
 import { Button } from '@/src/components/ui/button.tsx'
-import { Input } from '@/src/components/ui/input.tsx'
+import { LoginForm } from '@/src/modules/auth/components/login-form.tsx'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/login')({
@@ -14,13 +14,7 @@ function LoginPage() {
         <p className="text-zinc-600">insira seu e-mail para entrar com sua conta</p>
       </div>
 
-      <form className="space-y-2">
-        <Input autoFocus placeholder="seu-email@email.com" />
-        <Input type="password" placeholder="********" />
-        <Button className="w-full" size="lg">
-          entrar
-        </Button>
-      </form>
+      <LoginForm />
 
       <Button asChild className="text-zinc-600" variant="link" size="default">
         <Link to="/register">não possui uma conta? cadastre-se</Link>
