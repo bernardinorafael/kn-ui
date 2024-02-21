@@ -1,9 +1,8 @@
 import { Box } from '@/src/components/box'
 import { Input } from '@/src/components/ui/input'
-
-import { ToggleTheme } from './components/toggle-theme'
-import { UpdatePasswordForm } from './form/update-password-form'
-import { UpdateProfileForm } from './form/update-profile-form'
+import { ToggleTheme } from '@/src/modules/profile/components/toggle-theme.tsx'
+import { UpdatePasswordForm } from '@/src/modules/profile/form/update-password-form.tsx'
+import { UpdateProfileForm } from '@/src/modules/profile/form/update-profile-form.tsx'
 
 export function ProfileModule() {
   return (

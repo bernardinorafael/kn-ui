@@ -1,11 +1,12 @@
-import { FormError } from '@/src/components/form-error.tsx'
-import { Loading } from '@/src/components/loading.tsx'
-import { Button } from '@/src/components/ui/button.tsx'
-import { Input } from '@/src/components/ui/input.tsx'
-import { LoginSchema } from '@/src/modules/auth/schemas/login-schema.tsx'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+
+import { Button } from '@/src/components/ui/button.tsx'
+import { Input } from '@/src/components/ui/input.tsx'
+import { FormError } from '@/src/components/form-error.tsx'
+import { Loading } from '@/src/components/loading.tsx'
+import { LoginSchema } from '@/src/modules/auth/schemas/login-schema.ts'
 
 // TODO: Implementar lógica para abrir os Termos de Serviço.
 export function LoginForm() {
