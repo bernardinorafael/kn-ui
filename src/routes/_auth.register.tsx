@@ -1,19 +1,11 @@
-import { TermsOfServices } from '@/src/components/tos.tsx'
 import { Button } from '@/src/components/ui/button.tsx'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-} from '@/src/components/ui/drawer'
-import { Input } from '@/src/components/ui/input.tsx'
+import { RegisterForm } from '@/src/modules/auth/components/register-form.tsx'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/register')({
   component: RegisterPage,
 })
 
-// TODO: Precisa melhorar o componente Terms of Services.
 function RegisterPage() {
   return (
     <>
@@ -24,15 +16,7 @@ function RegisterPage() {
         </p>
       </div>
 
-      <form className="space-y-4">
-        <Input autoFocus placeholder="seu-email@email.com" />
-        <Input placeholder="************" />
-        <Input placeholder="************" />
-
-        <Button className="w-full" size="lg">
-          cadastrar e entrar
-        </Button>
-      </form>
+      <RegisterForm />
 
       <div className="space-y-3">
         <div className="flex items-center gap-4">
@@ -45,20 +29,6 @@ function RegisterPage() {
           <Link to="/login">entrar agora</Link>
         </Button>
       </div>
-
-      <Drawer>
-        <DrawerContent className="h-[55vh]">
-          <div className="mt-4 flex h-full flex-col items-center overflow-y-auto">
-            <TermsOfServices />
-            <DrawerFooter className="flex w-full max-w-[720px]">
-              <Button>aceitar</Button>
-              <DrawerClose asChild>
-                <Button variant="outline">cancelar</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </div>
-        </DrawerContent>
-      </Drawer>
     </>
   )
 }

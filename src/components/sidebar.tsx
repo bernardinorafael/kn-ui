@@ -1,3 +1,4 @@
+import { cn } from '@/src/util'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,9 +9,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/src/components/ui/alert-dialog'
-
-import { cn } from '../util'
-import { SidebarItem } from './sidebar-item'
+import { SidebarItem } from '@/src/components/sidebar-item.tsx'
 
 export function Sidebar() {
   return (
