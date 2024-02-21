@@ -16,7 +16,7 @@
     "^@/src/types/(.*)$",
     "^@/src/lib/(.*)$",
     "^@/src/hooks/(.*)$",
-    "^@/src/util(.*)$",
+    "^@/src/util/(.*)$",
     "^@/src/components/ui/(.*)$",
     "^@/src/components/(.*)$",
     "^@/src/env(.*)$",

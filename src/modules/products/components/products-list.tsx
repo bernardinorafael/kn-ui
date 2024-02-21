@@ -1,3 +1,8 @@
+import { useQuery } from '@tanstack/react-query'
+import { getRouteApi } from '@tanstack/react-router'
+import dayjs from 'dayjs'
+
+import { formatCurrency } from '@/src/util/format-currency.ts'
 import {
   Table,
   TableBody,
@@ -10,10 +15,6 @@ import {
 import { EmptyProductsFallback } from '@/src/modules/products/components/empty-products-fallback.tsx'
 import { ProductsSkeleton } from '@/src/modules/products/skeletons/products-skeleton.tsx'
 import { getProducts } from '@/src/modules/products/utils/get-products.ts'
-import { formatCurrency } from '@/src/util'
-import { useQuery } from '@tanstack/react-query'
-import { getRouteApi } from '@tanstack/react-router'
-import dayjs from 'dayjs'
 
 const route = getRouteApi('/_dashboard/products/')
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Link } from '@tanstack/react-router'
 
-import { cn } from '../util'
+import { cn } from '@/src/util/cn.ts'
 
 type SidebarItemProps = React.ComponentProps<typeof Link>
 

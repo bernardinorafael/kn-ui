@@ -1,5 +1,5 @@
-import { api } from '@/src/lib/axios.ts'
 import { Product } from '@/src/types/product'
+import { api } from '@/src/lib/axios.ts'
 
 type GetProductsParams = {
   query: string

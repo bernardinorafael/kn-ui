@@ -1,7 +1,8 @@
 import * as React from 'react'
 
-import { cn } from '@/src/util'
 import * as ProgressPrimitive from '@radix-ui/react-progress'
+
+import { cn } from '@/src/util/cn.ts'
 
 type IndicatorProps = {
   indicatorClassName?: string
