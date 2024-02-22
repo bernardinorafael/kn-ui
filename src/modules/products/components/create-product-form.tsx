@@ -1,9 +1,14 @@
 import React from 'react'
 
-import { Box } from '@/src/components/box'
-import { CurrencyInput } from '@/src/components/currency-input'
-import { FormError } from '@/src/components/form-error'
-import { Loading } from '@/src/components/loading'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Link, useNavigate } from '@tanstack/react-router'
+import { isAxiosError } from 'axios'
+import { Controller, useForm } from 'react-hook-form'
+import { currency } from 'remask'
+import { toast } from 'sonner'
+import { z } from 'zod'
+
+import { api } from '@/src/lib/axios'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import { Label } from '@/src/components/ui/label'
@@ -15,16 +20,11 @@ import {
   SelectValue,
 } from '@/src/components/ui/select'
 import { Textarea } from '@/src/components/ui/textarea'
-import { api } from '@/src/lib/axios'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Link, useNavigate } from '@tanstack/react-router'
-import { isAxiosError } from 'axios'
-import { Controller, useForm } from 'react-hook-form'
-import { currency } from 'remask'
-import { toast } from 'sonner'
-import { z } from 'zod'
-
-import { NewProductSchema } from '../schemas/new-product-schema'
+import { Box } from '@/src/components/box'
+import { CurrencyInput } from '@/src/components/currency-input'
+import { FormError } from '@/src/components/form-error'
+import { Loading } from '@/src/components/loading'
+import { NewProductSchema } from '@/src/modules/products/schemas/new-product-schema.ts'
 
 type NewProductInput = z.infer<typeof NewProductSchema>
 

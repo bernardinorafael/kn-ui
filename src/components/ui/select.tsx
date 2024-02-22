@@ -1,8 +1,9 @@
 import * as React from 'react'
 
-import { cn } from '@/src/util'
 import { CaretDown, CaretUp, Circle } from '@phosphor-icons/react'
 import * as SelectPrimitive from '@radix-ui/react-select'
+
+import { cn } from '@/src/util/cn.ts'
 
 const Select = SelectPrimitive.Root
 

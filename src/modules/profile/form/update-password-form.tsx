@@ -1,14 +1,15 @@
-import { Box } from '@/src/components/box'
-import { FormError } from '@/src/components/form-error'
-import { InputBox } from '@/src/components/input-box'
-import { Loading } from '@/src/components/loading'
-import { Button } from '@/src/components/ui/button'
-import { Input } from '@/src/components/ui/input'
-import { cn } from '@/src/util'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
+
+import { cn } from '@/src/util/cn.ts'
+import { Button } from '@/src/components/ui/button'
+import { Input } from '@/src/components/ui/input'
+import { Box } from '@/src/components/box'
+import { FormError } from '@/src/components/form-error'
+import { InputBox } from '@/src/components/input-box'
+import { Loading } from '@/src/components/loading'
 
 import { UpdatePasswordSchema } from '../schemas/update-password-schema'
 

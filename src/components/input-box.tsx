@@ -1,4 +1,4 @@
-import { cn } from '@/src/util'
+import { cn } from '@/src/util/cn.ts'
 
 type InputBoxProps = React.ComponentProps<'div'>
 
