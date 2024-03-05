@@ -39,7 +39,7 @@ export function LoginForm() {
 
 			api.defaults.headers.Authorization = access_token
 
-			navigate({ to: '/' })
+			await navigate({ to: '/' })
 		} catch (err) {
 			if (isAxiosError(err)) {
 				const code = err.response?.data.code
@@ -63,21 +63,13 @@ export function LoginForm() {
 		<form className="space-y-4" onSubmit={form.handleSubmit(handleLogin)}>
 			<Label>
 				E-mail
-				<Input
-					autoFocus
-					placeholder="seu-email@exemplo.com"
-					{...form.register('email')}
-				/>
+				<Input autoFocus {...form.register('email')} />
 				{errors.email && <FormError>{errors.email.message}</FormError>}
 			</Label>
 
 			<Label>
 				Senha
-				<Input
-					type="password"
-					placeholder="************"
-					{...form.register('password')}
-				/>
+				<Input type="password" {...form.register('password')} />
 				{errors.password && <FormError>{errors.password.message}</FormError>}
 			</Label>
 

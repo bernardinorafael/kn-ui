@@ -11,9 +11,9 @@ function RegisterPage() {
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center">
-				<h1 className="text-5xl font-extrabold tracking-tight">criar conta</h1>
+				<h1 className="text-5xl font-extrabold tracking-tight">Criar conta</h1>
 				<p className="text-zinc-600">
-					preencha as informações abaixo para continuar
+					Preencha as informações abaixo para continuar
 				</p>
 			</div>
 
@@ -27,7 +27,7 @@ function RegisterPage() {
 				</div>
 
 				<Button asChild className="w-full gap-2" variant="outline" size="lg">
-					<Link to="/login">entrar agora</Link>
+					<Link to="/login">Entrar agora</Link>
 				</Button>
 			</div>
 		</>
