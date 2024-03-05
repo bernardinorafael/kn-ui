@@ -36,6 +36,7 @@ export function LoginForm() {
 				maxAge: 60 * 60 * 24, // 7 days
 				path: '/',
 			})
+
 			api.defaults.headers.Authorization = access_token
 
 			navigate({ to: '/' })

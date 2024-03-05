@@ -54,14 +54,14 @@ export function UpdateProfileForm() {
 	const isSubmitButtonDisabled = form.formState.isSubmitting || isFormDirty
 
 	return (
-		<Box title="informações do perfil">
+		<Box title="Informações do perfil">
 			<form
 				id="update-profile"
 				className="flex flex-col gap-2 p-4"
 				onSubmit={form.handleSubmit(handleEditProfile)}
 			>
 				<InputBox>
-					<label className="text-sm font-medium text-zinc-500">nome</label>
+					<label className="text-sm font-medium text-zinc-500">Nome</label>
 					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
 						<Input {...form.register('name')} />
 						{errors.name && <FormError>{errors.name.message}</FormError>}
@@ -69,7 +69,7 @@ export function UpdateProfileForm() {
 				</InputBox>
 
 				<InputBox>
-					<label className="text-sm font-medium text-zinc-500">sobrenome</label>
+					<label className="text-sm font-medium text-zinc-500">Sobrenome</label>
 					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
 						<Input {...form.register('surname')} />
 						{errors.surname && <FormError>{errors.surname.message}</FormError>}
@@ -77,7 +77,7 @@ export function UpdateProfileForm() {
 				</InputBox>
 
 				<InputBox>
-					<label className="text-sm font-medium text-zinc-500">e-mail</label>
+					<label className="text-sm font-medium text-zinc-500">E-mail</label>
 					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
 						<Input {...form.register('email')} />
 						{errors.email && <FormError>{errors.email.message}</FormError>}
@@ -85,7 +85,7 @@ export function UpdateProfileForm() {
 				</InputBox>
 
 				<InputBox>
-					<label className="text-sm font-medium text-zinc-500">telefone</label>
+					<label className="text-sm font-medium text-zinc-500">Telefone</label>
 					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
 						<Input {...form.register('phone')} />
 						{errors.phone && <FormError>{errors.phone.message}</FormError>}

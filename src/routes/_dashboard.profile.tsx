@@ -6,6 +6,8 @@ import { ToggleTheme } from '@/src/modules/profile/components/toggle-theme.tsx'
 import { UpdatePasswordForm } from '@/src/modules/profile/form/update-password-form.tsx'
 import { UpdateProfileForm } from '@/src/modules/profile/form/update-profile-form.tsx'
 
+
+
 export const Route = createFileRoute('/_dashboard/profile')({
 	component: ProfilePage,
 })
@@ -15,7 +17,7 @@ function ProfilePage() {
 		<>
 			<div className="p-4">
 				<section className="flex flex-col items-center gap-6">
-					<Box title="informações da conta">
+					<Box title="informações pessoais">
 						<div className="flex flex-col gap-2 p-4">
 							<div className="flex items-center justify-between">
 								<span className="text-sm font-medium text-zinc-500">Usuário</span>
