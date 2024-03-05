@@ -1,11 +1,12 @@
-import { useAuthentication } from '@/src/stores/use-authentication'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { isAxiosError } from 'axios'
+import { setCookie } from 'nookies'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { api } from '@/src/lib/axios.ts'
 import { Button } from '@/src/components/ui/button.tsx'
 import { Input } from '@/src/components/ui/input.tsx'
 import { Label } from '@/src/components/ui/label.tsx'
@@ -19,7 +20,6 @@ const unknownError = errors.unknownError
 
 export function LoginForm() {
 	const navigate = useNavigate({ from: '/login' })
-	const login = useAuthentication((store) => store.login)
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
@@ -27,12 +27,20 @@ export function LoginForm() {
 
 	async function handleLogin(data: z.infer<typeof LoginSchema>) {
 		try {
-			await login({
+			const response = await api.post('/auth/login', {
 				email: data.email,
 				password: data.password,
 			})
+			const token = response.data.access_token
 
-			await navigate({ to: '/' })
+			setCookie(null, 'kn-token', token, {
+				maxAge: 60 * 60 * 24, // 1 day
+				path: '/',
+			})
+
+			api.defaults.headers.token = token
+
+			navigate({ to: '/' })
 		} catch (err) {
 			if (isAxiosError(err)) {
 				const code = err.response?.data.code
@@ -40,6 +48,7 @@ export function LoginForm() {
 					toast.error(unauthorized.title, {
 						description: unauthorized.description,
 					})
+					return
 				}
 				toast.error(unknownError.title, {
 					description: unknownError.description,
