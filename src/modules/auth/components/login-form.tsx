@@ -18,27 +18,25 @@ import { LoginSchema } from '@/src/modules/auth/schemas/login-schema.ts'
 const unauthorized = errors.unauthorized
 const unknownError = errors.unknownError
 
+type LoginInput = z.infer<typeof LoginSchema>
+
 export function LoginForm() {
 	const navigate = useNavigate({ from: '/login' })
 
-	const form = useForm<z.infer<typeof LoginSchema>>({
+	const form = useForm<LoginInput>({
 		resolver: zodResolver(LoginSchema),
 	})
 
-	async function handleLogin(data: z.infer<typeof LoginSchema>) {
+	async function handleLogin({ email, password }: LoginInput) {
 		try {
-			const response = await api.post('/auth/login', {
-				email: data.email,
-				password: data.password,
-			})
-			const token = response.data.access_token
+			const res = await api.post('/auth/login', { email, password })
+			const { access_token } = res.data
 
-			setCookie(null, 'kn-token', token, {
-				maxAge: 60 * 60 * 24, // 1 day
+			setCookie(null, 'kn-token', access_token, {
+				maxAge: 60 * 60 * 24, // 7 days
 				path: '/',
 			})
-
-			api.defaults.headers.token = token
+			api.defaults.headers.Authorization = access_token
 
 			navigate({ to: '/' })
 		} catch (err) {
