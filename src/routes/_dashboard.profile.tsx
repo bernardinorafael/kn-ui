@@ -6,8 +6,6 @@ import { ToggleTheme } from '@/src/modules/profile/components/toggle-theme.tsx'
 import { UpdatePasswordForm } from '@/src/modules/profile/form/update-password-form.tsx'
 import { UpdateProfileForm } from '@/src/modules/profile/form/update-profile-form.tsx'
 
-
-
 export const Route = createFileRoute('/_dashboard/profile')({
 	component: ProfilePage,
 })

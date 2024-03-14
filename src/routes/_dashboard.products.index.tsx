@@ -11,7 +11,7 @@ import { Input } from '@/src/components/ui/input.tsx'
 import { ProductsList } from '@/src/modules/products/components/products-list.tsx'
 
 const ProductSearchSchema = z.object({
-	query: z.string().catch(''),
+	query: z.string().default(''),
 })
 
 export const Route = createFileRoute('/_dashboard/products/')({

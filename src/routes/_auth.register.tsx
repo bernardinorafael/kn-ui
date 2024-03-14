@@ -20,7 +20,7 @@ function RegisterPage() {
 			<RegisterForm />
 
 			<div className="space-y-3">
-				<div className="flex items-center gap-4">
+				<div className="space-y-4">
 					<hr className="w-full" />
 					<span className="text-sm text-zinc-400">ou</span>
 					<hr className="w-full" />

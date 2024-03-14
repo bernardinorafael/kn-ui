@@ -15,7 +15,7 @@ import { Loading } from '@/src/components/loading.tsx'
 import { errors } from '@/src/modules/auth/constants/errors.ts'
 import { LoginSchema } from '@/src/modules/auth/schemas/login-schema.ts'
 
-const unauthorized = errors.unauthorized
+const unauthorizedError = errors.unauthorized
 const unknownError = errors.unknownError
 
 type LoginInput = z.infer<typeof LoginSchema>
@@ -38,14 +38,13 @@ export function LoginForm() {
 			})
 
 			api.defaults.headers.Authorization = access_token
-
 			await navigate({ to: '/' })
 		} catch (err) {
 			if (isAxiosError(err)) {
 				const code = err.response?.data.code
 				if (code === 401) {
-					toast.error(unauthorized.title, {
-						description: unauthorized.description,
+					toast.error(unauthorizedError.title, {
+						description: unauthorizedError.description,
 					})
 					return
 				}
