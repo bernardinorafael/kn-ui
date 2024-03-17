@@ -1,12 +1,11 @@
+import { useAuth } from '@/src/stores/use-auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { isAxiosError } from 'axios'
-import { setCookie } from 'nookies'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { api } from '@/src/lib/axios'
 import { Button } from '@/src/components/ui/button.tsx'
 import { Input } from '@/src/components/ui/input.tsx'
 import { Label } from '@/src/components/ui/label'
@@ -18,32 +17,22 @@ import { RegisterSchema } from '@/src/modules/auth/schemas/register-schema.ts'
 const emailAlreadyTaken = errors.emailAlreadyTaken
 const documentAlreadyTaken = errors.documentAlreadyTaken
 
-type RegisterUserInput = z.infer<typeof RegisterSchema>
-
 export function RegisterForm() {
+	const register = useAuth((store) => store.register)
 	const navigate = useNavigate({ from: '/register' })
 
-	const form = useForm<RegisterUserInput>({
+	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
 	})
 
-	async function handleRegisterUser(data: RegisterUserInput) {
+	async function handleRegister(data: z.infer<typeof RegisterSchema>) {
 		try {
-			const res = await api.post('/auth/register', {
+			await register({
 				name: data.name,
 				email: data.email,
-				document: data.document,
 				password: data.password,
+				document: data.document,
 			})
-
-			const { access_token } = res.data
-
-			setCookie(null, 'kn-token', access_token, {
-				maxAge: 60 * 60 * 24, // 7 days
-				path: '/',
-			})
-
-			api.defaults.headers.Authorization = access_token
 
 			await navigate({ to: '/' })
 		} catch (err) {
@@ -54,6 +43,7 @@ export function RegisterForm() {
 					toast.error(emailAlreadyTaken.title, {
 						description: emailAlreadyTaken.description,
 					})
+					return
 				}
 
 				if (message.includes('document is already taken')) {
@@ -69,36 +59,34 @@ export function RegisterForm() {
 	const isSubmitting = form.formState.isSubmitting
 
 	return (
-		<>
-			<form className="space-y-4" onSubmit={form.handleSubmit(handleRegisterUser)}>
-				<Label>
-					Nome
-					<Input autoFocus {...form.register('name')} />
-					{errors.name && <FormError>{errors.name.message}</FormError>}
-				</Label>
+		<form className="space-y-4" onSubmit={form.handleSubmit(handleRegister)}>
+			<Label>
+				Nome
+				<Input autoFocus {...form.register('name')} />
+				{errors.name && <FormError>{errors.name.message}</FormError>}
+			</Label>
 
-				<Label>
-					E-mail
-					<Input {...form.register('email')} />
-					{errors.email && <FormError>{errors.email.message}</FormError>}
-				</Label>
+			<Label>
+				E-mail
+				<Input {...form.register('email')} />
+				{errors.email && <FormError>{errors.email.message}</FormError>}
+			</Label>
 
-				<Label>
-					CPF
-					<Input {...form.register('document')} />
-					{errors.document && <FormError>{errors.document.message}</FormError>}
-				</Label>
+			<Label>
+				CPF
+				<Input {...form.register('document')} />
+				{errors.document && <FormError>{errors.document.message}</FormError>}
+			</Label>
 
-				<Label>
-					Senha
-					<Input type="password" {...form.register('password')} />
-					{errors.password && <FormError>{errors.password.message}</FormError>}
-				</Label>
+			<Label>
+				Senha
+				<Input type="password" {...form.register('password')} />
+				{errors.password && <FormError>{errors.password.message}</FormError>}
+			</Label>
 
-				<Button className="w-full" size="lg" disabled={isSubmitting} type="submit">
-					{isSubmitting ? <Loading /> : 'Cadastrar e entrar'}
-				</Button>
-			</form>
-		</>
+			<Button className="w-full" size="lg" disabled={isSubmitting} type="submit">
+				{isSubmitting ? <Loading /> : 'Cadastrar e entrar'}
+			</Button>
+		</form>
 	)
 }
