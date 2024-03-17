@@ -11,10 +11,10 @@ import {
 } from '@/src/components/ui/alert-dialog'
 import { SidebarItem } from '@/src/components/sidebar-item.tsx'
 
-import { useAuthentication } from '../stores/use-authentication'
+import { useAuth } from '../stores/use-auth'
 
 export function Sidebar() {
-	const signOut = useAuthentication((store) => store.signOut)
+	const signOut = useAuth((store) => store.signOut)
 
 	return (
 		<aside className="h-full w-[390px] border-r border-zinc-300 dark:border-zinc-800 1600px:w-[290px]">
