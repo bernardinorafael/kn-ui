@@ -20,9 +20,9 @@ export function ToggleThemeSelect() {
 				<SelectValue placeholder="selecionar" />
 			</SelectTrigger>
 			<SelectContent>
-				<SelectItem value="light">claro</SelectItem>
-				<SelectItem value="dark">escuro</SelectItem>
-				<SelectItem value="system">sistema</SelectItem>
+				<SelectItem value="light">Claro</SelectItem>
+				<SelectItem value="dark">Escuro</SelectItem>
+				<SelectItem value="system">Sistema</SelectItem>
 			</SelectContent>
 		</Select>
 	)

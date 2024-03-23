@@ -51,7 +51,7 @@ export function UpdatePasswordForm() {
 			onSubmit={form.handleSubmit(handleUpdatePassword)}
 		>
 			<InputBox>
-				<label className="text-sm font-medium text-zinc-500">senha atual</label>
+				<label className="text-sm font-medium text-zinc-500">Senha atual</label>
 
 				<div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
 					<Input
@@ -64,7 +64,7 @@ export function UpdatePasswordForm() {
 			</InputBox>
 
 			<InputBox>
-				<label className="text-sm font-medium text-zinc-500">nova senha</label>
+				<label className="text-sm font-medium text-zinc-500">Nova senha</label>
 
 				<div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
 					<Input

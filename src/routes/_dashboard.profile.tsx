@@ -15,7 +15,7 @@ function ProfilePage() {
 		<>
 			<div className="p-4">
 				<section className="flex flex-col items-center gap-6">
-					<Box title="informações pessoais">
+					<Box title="Informações pessoais">
 						<div className="flex flex-col gap-2 p-4">
 							<div className="flex items-center justify-between">
 								<span className="text-sm font-medium text-zinc-500">Usuário</span>
@@ -41,14 +41,14 @@ function ProfilePage() {
 						<UpdateProfileForm />
 					</Box>
 
-					<Box title="alterar senha">
+					<Box title="Alterar senha">
 						<UpdatePasswordForm />
 					</Box>
 
-					<Box title="tema da interface">
+					<Box title="Tema da interface">
 						<div className="flex flex-col gap-2 p-4">
 							<div className="flex items-center justify-between">
-								<span className="text-sm font-medium text-zinc-500">tema</span>
+								<span className="text-sm font-medium text-zinc-500">Tema</span>
 
 								<div className="w-full max-w-[520px] 992px:max-w-[380px]">
 									<ToggleThemeSelect />
