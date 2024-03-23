@@ -1,7 +1,12 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { parseCookies } from 'nookies'
 
-import { Sidebar } from '@/src/components/sidebar.tsx'
+import {
+	ResizableHandle,
+	ResizablePanel,
+	ResizablePanelGroup,
+} from '@/src/components/ui/resizable'
+import { Sidebar } from '@/src/components/sidebar'
 
 const { 'kn-token': token } = parseCookies()
 
@@ -18,11 +23,17 @@ export const Route = createFileRoute('/_dashboard')({
 
 function DashboardLayout() {
 	return (
-		<>
-			<Sidebar />
-			<main className="h-screen w-full overflow-y-auto">
-				<Outlet />
-			</main>
-		</>
+		<ResizablePanelGroup direction="horizontal" className="flex h-full w-screen">
+			<ResizablePanel defaultSize={22} minSize={6} maxSize={35}>
+				<Sidebar />
+			</ResizablePanel>
+			<ResizableHandle withHandle />
+
+			<ResizablePanel defaultSize={78}>
+				<main className="h-screen w-full overflow-y-auto">
+					<Outlet />
+				</main>
+			</ResizablePanel>
+		</ResizablePanelGroup>
 	)
 }

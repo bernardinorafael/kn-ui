@@ -12,7 +12,7 @@ export function SidebarItem(props: SidebarItemProps) {
 	return (
 		<Link
 			className={cn(
-				'flex cursor-default items-center text-zinc-500 hover:text-black',
+				'flex cursor-default items-center text-zinc-500',
 				'flex items-center gap-2 pt-1 text-sm font-medium',
 				'dark:hover:text-white',
 				className,
