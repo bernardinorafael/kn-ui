@@ -1,5 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from '@/src/components/ui/breadcrumb.tsx'
 import { Input } from '@/src/components/ui/input.tsx'
 import { Box } from '@/src/modules/auth/components/box.tsx'
 import { ToggleThemeSelect } from '@/src/modules/profile/components/toggle-theme-select.tsx'
@@ -13,6 +21,18 @@ export const Route = createFileRoute('/_dashboard/profile')({
 function ProfilePage() {
 	return (
 		<>
+			<Breadcrumb>
+				<BreadcrumbList>
+					<BreadcrumbItem>
+						<BreadcrumbLink href="/">Home</BreadcrumbLink>
+					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbPage>Meu perfil</BreadcrumbPage>
+					</BreadcrumbItem>
+				</BreadcrumbList>
+			</Breadcrumb>
+
 			<div className="p-4">
 				<section className="flex flex-col items-center gap-6">
 					<Box title="Informações pessoais">
