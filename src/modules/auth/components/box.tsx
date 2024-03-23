@@ -19,7 +19,7 @@ export function Box({ title, children, className }: ProfileBoxProps) {
 				<h2 className="text-sm font-medium">{title}</h2>
 			</header>
 
-			<div>{children}</div>
+			{children}
 		</section>
 	)
 }

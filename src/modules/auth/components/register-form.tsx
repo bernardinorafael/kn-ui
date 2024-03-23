@@ -11,11 +11,11 @@ import { Input } from '@/src/components/ui/input.tsx'
 import { Label } from '@/src/components/ui/label'
 import { FormError } from '@/src/components/form-error.tsx'
 import { Loading } from '@/src/components/loading.tsx'
-import { errors } from '@/src/modules/auth/constants/errors'
-import { RegisterSchema } from '@/src/modules/auth/schemas/register-schema.ts'
+import { RegisterSchema } from '@/src/modules/auth/auth-errors/register-schema.ts'
+import { authErrors } from '@/src/modules/auth/constants/auth-errors.ts'
 
-const emailAlreadyTaken = errors.emailAlreadyTaken
-const documentAlreadyTaken = errors.documentAlreadyTaken
+const emailAlreadyTaken = authErrors.emailAlreadyTaken
+const documentAlreadyTaken = authErrors.documentAlreadyTaken
 
 export function RegisterForm() {
 	const register = useAuth((store) => store.register)

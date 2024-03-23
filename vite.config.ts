@@ -5,6 +5,9 @@ import react from '@vitejs/plugin-react'
 import { defineConfig, InlineConfig, UserConfig } from 'vite'
 
 export default defineConfig({
+	server: {
+		port: 3000,
+	},
 	plugins: [TanStackRouterVite(), react()],
 	resolve: {
 		alias: {

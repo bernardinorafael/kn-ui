@@ -6,16 +6,17 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { sleep } from '@/src/util/sleep'
 import { Button } from '@/src/components/ui/button.tsx'
 import { Input } from '@/src/components/ui/input.tsx'
 import { Label } from '@/src/components/ui/label.tsx'
 import { FormError } from '@/src/components/form-error.tsx'
 import { Loading } from '@/src/components/loading.tsx'
-import { errors } from '@/src/modules/auth/constants/errors.ts'
-import { LoginSchema } from '@/src/modules/auth/schemas/login-schema.ts'
+import { LoginSchema } from '@/src/modules/auth/auth-errors/login-schema.ts'
+import { authErrors } from '@/src/modules/auth/constants/auth-errors.ts'
 
-const unauthorizedError = errors.unauthorized
-const unknownError = errors.unknownError
+const unauthorizedError = authErrors.unauthorized
+const unknownError = authErrors.unknownError
 
 export function LoginForm() {
 	const login = useAuth((store) => store.login)
@@ -29,12 +30,17 @@ export function LoginForm() {
 
 	async function handleLogin({ email, password }: z.infer<typeof LoginSchema>) {
 		try {
+			/**
+			 * INFO: sleep fn is forcing a loading state to improve ui
+			 */
+			await sleep()
+
 			await login(email, password)
 			await navigate({ to: '/' })
 		} catch (err) {
+			form.setFocus('email')
 			if (isAxiosError(err)) {
-				const code = err.response?.data.code
-				if (code === 401) {
+				if (err.response?.data.code === 401) {
 					toast.error(unauthorizedError.title, {
 						description: unauthorizedError.description,
 					})
