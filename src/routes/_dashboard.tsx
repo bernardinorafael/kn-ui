@@ -1,22 +1,9 @@
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { parseCookies } from 'nookies'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { Sidebar } from '@/src/components/sidebar.tsx'
 
-const { 'kn-token': token } = parseCookies()
-
 export const Route = createFileRoute('/_dashboard')({
 	component: DashboardLayout,
-	beforeLoad: async ({ location }) => {
-		if (!token) {
-			throw redirect({
-				to: '/login',
-				search: {
-					redirect: location.href,
-				},
-			})
-		}
-	},
 })
 
 function DashboardLayout() {

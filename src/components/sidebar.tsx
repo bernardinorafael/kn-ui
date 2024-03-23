@@ -28,17 +28,6 @@ export function Sidebar() {
 
 			<section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
 				<span className="text-sm font-medium tracking-tight text-zinc-400">
-					estoque
-				</span>
-				<div className="flex flex-col gap-1">
-					<SidebarItem to="/products" activeProps={{ style: { color: '#fff' } }}>
-						meus produtos
-					</SidebarItem>
-				</div>
-			</section>
-
-			<section className="flex flex-col gap-2 border-b border-zinc-300 p-4 pr-0 dark:border-zinc-800">
-				<span className="text-sm font-medium tracking-tight text-zinc-400">
 					minha conta
 				</span>
 				<div className="flex flex-col gap-1">

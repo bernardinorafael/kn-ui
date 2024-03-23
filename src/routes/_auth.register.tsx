@@ -10,26 +10,16 @@ export const Route = createFileRoute('/_auth/register')({
 function RegisterPage() {
 	return (
 		<>
-			<div className="flex flex-col items-center justify-center">
-				<h1 className="text-5xl font-extrabold tracking-tight">Criar conta</h1>
-				<p className="text-zinc-600">
-					Preencha as informações abaixo para continuar
-				</p>
-			</div>
-
+			<h1 className="text-4xl font-extrabold tracking-tight">Criar conta</h1>
 			<RegisterForm />
-
-			<div className="space-y-3">
-				<div className="space-y-4">
-					<hr className="w-full" />
-					<span className="text-sm text-zinc-400">ou</span>
-					<hr className="w-full" />
-				</div>
-
-				<Button asChild className="w-full gap-2" variant="outline" size="lg">
-					<Link to="/login">Entrar agora</Link>
-				</Button>
-			</div>
+			<Button
+				asChild
+				className="max-w-[620px] p-0 text-zinc-400"
+				variant="link"
+				size="lg"
+			>
+				<Link to="/login">Entrar agora</Link>
+			</Button>
 		</>
 	)
 }

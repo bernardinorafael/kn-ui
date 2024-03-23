@@ -17,8 +17,6 @@ import { Route as IndexImport } from './routes/index'
 import { Route as DashboardProfileImport } from './routes/_dashboard.profile'
 import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
-import { Route as DashboardProductsIndexImport } from './routes/_dashboard.products.index'
-import { Route as DashboardProductsNewImport } from './routes/_dashboard.products.new'
 
 // Create/Update Routes
 
@@ -52,16 +50,6 @@ const AuthLoginRoute = AuthLoginImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
-const DashboardProductsIndexRoute = DashboardProductsIndexImport.update({
-  path: '/products/',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
-const DashboardProductsNewRoute = DashboardProductsNewImport.update({
-  path: '/products/new',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -90,14 +78,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProfileImport
       parentRoute: typeof DashboardImport
     }
-    '/_dashboard/products/new': {
-      preLoaderRoute: typeof DashboardProductsNewImport
-      parentRoute: typeof DashboardImport
-    }
-    '/_dashboard/products/': {
-      preLoaderRoute: typeof DashboardProductsIndexImport
-      parentRoute: typeof DashboardImport
-    }
   }
 }
 
@@ -106,11 +86,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRoute.addChildren([AuthLoginRoute, AuthRegisterRoute]),
-  DashboardRoute.addChildren([
-    DashboardProfileRoute,
-    DashboardProductsNewRoute,
-    DashboardProductsIndexRoute,
-  ]),
+  DashboardRoute.addChildren([DashboardProfileRoute]),
 ])
 
 /* prettier-ignore-end */

@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Input } from '@/src/components/ui/input.tsx'
 import { Box } from '@/src/modules/auth/components/box.tsx'
-import { ToggleTheme } from '@/src/modules/profile/components/toggle-theme.tsx'
+import { ToggleThemeSelect } from '@/src/modules/profile/components/toggle-theme-select.tsx'
 import { UpdatePasswordForm } from '@/src/modules/profile/form/update-password-form.tsx'
 import { UpdateProfileForm } from '@/src/modules/profile/form/update-profile-form.tsx'
 
@@ -37,9 +37,25 @@ function ProfilePage() {
 						</div>
 					</Box>
 
-					<UpdateProfileForm />
-					<UpdatePasswordForm />
-					<ToggleTheme />
+					<Box title="Informações do perfil">
+						<UpdateProfileForm />
+					</Box>
+
+					<Box title="alterar senha">
+						<UpdatePasswordForm />
+					</Box>
+
+					<Box title="tema da interface">
+						<div className="flex flex-col gap-2 p-4">
+							<div className="flex items-center justify-between">
+								<span className="text-sm font-medium text-zinc-500">tema</span>
+
+								<div className="w-full max-w-[520px] 992px:max-w-[380px]">
+									<ToggleThemeSelect />
+								</div>
+							</div>
+						</div>
+					</Box>
 				</section>
 			</div>
 		</>

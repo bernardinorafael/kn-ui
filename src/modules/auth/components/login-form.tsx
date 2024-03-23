@@ -12,8 +12,8 @@ import { Input } from '@/src/components/ui/input.tsx'
 import { Label } from '@/src/components/ui/label.tsx'
 import { FormError } from '@/src/components/form-error.tsx'
 import { Loading } from '@/src/components/loading.tsx'
-import { LoginSchema } from '@/src/modules/auth/auth-errors/login-schema.ts'
 import { authErrors } from '@/src/modules/auth/constants/auth-errors.ts'
+import { LoginSchema } from '@/src/modules/auth/schemas/login-schema.ts'
 
 const unauthorizedError = authErrors.unauthorized
 const unknownError = authErrors.unknownError
@@ -25,13 +25,14 @@ export function LoginForm() {
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 	})
+
 	const errors = form.formState.errors
 	const isSubmitting = form.formState.isSubmitting
 
 	async function handleLogin({ email, password }: z.infer<typeof LoginSchema>) {
 		try {
 			/**
-			 * INFO: sleep fn is forcing a loading state to improve ui
+			 * sleep fn is forcing a loading state to improve ui
 			 */
 			await sleep()
 
@@ -54,7 +55,10 @@ export function LoginForm() {
 	}
 
 	return (
-		<form className="space-y-4" onSubmit={form.handleSubmit(handleLogin)}>
+		<form
+			className="w-full max-w-[620px] space-y-4 px-6"
+			onSubmit={form.handleSubmit(handleLogin)}
+		>
 			<Label>
 				E-mail
 				<Input autoFocus {...form.register('email')} />

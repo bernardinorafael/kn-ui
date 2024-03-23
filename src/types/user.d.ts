@@ -1,8 +1,9 @@
 export interface User {
 	id: string
 	name: string
+	surname: string
 	email: string
-	document: number
+	document: string
 	createdAt: string
 	updatedAt: string
 }

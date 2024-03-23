@@ -4,14 +4,16 @@ export const Route = createFileRoute('/_auth')({
 	component: AuthLayout,
 })
 
+/**
+ * TODO: put an illustratin conditionally login/registrer page
+ */
 function AuthLayout() {
 	return (
-		<>
-			<main className="flex h-screen w-full items-center justify-center">
-				<section className="flex w-full max-w-[370px] flex-col gap-6">
-					<Outlet />
-				</section>
+		<div className="grid h-full w-screen grid-cols-2">
+			<section className="w-full bg-zinc-300">{/* illustration here */}</section>
+			<main className="flex w-full flex-col items-center justify-center space-y-6">
+				<Outlet />
 			</main>
-		</>
+		</div>
 	)
 }

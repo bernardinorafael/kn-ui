@@ -9,7 +9,6 @@ import { Input } from '@/src/components/ui/input'
 import { FormError } from '@/src/components/form-error'
 import { InputBox } from '@/src/components/input-box'
 import { Loading } from '@/src/components/loading'
-import { Box } from '@/src/modules/auth/components/box.tsx'
 
 import { UpdatePasswordSchema } from '../schemas/update-password-schema'
 
@@ -46,41 +45,38 @@ export function UpdatePasswordForm() {
 	const isSubmitButtonDisabled = form.formState.isSubmitting || isFormDirty
 
 	return (
-		<Box title="alterar senha">
-			<form
-				id="update-password"
-				className="flex flex-col gap-2 p-4"
-				onSubmit={form.handleSubmit(handleUpdatePassword)}
-			>
-				<InputBox>
-					<label className="text-sm font-medium text-zinc-500">senha atual</label>
+		<form
+			id="update-password"
+			className="flex flex-col gap-2 p-4"
+			onSubmit={form.handleSubmit(handleUpdatePassword)}
+		>
+			<InputBox>
+				<label className="text-sm font-medium text-zinc-500">senha atual</label>
 
-					<div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
-						<Input
-							type="password"
-							placeholder="********"
-							{...form.register('password')}
-						/>
-						{errors.password && <FormError>{errors.password.message}</FormError>}
-					</div>
-				</InputBox>
+				<div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+					<Input
+						type="password"
+						placeholder="********"
+						{...form.register('password')}
+					/>
+					{errors.password && <FormError>{errors.password.message}</FormError>}
+				</div>
+			</InputBox>
 
-				<InputBox>
-					<label className="text-sm font-medium text-zinc-500">nova senha</label>
+			<InputBox>
+				<label className="text-sm font-medium text-zinc-500">nova senha</label>
 
-					<div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
-						<Input
-							type="password"
-							placeholder="********"
-							{...form.register('new_password')}
-						/>
-						{errors.new_password && (
-							<FormError>{errors.new_password.message}</FormError>
-						)}
-					</div>
-				</InputBox>
-			</form>
-
+				<div className="flex w-full max-w-[520px] flex-col gap-3 992px:max-w-[380px]">
+					<Input
+						type="password"
+						placeholder="********"
+						{...form.register('new_password')}
+					/>
+					{errors.new_password && (
+						<FormError>{errors.new_password.message}</FormError>
+					)}
+				</div>
+			</InputBox>
 			<footer
 				className={cn(
 					'flex items-start justify-end gap-2 border-t border-zinc-200',
@@ -104,6 +100,6 @@ export function UpdatePasswordForm() {
 					{form.formState.isSubmitting ? <Loading /> : 'salvar'}
 				</Button>
 			</footer>
-		</Box>
+		</form>
 	)
 }

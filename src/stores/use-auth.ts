@@ -4,25 +4,25 @@ import { create } from 'zustand'
 import { User } from '@/src/types/user'
 import { api } from '@/src/lib/axios'
 
-type RegisterProps = Pick<User, 'name' | 'email' | 'document'> & {
+type RegisterProps = Pick<User, 'name' | 'email' | 'document' | 'surname'> & {
 	password: string
 }
 
 type StoreProps = {
 	user: User | null
-	isSigned: boolean
+	isSignedIn: boolean
 	register(credentials: RegisterProps): void
 	login(email: string, password: string): void
 	signOut(): void
 }
 
 export const useAuth = create<StoreProps>((set) => ({
-	isSigned: false,
+	isSignedIn: false,
 	user: null,
 
 	signOut() {
 		destroyCookie(null, 'kn-token', { path: '/' })
-		set({ isSigned: false })
+		set({ isSignedIn: false })
 		window.location.href = '/login'
 	},
 
@@ -39,12 +39,13 @@ export const useAuth = create<StoreProps>((set) => ({
 		})
 
 		api.defaults.headers.token = access_token
-		set({ isSigned: true })
+		set({ isSignedIn: true })
 	},
 
 	async register(credentials) {
 		const res = await api.post('/auth/register', {
 			name: credentials.name,
+			surname: credentials.surname,
 			email: credentials.email,
 			document: credentials.document,
 			password: credentials.password,
@@ -61,6 +62,6 @@ export const useAuth = create<StoreProps>((set) => ({
 		})
 
 		api.defaults.headers.token = access_token
-		set({ isSigned: true })
+		set({ isSignedIn: true })
 	},
 }))

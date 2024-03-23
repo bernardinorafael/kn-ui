@@ -6,7 +6,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/src/util/cn.ts'
 
 const variant = cva(
-	'text-zinc-500 grid gap-3 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+	'text-zinc-400 grid gap-3 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
 )
 
 const Root = LabelPrimitive.Root

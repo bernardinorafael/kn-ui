@@ -8,7 +8,7 @@ export const authErrors = {
 		description: 'Revise as informações e tente novamente',
 	},
 	unauthorized: {
-		title: 'Credenciais incorretas',
+		title: 'Credenciais inválidas',
 		description: 'Verifique as informações e tente novamente',
 	},
 	unknownError: {
