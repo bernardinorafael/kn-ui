@@ -13,11 +13,14 @@ import { SidebarItem } from '@/src/components/sidebar-item.tsx'
 
 import { useAuth } from '../stores/use-auth'
 
+/**
+ * @see https://twitter.com/i/bookmarks?post_id=1766023896346575009
+ */
 export function Sidebar() {
 	const signOut = useAuth((store) => store.signOut)
 
 	return (
-		<aside className="h-full w-[390px] border-r border-zinc-300 dark:border-zinc-800 1600px:w-[290px]">
+		<aside className="h-full w-[390px] border-r border-zinc-300 dark:border-zinc-800 1600px:w-[240px]">
 			<section
 				className={cn(
 					'flex h-11 items-center border-b border-zinc-300 px-4 dark:border-zinc-800',
