@@ -6,10 +6,11 @@ type SectionProps = React.ComponentPropsWithoutRef<'section'> & {
 	title: string
 }
 
-export function Section({ className, title, ...rest }: SectionProps) {
+export function Section({ className, title, children, ...rest }: SectionProps) {
 	return (
-		<section className={cn(className)} {...rest}>
-			<h3>{title}</h3>
+		<section className={cn('space-y-2', className)} {...rest}>
+			<h3 className="text-xs font-semibold text-zinc-500">{title}</h3>
+			<div className="flex flex-col gap-1">{children}</div>
 		</section>
 	)
 }

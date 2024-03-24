@@ -27,10 +27,13 @@ function DashboardLayout() {
 			<ResizablePanel defaultSize={22} minSize={6} maxSize={35}>
 				<Sidebar />
 			</ResizablePanel>
-			<ResizableHandle withHandle />
+			<ResizableHandle
+				withHandle
+				onDoubleClick={() => console.log('must change to initial size')}
+			/>
 
 			<ResizablePanel defaultSize={78}>
-				<main className="h-screen w-full overflow-y-auto">
+				<main className="z-10 h-screen w-full overflow-y-auto">
 					<Outlet />
 				</main>
 			</ResizablePanel>
