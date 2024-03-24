@@ -4,29 +4,22 @@ import { type Icon as IconSaxProps } from 'iconsax-react'
 import { cn } from '@/src/util/cn'
 
 type SidebarItemProps = {
-	isActive?: boolean
-	label: string
+	active?: boolean
 	icon: IconSaxProps
+	label: string
 }
 
-export function SidebarItem({ isActive, icon: Icon, label }: SidebarItemProps) {
+export function SidebarItem({ active, icon: Icon, label }: SidebarItemProps) {
 	return (
 		<Link
 			className={cn(
-				'relative flex h-full items-center gap-3 text-sm',
+				'relative flex h-full items-center gap-3 text-sm focus-visible:outline-none',
 				'h-11 font-medium text-zinc-400 hover:text-white',
-				{ 'text-white': isActive },
+				{ 'text-white': active },
 			)}
 		>
-			<Icon size={26} color="#d9e3f0" variant="Bulk" />
+			<Icon size={28} color="#d9e3f0" variant="Bulk" />
 			<p className="pt-1">{label}</p>
-			{isActive && (
-				<div
-					className={cn(
-						'absolute -right-6 h-10 w-1 rounded-bl-lg rounded-tl-lg bg-violet-500',
-					)}
-				/>
-			)}
 		</Link>
 	)
 }
