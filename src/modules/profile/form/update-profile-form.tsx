@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { cn } from '@/src/util/cn.ts'
+import { sleep } from '@/src/util/sleep'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import { FormError } from '@/src/components/form-error'
@@ -35,9 +36,8 @@ export function UpdateProfileForm() {
 	})
 
 	async function handleEditProfile(data: UpdateProfileInput) {
-		await new Promise((resolve) => setTimeout(resolve, 1000))
-
-		toast.success('suas informações foram atualizadas!')
+		await sleep(1000)
+		toast.success('Suas informações foram atualizadas!')
 		console.log(data)
 	}
 
@@ -53,42 +53,44 @@ export function UpdateProfileForm() {
 	const isSubmitButtonDisabled = form.formState.isSubmitting || isFormDirty
 
 	return (
-		<form
-			id="update-profile"
-			className="flex flex-col gap-2 p-4"
-			onSubmit={form.handleSubmit(handleEditProfile)}
-		>
-			<InputBox>
-				<label className="text-sm font-medium text-zinc-500">Nome</label>
-				<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
-					<Input {...form.register('name')} />
-					{errors.name && <FormError>{errors.name.message}</FormError>}
-				</div>
-			</InputBox>
+		<>
+			<form
+				id="update-profile"
+				className="flex flex-col gap-2 p-4"
+				onSubmit={form.handleSubmit(handleEditProfile)}
+			>
+				<InputBox>
+					<label className="text-sm font-medium text-zinc-500">Nome</label>
+					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
+						<Input {...form.register('name')} />
+						{errors.name && <FormError>{errors.name.message}</FormError>}
+					</div>
+				</InputBox>
 
-			<InputBox>
-				<label className="text-sm font-medium text-zinc-500">Sobrenome</label>
-				<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
-					<Input {...form.register('surname')} />
-					{errors.surname && <FormError>{errors.surname.message}</FormError>}
-				</div>
-			</InputBox>
+				<InputBox>
+					<label className="text-sm font-medium text-zinc-500">Sobrenome</label>
+					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
+						<Input {...form.register('surname')} />
+						{errors.surname && <FormError>{errors.surname.message}</FormError>}
+					</div>
+				</InputBox>
 
-			<InputBox>
-				<label className="text-sm font-medium text-zinc-500">E-mail</label>
-				<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
-					<Input {...form.register('email')} />
-					{errors.email && <FormError>{errors.email.message}</FormError>}
-				</div>
-			</InputBox>
+				<InputBox>
+					<label className="text-sm font-medium text-zinc-500">E-mail</label>
+					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
+						<Input {...form.register('email')} />
+						{errors.email && <FormError>{errors.email.message}</FormError>}
+					</div>
+				</InputBox>
 
-			<InputBox>
-				<label className="text-sm font-medium text-zinc-500">Telefone</label>
-				<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
-					<Input {...form.register('phone')} />
-					{errors.phone && <FormError>{errors.phone.message}</FormError>}
-				</div>
-			</InputBox>
+				<InputBox>
+					<label className="text-sm font-medium text-zinc-500">Telefone</label>
+					<div className="grid w-full max-w-[520px] gap-2 992px:max-w-[380px]">
+						<Input {...form.register('phone')} />
+						{errors.phone && <FormError>{errors.phone.message}</FormError>}
+					</div>
+				</InputBox>
+			</form>
 
 			<footer
 				className={cn(
@@ -113,6 +115,6 @@ export function UpdateProfileForm() {
 					{form.formState.isSubmitting ? <Loading /> : 'salvar'}
 				</Button>
 			</footer>
-		</form>
+		</>
 	)
 }

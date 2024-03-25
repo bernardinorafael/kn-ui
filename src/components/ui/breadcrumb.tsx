@@ -14,11 +14,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbRoot>(
 		<nav
 			ref={ref}
 			aria-label="breadcrumb"
-			className={cn(
-				'sticky top-0 z-10 border-b py-6',
-				'flex w-full items-center bg-zinc-950 px-6',
-				className,
-			)}
+			className={cn('flex w-full items-center', className)}
 			{...props}
 		/>
 	),
@@ -32,7 +28,7 @@ const BreadcrumbList = React.forwardRef<
 	<ol
 		ref={ref}
 		className={cn(
-			'flex flex-wrap items-center gap-1.5 ',
+			'flex flex-wrap items-center gap-4',
 			'break-words text-sm text-muted-foreground sm:gap-2.5',
 			className,
 		)}
@@ -47,7 +43,10 @@ const BreadcrumbItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<li
 		ref={ref}
-		className={cn('inline-flex items-center gap-1.5', className)}
+		className={cn(
+			'inline-flex items-center gap-1.5 text-xs font-semibold',
+			className,
+		)}
 		{...props}
 	/>
 ))
@@ -97,7 +96,7 @@ const BreadcrumbSeparator = ({
 		className={cn('[&>svg]:size-3.5', className)}
 		{...props}
 	>
-		{children ?? <CaretRight />}
+		{children ?? <CaretRight weight="bold" size={16} />}
 	</li>
 )
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator'
