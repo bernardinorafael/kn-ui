@@ -1,45 +1,70 @@
-import { CaretLeft } from '@phosphor-icons/react'
-import { Home3, Notification, ProfileCircle } from 'iconsax-react'
+import { useAuth } from '@/src/stores/use-auth'
+import { useSidebar } from '@/src/stores/use-sidebar'
+import { ProfileCircle } from 'iconsax-react'
 
-import { Button } from '@/src/components/ui/button.tsx'
+import { cn } from '@/src/util/cn'
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from '@/src/components/ui/alert-dialog'
+import { Button } from '@/src/components/ui/button'
 import { Separator } from '@/src/components/ui/separator.tsx'
-import { Section } from '@/src/components/sidebar/components/section.tsx'
 import { SidebarItem } from '@/src/components/sidebar/components/sidebar-item.tsx'
 
-import { ProfileButton } from './components/profile-button'
+import { SidebarSection } from './components/sidebar-section'
+import { ToggleButton } from './components/toggle-button'
 
 /**
- * sidebar icons must be from the iconsax package
+ * IMPORTANT: sidebar icons must be imported from the iconsax package
  */
 const routes = [{ id: 2, label: 'Preferências', icon: ProfileCircle }]
 
 export function Sidebar() {
+	const signOut = useAuth((store) => store.signOut)
+	const sidebar = useSidebar((store) => {
+		return { expanded: store.expanded }
+	})
+
 	return (
-		<aside className="z-20 flex h-full w-full max-w-[310px] flex-col p-6">
+		<aside
+			className={cn(
+				'transition-width flex h-full w-full max-w-[310px] flex-col p-6 duration-500',
+				{ 'max-w-[80px] px-1': !sidebar.expanded },
+			)}
+		>
 			<div className="relative flex items-center justify-between">
-				<p className="text-2xl font-black tracking-tighter">kn.co</p>
-				<Button
-					variant="outline"
-					className="absolute -right-12 top-1/2 h-8 w-8 -translate-y-1/2 rounded-full"
-					size="icon"
-				>
-					<CaretLeft />
-				</Button>
+				<p className={cn('text-2xl font-black tracking-tighter')}>kn.co</p>
+				<ToggleButton />
 			</div>
-			<Separator className="my-3" />
-			<Section title="Principal">
-				{routes.map((route) => {
-					return (
-						<SidebarItem
-							key={route.id}
-							icon={route.icon}
-							label={route.label}
-							active={route.id === 2}
-						/>
-					)
-				})}
-			</Section>
-			<ProfileButton />
+			<Separator className="my-4" />
+
+			<SidebarSection title="Principal">
+				{routes.map(({ id, ...route }) => (
+					<SidebarItem key={id} {...route} />
+				))}
+			</SidebarSection>
+
+			{/* TODO: fix profile button user */}
+			<AlertDialog>
+				<AlertDialogTrigger asChild>
+					<Button className="mt-auto">Sair</Button>
+				</AlertDialogTrigger>
+				<AlertDialogContent>
+					<AlertDialogHeader>
+						<AlertDialogTitle>você realmente deseja sair?</AlertDialogTitle>
+					</AlertDialogHeader>
+					<AlertDialogFooter>
+						<AlertDialogCancel>cancelar</AlertDialogCancel>
+						<AlertDialogAction onClick={signOut}>quero sair</AlertDialogAction>
+					</AlertDialogFooter>
+				</AlertDialogContent>
+			</AlertDialog>
 		</aside>
 	)
 }
