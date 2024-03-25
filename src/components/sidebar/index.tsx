@@ -53,7 +53,9 @@ export function Sidebar() {
 			{/* TODO: fix profile button user */}
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
-					<Button className="mt-auto">Sair</Button>
+					<Button variant="secondary" size="lg" className="mt-auto">
+						Sair
+					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent>
 					<AlertDialogHeader>
