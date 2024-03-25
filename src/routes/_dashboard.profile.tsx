@@ -1,19 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbLink,
-	BreadcrumbList,
-	BreadcrumbPage,
-	BreadcrumbSeparator,
-} from '@/src/components/ui/breadcrumb.tsx'
-import { Input } from '@/src/components/ui/input.tsx'
-import { Box } from '@/src/modules/auth/components/box.tsx'
-import { ToggleThemeSelect } from '@/src/modules/profile/components/toggle-theme-select.tsx'
-import { UpdatePasswordForm } from '@/src/modules/profile/form/update-password-form.tsx'
-import { UpdateProfileForm } from '@/src/modules/profile/form/update-profile-form.tsx'
-
 export const Route = createFileRoute('/_dashboard/profile')({
 	component: ProfilePage,
 })
@@ -21,20 +7,19 @@ export const Route = createFileRoute('/_dashboard/profile')({
 function ProfilePage() {
 	return (
 		<>
-			<Breadcrumb>
-				<BreadcrumbList>
-					<BreadcrumbItem>
-						<BreadcrumbLink href="/">Home</BreadcrumbLink>
-					</BreadcrumbItem>
-					<BreadcrumbSeparator />
-					<BreadcrumbItem>
-						<BreadcrumbPage>Meu perfil</BreadcrumbPage>
-					</BreadcrumbItem>
-				</BreadcrumbList>
-			</Breadcrumb>
+			{/* <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Meu perfil</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb> */}
 
-			<div className="p-4">
-				<section className="flex flex-col items-center gap-6">
+			{/* <section className="flex flex-col items-center gap-6">
 					<Box title="Informações pessoais">
 						<div className="flex flex-col gap-2 p-4">
 							<div className="flex items-center justify-between">
@@ -76,8 +61,7 @@ function ProfilePage() {
 							</div>
 						</div>
 					</Box>
-				</section>
-			</div>
+				</section> */}
 		</>
 	)
 }

@@ -10,8 +10,8 @@ export function Box({ title, children, className }: ProfileBoxProps) {
 	return (
 		<section
 			className={cn(
-				'w-full max-w-[920px] rounded-md border border-zinc-200 bg-zinc-100',
-				'dark:border-zinc-800 dark:bg-zinc-900',
+				'w-full rounded-md border border-zinc-200 bg-zinc-100',
+				'dark:border-zinc-800 dark:bg-zinc-950',
 				className,
 			)}
 		>

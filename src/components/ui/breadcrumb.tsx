@@ -5,23 +5,24 @@ import { Slot } from '@radix-ui/react-slot'
 
 import { cn } from '@/src/util/cn.ts'
 
-const Breadcrumb = React.forwardRef<
-	HTMLElement,
-	React.ComponentPropsWithoutRef<'nav'> & {
-		separator?: React.ReactNode
-	}
->(({ className, ...props }, ref) => (
-	<nav
-		ref={ref}
-		aria-label="breadcrumb"
-		className={cn(
-			'sticky top-0 z-10 h-11',
-			'flex w-full items-center border-b bg-zinc-950 px-6',
-			className,
-		)}
-		{...props}
-	/>
-))
+type BreadcrumbRoot = React.ComponentProps<'nav'> & {
+	separator?: React.ReactNode
+}
+
+const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbRoot>(
+	({ className, ...props }, ref) => (
+		<nav
+			ref={ref}
+			aria-label="breadcrumb"
+			className={cn(
+				'sticky top-0 z-10 border-b py-6',
+				'flex w-full items-center bg-zinc-950 px-6',
+				className,
+			)}
+			{...props}
+		/>
+	),
+)
 Breadcrumb.displayName = 'Breadcrumb'
 
 const BreadcrumbList = React.forwardRef<
@@ -31,7 +32,8 @@ const BreadcrumbList = React.forwardRef<
 	<ol
 		ref={ref}
 		className={cn(
-			'flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5',
+			'flex flex-wrap items-center gap-1.5 ',
+			'break-words text-sm text-muted-foreground sm:gap-2.5',
 			className,
 		)}
 		{...props}

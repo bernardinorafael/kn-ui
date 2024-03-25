@@ -9,10 +9,8 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
 	return (
-		<>
-			<div>
-				<h1>Hello</h1>
-			</div>
-		</>
+		<div>
+			<h1>under construction</h1>
+		</div>
 	)
 }
