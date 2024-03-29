@@ -19,61 +19,60 @@ const unauthorizedError = authErrors.unauthorized
 const unknownError = authErrors.unknownError
 
 export function LoginForm() {
-	const login = useAuth((store) => store.login)
-	const navigate = useNavigate({ from: '/login' })
+  const login = useAuth((store) => store.login)
+  const navigate = useNavigate({ from: '/login' })
 
-	const form = useForm<z.infer<typeof LoginSchema>>({
-		resolver: zodResolver(LoginSchema),
-	})
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
+  })
+  const errors = form.formState.errors
+  const isSubmitting = form.formState.isSubmitting
 
-	const errors = form.formState.errors
-	const isSubmitting = form.formState.isSubmitting
+  async function handleLogin({ email, password }: z.infer<typeof LoginSchema>) {
+    try {
+      /**
+       * sleep fn is forcing a loading state to improve ui
+       */
+      await sleep()
 
-	async function handleLogin({ email, password }: z.infer<typeof LoginSchema>) {
-		try {
-			/**
-			 * sleep fn is forcing a loading state to improve ui
-			 */
-			await sleep()
+      await login(email, password)
+      await navigate({ to: '/' })
+    } catch (err) {
+      form.setFocus('email')
+      if (isAxiosError(err)) {
+        if (err.response?.data.code === 401) {
+          toast.error(unauthorizedError.title, {
+            description: unauthorizedError.description,
+          })
+          return
+        }
+        toast.error(unknownError.title, {
+          description: unknownError.description,
+        })
+      }
+    }
+  }
 
-			await login(email, password)
-			await navigate({ to: '/' })
-		} catch (err) {
-			form.setFocus('email')
-			if (isAxiosError(err)) {
-				if (err.response?.data.code === 401) {
-					toast.error(unauthorizedError.title, {
-						description: unauthorizedError.description,
-					})
-					return
-				}
-				toast.error(unknownError.title, {
-					description: unknownError.description,
-				})
-			}
-		}
-	}
+  return (
+    <form
+      className="w-full max-w-[620px] space-y-4 px-6"
+      onSubmit={form.handleSubmit(handleLogin)}
+    >
+      <Label>
+        E-mail
+        <Input autoFocus {...form.register('email')} />
+        {errors.email && <FormError>{errors.email.message}</FormError>}
+      </Label>
 
-	return (
-		<form
-			className="w-full max-w-[620px] space-y-4 px-6"
-			onSubmit={form.handleSubmit(handleLogin)}
-		>
-			<Label>
-				E-mail
-				<Input autoFocus {...form.register('email')} />
-				{errors.email && <FormError>{errors.email.message}</FormError>}
-			</Label>
+      <Label>
+        Senha
+        <Input type="password" {...form.register('password')} />
+        {errors.password && <FormError>{errors.password.message}</FormError>}
+      </Label>
 
-			<Label>
-				Senha
-				<Input type="password" {...form.register('password')} />
-				{errors.password && <FormError>{errors.password.message}</FormError>}
-			</Label>
-
-			<Button className="w-full" size="lg" disabled={isSubmitting}>
-				{isSubmitting ? <Loading /> : 'Entrar'}
-			</Button>
-		</form>
-	)
+      <Button className="w-full" size="lg" disabled={isSubmitting}>
+        {isSubmitting ? <Loading /> : 'Entrar'}
+      </Button>
+    </form>
+  )
 }
