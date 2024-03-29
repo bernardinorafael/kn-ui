@@ -38,10 +38,9 @@ export function Sidebar() {
 
   return (
     <aside
-      className={cn(
-        'transition-width flex h-full w-full max-w-[310px] flex-col p-6 duration-500',
-        { 'max-w-[80px] px-1': !sidebar.expanded },
-      )}
+      className={cn('flex h-full w-full max-w-[310px] flex-col p-6 duration-500', {
+        'max-w-[80px] px-1': !sidebar.expanded,
+      })}
     >
       <div className="relative flex items-center justify-between">
         <p className={cn('text-2xl font-black tracking-tighter')}>kn.co</p>
@@ -67,8 +66,8 @@ export function Sidebar() {
             <AlertDialogTitle>você realmente deseja sair?</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={signOut}>quero sair</AlertDialogAction>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={signOut}>Quero sair</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

@@ -28,9 +28,12 @@ function ProfilePage() {
 
   return (
     <div
-      className={cn('ml-auto w-full max-w-[1192px] space-y-12 self-end p-8', {
-        'max-w-[1400px]': !sidebar.expanded,
-      })}
+      className={cn(
+        'transition-width ml-auto w-full max-w-[1192px] space-y-12 self-end p-8 duration-500',
+        {
+          'max-w-[1400px]': !sidebar.expanded,
+        },
+      )}
     >
       <Breadcrumb>
         <BreadcrumbList>
@@ -59,7 +62,7 @@ function ProfilePage() {
 
         <Box
           title="Informações do perfil"
-          className={cn('max-w-[720px] transition-all', {
+          className={cn('max-w-[720px] duration-500', {
             'max-w-[920px]': !sidebar.expanded,
           })}
         >

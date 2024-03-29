@@ -12,9 +12,7 @@ type SidebarItemProps = {
 }
 
 export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProps) {
-  const sidebar = useSidebar((store) => {
-    return { expanded: store.expanded }
-  })
+  const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
 
   return (
     <Link
@@ -28,7 +26,7 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
         color="#d9e3f0"
         variant="Bulk"
         className={cn('h-8 w-8 transition-all', {
-          'h-12 w-12 translate-x-[10px] duration-300': !sidebar.expanded,
+          'translate-x-[18px] duration-300': !sidebar.expanded,
         })}
       />
       <p className={cn('pt-1', { hidden: !sidebar.expanded })}>{label}</p>

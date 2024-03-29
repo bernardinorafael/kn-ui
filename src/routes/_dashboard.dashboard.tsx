@@ -16,8 +16,6 @@ export const Route = createFileRoute('/_dashboard/dashboard')({
   component: ProfilePage,
 })
 
-const items = ['Informações pessoais', 'Informações do perfil', 'Atualizar senha']
-
 function ProfilePage() {
   const sidebar = useSidebar((store) => {
     return { expanded: store.expanded }
