@@ -10,7 +10,6 @@ import {
   BreadcrumbSeparator,
 } from '@/src/components/ui/breadcrumb'
 import { Button } from '@/src/components/ui/button'
-
 import {
   Card,
   CardContent,
@@ -18,7 +17,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../components/ui/card'
+} from '@/src/components/ui/card'
+
 import { Box } from '../modules/auth/components/box'
 import { UpdateProfileForm } from '../modules/profile/form/update-profile-form'
 import { useSidebar } from '../stores/use-sidebar'
