@@ -38,9 +38,10 @@ export function Sidebar() {
 
   return (
     <aside
-      className={cn('flex h-full w-full max-w-[310px] flex-col p-6 duration-500', {
-        'max-w-[80px] px-1': !sidebar.expanded,
-      })}
+      className={cn(
+        'ease flex h-full w-full max-w-[310px] flex-col p-6 duration-500',
+        { 'max-w-[80px] px-1': !sidebar.expanded },
+      )}
     >
       <div className="relative flex items-center justify-between">
         <p className={cn('text-2xl font-black tracking-tighter')}>kn.co</p>
@@ -54,7 +55,6 @@ export function Sidebar() {
         ))}
       </SidebarSection>
 
-      {/* TODO: fix profile button user */}
       <AlertDialog>
         <AlertDialogTrigger asChild>
           <Button variant="secondary" size="lg" className="mt-auto">
@@ -63,7 +63,7 @@ export function Sidebar() {
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>você realmente deseja sair?</AlertDialogTitle>
+            <AlertDialogTitle>Você realmente deseja sair?</AlertDialogTitle>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
