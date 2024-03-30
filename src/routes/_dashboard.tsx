@@ -24,8 +24,8 @@ function DashboardLayout() {
       <main className="h-full w-full overflow-hidden pl-2 pt-2">
         <div
           className={cn(
-            'h-screen overflow-y-auto border bg-zinc-950 p-6',
-            'rounded-tl-2xl rounded-tr-2xl border-l border-t border-border',
+            'h-screen overflow-y-auto border border-t bg-zinc-950 p-6',
+            'rounded-tl-2xl rounded-tr-2xl border-l border-border',
           )}
         >
           <Outlet />

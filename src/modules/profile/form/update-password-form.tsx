@@ -4,6 +4,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { cn } from '@/src/util/cn.ts'
+import { sleep } from '@/src/util/sleep'
 import { Button } from '@/src/components/ui/button'
 import { Input } from '@/src/components/ui/input'
 import { FormError } from '@/src/components/form-error'
@@ -12,15 +13,16 @@ import { Loading } from '@/src/components/loading'
 
 import { UpdatePasswordSchema } from '../schemas/update-password-schema'
 
-type UpdatePasswordInput = z.infer<typeof UpdatePasswordSchema>
-
 export function UpdatePasswordForm() {
-  const form = useForm<UpdatePasswordInput>({
+  const form = useForm<z.infer<typeof UpdatePasswordSchema>>({
     resolver: zodResolver(UpdatePasswordSchema),
   })
 
-  async function handleUpdatePassword(data: UpdatePasswordInput) {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+  async function handleUpdatePassword(data: z.infer<typeof UpdatePasswordSchema>) {
+    /**
+     * forcing loading state to improve ui
+     */
+    await sleep(700)
 
     if (data.password !== 'abc123') {
       toast.error('a senha atual está incorreta!', {

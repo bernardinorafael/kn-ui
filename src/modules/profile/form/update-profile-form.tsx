@@ -10,6 +10,7 @@ import { z } from 'zod'
 import { cn } from '@/src/util/cn'
 import { sleep } from '@/src/util/sleep'
 import { Input } from '@/src/components/ui/input'
+import { Label } from '@/src/components/ui/label'
 import { FormError } from '@/src/components/form-error'
 import { UpdateProfileSchema } from '@/src/modules/profile/schemas/update-profile-schema.ts'
 
@@ -52,8 +53,8 @@ export function UpdateProfileForm() {
       className="flex flex-col gap-2 p-4"
       onSubmit={form.handleSubmit(handleEditProfile)}
     >
-      <section className="flex items-center justify-between">
-        <label className="text-sm font-medium text-zinc-500">Nome</label>
+      <Label className="flex items-center justify-between">
+        Nome
         <div
           className={cn(
             'transition-width grid w-full max-w-[520px] gap-2 duration-500',
@@ -63,10 +64,10 @@ export function UpdateProfileForm() {
           <Input {...form.register('name')} />
           {errors.name && <FormError>{errors.name.message}</FormError>}
         </div>
-      </section>
+      </Label>
 
-      <section className="flex items-center justify-between">
-        <label className="text-sm font-medium text-zinc-500">Sobrenome</label>
+      <Label className="flex items-center justify-between">
+        Sobrenome
         <div
           className={cn(
             'transition-width grid w-full max-w-[520px] gap-2 duration-500',
@@ -76,10 +77,10 @@ export function UpdateProfileForm() {
           <Input {...form.register('surname')} />
           {errors.surname && <FormError>{errors.surname.message}</FormError>}
         </div>
-      </section>
+      </Label>
 
-      <section className="flex items-center justify-between">
-        <label className="text-sm font-medium text-zinc-500">E-mail</label>
+      <Label className="flex items-center justify-between">
+        E-mail
         <div
           className={cn(
             'transition-width grid w-full max-w-[520px] gap-2 duration-500',
@@ -89,10 +90,10 @@ export function UpdateProfileForm() {
           <Input {...form.register('email')} />
           {errors.email && <FormError>{errors.email.message}</FormError>}
         </div>
-      </section>
+      </Label>
 
-      <section className="flex items-center justify-between">
-        <label className="text-sm font-medium text-zinc-500">Telefone</label>
+      <Label className="flex items-center justify-between">
+        Telefone
         <div
           className={cn(
             'transition-width grid w-full max-w-[520px] gap-2 duration-500',
@@ -102,7 +103,7 @@ export function UpdateProfileForm() {
           <Input {...form.register('phone')} />
           {errors.phone && <FormError>{errors.phone.message}</FormError>}
         </div>
-      </section>
+      </Label>
     </form>
   )
 }
