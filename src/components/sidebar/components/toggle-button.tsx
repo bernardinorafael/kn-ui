@@ -7,14 +7,15 @@ import { Button } from '@/src/components/ui/button'
 type ButtonProps = React.ComponentPropsWithRef<typeof Button>
 
 export function ToggleButton(props: ButtonProps) {
-  const sidebar = useSidebar((store) => {
-    return { expanded: store.expanded, toggle: store.toggle }
-  })
+  const sidebar = useSidebar((store) => ({
+    expanded: store.expanded,
+    toggle: store.toggle,
+  }))
 
   return (
     <Button
       size="icon"
-      variant="secondary"
+      variant="outline"
       onClick={sidebar.toggle}
       className={cn(
         'absolute -right-12 top-1/2 h-7 w-7 -translate-y-1/2 rounded-full shadow-lg',
@@ -24,7 +25,7 @@ export function ToggleButton(props: ButtonProps) {
     >
       <CaretLeft
         weight="bold"
-        className={cn('transition-transform duration-500', {
+        className={cn('transition-transform duration-300', {
           'rotate-180': !sidebar.expanded,
         })}
       />
