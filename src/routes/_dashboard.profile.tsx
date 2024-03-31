@@ -59,7 +59,7 @@ function ProfilePage() {
             <Button
               key={item}
               variant="ghost"
-              className="w-full justify-start text-base text-zinc-300"
+              className="w-full justify-start text-base font-normal text-zinc-300"
             >
               {item}
             </Button>
