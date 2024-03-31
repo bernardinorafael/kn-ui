@@ -23,7 +23,7 @@ export function ProfileButton() {
 
   return (
     <Popover>
-      <PopoverTrigger className="mt-auto flex cursor-default items-center gap-2 p-3 text-sm focus-visible:outline-none">
+      <PopoverTrigger className="group mt-auto flex cursor-default items-center gap-2 p-3 text-sm focus-visible:outline-none">
         <Avatar
           className={cn({
             'translate-x-[8px] transition-all': !sidebar.expanded,
@@ -37,7 +37,9 @@ export function ProfileButton() {
             '-z-10 translate-x-[50%]': !sidebar.expanded,
           })}
         >
-          <h2 className="mt-1 font-semibold">Rafael B.</h2>
+          <h2 className="mt-1 font-semibold underline-offset-2 group-hover:underline">
+            Rafael Bernardino
+          </h2>
         </div>
       </PopoverTrigger>
 
