@@ -49,61 +49,42 @@ export function UpdateProfileForm() {
   }, [form, phone])
 
   return (
-    <form
-      className="flex flex-col gap-2 p-4"
-      onSubmit={form.handleSubmit(handleEditProfile)}
-    >
-      <Label className="flex items-center justify-between">
-        Nome
-        <div
-          className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
-            { 'max-w-[680px]': !sidebar.expanded },
-          )}
-        >
+    <form className="space-y-4 p-4" onSubmit={form.handleSubmit(handleEditProfile)}>
+      <div
+        className={cn('grid grid-cols-1 gap-4', {
+          'grid-cols-2': !sidebar.expanded,
+        })}
+      >
+        <Label className="w-full transition-all duration-300">
+          Nome
           <Input {...form.register('name')} />
           {errors.name && <FormError>{errors.name.message}</FormError>}
-        </div>
-      </Label>
+        </Label>
 
-      <Label className="flex items-center justify-between">
-        Sobrenome
-        <div
-          className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
-            { 'max-w-[680px]': !sidebar.expanded },
-          )}
-        >
+        <Label className="w-full transition-all duration-300">
+          Sobrenome
           <Input {...form.register('surname')} />
           {errors.surname && <FormError>{errors.surname.message}</FormError>}
-        </div>
-      </Label>
+        </Label>
+      </div>
 
-      <Label className="flex items-center justify-between">
-        E-mail
-        <div
-          className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
-            { 'max-w-[680px]': !sidebar.expanded },
-          )}
-        >
+      <div
+        className={cn('grid grid-cols-1 gap-4', {
+          'grid-cols-2': !sidebar.expanded,
+        })}
+      >
+        <Label className="w-full transition-all duration-300">
+          E-mail
           <Input {...form.register('email')} />
           {errors.email && <FormError>{errors.email.message}</FormError>}
-        </div>
-      </Label>
+        </Label>
 
-      <Label className="flex items-center justify-between">
-        Telefone
-        <div
-          className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
-            { 'max-w-[680px]': !sidebar.expanded },
-          )}
-        >
+        <Label className="w-full transition-all duration-300">
+          Telefone
           <Input {...form.register('phone')} />
           {errors.phone && <FormError>{errors.phone.message}</FormError>}
-        </div>
-      </Label>
+        </Label>
+      </div>
     </form>
   )
 }
