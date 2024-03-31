@@ -18,7 +18,7 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
     <Link
       to={href}
       className={cn(
-        'relative flex h-11 items-center p-3 text-sm font-medium focus-visible:outline-none',
+        'relative flex h-10 items-center p-3 text-sm font-medium focus-visible:outline-none',
         'cursor-default rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white',
         { 'bg-zinc-800 text-white': active },
       )}
