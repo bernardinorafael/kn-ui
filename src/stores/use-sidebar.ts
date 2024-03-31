@@ -1,15 +1,23 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 interface StoreProps {
-	expanded: boolean
-	toggle(): void
+  expanded: boolean
+  toggle(): void
 }
 
-export const useSidebar = create<StoreProps>((set, get) => ({
-	expanded: true,
+export const useSidebar = create<StoreProps>()(
+  persist(
+    (set, get) => ({
+      expanded: true,
 
-	toggle() {
-		const prev = get()
-		set({ expanded: !prev.expanded })
-	},
-}))
+      toggle() {
+        const prev = get()
+        set({ expanded: !prev.expanded })
+      },
+    }),
+    {
+      name: 'kn_sidebar_state',
+    },
+  ),
+)
