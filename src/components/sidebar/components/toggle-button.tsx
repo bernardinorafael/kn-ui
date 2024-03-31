@@ -17,10 +17,9 @@ export function ToggleButton(props: ButtonProps) {
       size="icon"
       variant="outline"
       onClick={sidebar.toggle}
-      className={cn(
-        'absolute -right-12 top-1/2 h-7 w-7 -translate-y-1/2 rounded-full shadow-lg',
-        { '-right-8': !sidebar.expanded },
-      )}
+      className={cn('absolute -right-6 top-1/2 h-7 w-7 -translate-y-1/2 shadow-lg', {
+        '-right-6': !sidebar.expanded,
+      })}
       {...props}
     >
       <CaretLeft

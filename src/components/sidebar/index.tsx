@@ -26,12 +26,12 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'ease flex h-full w-full max-w-[310px] flex-col p-6 duration-300',
-        { 'max-w-[80px] px-1': !sidebar.expanded },
+        'ease flex h-full w-full max-w-[310px] flex-col py-4 pl-2 duration-300',
+        { 'max-w-[80px]': !sidebar.expanded },
       )}
     >
       <div className="relative flex items-center justify-between">
-        <p className="select-none text-2xl font-black tracking-tighter">kn.co</p>
+        <span className="text-2xl font-extrabold tracking-tighter">kn.co</span>
         <ToggleButton />
       </div>
       <Separator className="my-4" />

@@ -18,15 +18,16 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
     <Link
       to={href}
       className={cn(
-        'relative flex h-full items-center gap-3 focus-visible:outline-none',
-        'h-11 cursor-default text-sm font-medium text-zinc-400 hover:text-white',
+        'relative flex h-11 items-center p-3 text-sm font-medium focus-visible:outline-none',
+        'cursor-default rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white',
+        { 'bg-zinc-800 text-white': active },
       )}
     >
       <Icon
         variant="Bulk"
         color="#d9e3f0"
         className={cn('absolute h-8 w-8 transition-all duration-100', {
-          'translate-x-[20px]': !sidebar.expanded,
+          'translate-x-[8px]': !sidebar.expanded,
         })}
       />
       <p
@@ -36,15 +37,6 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
       >
         {label}
       </p>
-
-      {active && (
-        <div
-          className={cn(
-            'absolute -right-8 h-9 w-1 rounded-bl-lg rounded-tl-lg bg-violet-500',
-            { '-right-3': !sidebar.expanded },
-          )}
-        />
-      )}
     </Link>
   )
 }
