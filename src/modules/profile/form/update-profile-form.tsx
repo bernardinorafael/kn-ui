@@ -96,7 +96,7 @@ export function UpdateProfileForm() {
       >
         <Label className="w-full transition-all duration-300">
           CPF
-          <Input {...form.register('document')} />
+          <Input disabled {...form.register('document')} />
           {errors.email && <FormError>{errors.email.message}</FormError>}
         </Label>
 
