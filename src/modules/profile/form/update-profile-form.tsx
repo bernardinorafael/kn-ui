@@ -12,31 +12,34 @@ import { sleep } from '@/src/util/sleep'
 import { Input } from '@/src/components/ui/input'
 import { Label } from '@/src/components/ui/label'
 import { FormError } from '@/src/components/form-error'
-import { UpdateProfileSchema } from '@/src/modules/profile/schemas/update-profile-schema.ts'
+import { updateProfileSchema } from '@/src/modules/profile/schemas/update-profile-schema.ts'
 
 const user = {
   name: 'rafael',
   surname: 'bernardino',
   email: 'rafaelferreirab2@gmail.com',
   phone: '48988566239',
+  username: 'bernardinorafael',
 }
 
 export function UpdateProfileForm() {
   const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
 
-  const form = useForm<z.infer<typeof UpdateProfileSchema>>({
-    resolver: zodResolver(UpdateProfileSchema),
+  const form = useForm<z.infer<typeof updateProfileSchema>>({
+    resolver: zodResolver(updateProfileSchema),
     defaultValues: {
       name: user.name,
       surname: user.surname,
       email: user.email,
       phone: user.phone,
+      document: '***.834.***-06',
+      username: user.username,
     },
   })
 
   const errors = form.formState.errors
 
-  async function handleEditProfile(data: z.infer<typeof UpdateProfileSchema>) {
+  async function handleEditProfile(data: z.infer<typeof updateProfileSchema>) {
     await sleep(1000)
     toast.success('Suas informações foram atualizadas!')
     console.log(data)
@@ -82,6 +85,24 @@ export function UpdateProfileForm() {
         <Label className="w-full transition-all duration-300">
           Telefone
           <Input {...form.register('phone')} />
+          {errors.phone && <FormError>{errors.phone.message}</FormError>}
+        </Label>
+      </div>
+
+      <div
+        className={cn('grid grid-cols-1 gap-4', {
+          'grid-cols-2': !sidebar.expanded,
+        })}
+      >
+        <Label className="w-full transition-all duration-300">
+          CPF
+          <Input {...form.register('document')} />
+          {errors.email && <FormError>{errors.email.message}</FormError>}
+        </Label>
+
+        <Label className="w-full transition-all duration-300">
+          Nome de usuário
+          <Input {...form.register('username')} />
           {errors.phone && <FormError>{errors.phone.message}</FormError>}
         </Label>
       </div>

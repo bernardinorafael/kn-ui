@@ -38,6 +38,10 @@ function ProfilePage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
+      <div className="flex h-full w-full items-center justify-center">
+        <p className="text-3xl font-bold">under construction</p>
+      </div>
     </div>
   )
 }
