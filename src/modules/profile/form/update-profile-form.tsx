@@ -57,7 +57,7 @@ export function UpdateProfileForm() {
         Nome
         <div
           className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-500',
+            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
             { 'max-w-[680px]': !sidebar.expanded },
           )}
         >
@@ -70,7 +70,7 @@ export function UpdateProfileForm() {
         Sobrenome
         <div
           className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-500',
+            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
             { 'max-w-[680px]': !sidebar.expanded },
           )}
         >
@@ -83,7 +83,7 @@ export function UpdateProfileForm() {
         E-mail
         <div
           className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-500',
+            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
             { 'max-w-[680px]': !sidebar.expanded },
           )}
         >
@@ -96,7 +96,7 @@ export function UpdateProfileForm() {
         Telefone
         <div
           className={cn(
-            'transition-width grid w-full max-w-[520px] gap-2 duration-500',
+            'transition-width grid w-full max-w-[520px] gap-2 duration-300',
             { 'max-w-[680px]': !sidebar.expanded },
           )}
         >

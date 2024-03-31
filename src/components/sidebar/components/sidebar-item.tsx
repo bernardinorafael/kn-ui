@@ -18,26 +18,25 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
     <Link
       to={href}
       className={cn(
-        'relative flex h-full w-full items-center gap-3 focus-visible:outline-none',
+        'relative flex h-full items-center gap-3 focus-visible:outline-none',
         'h-11 cursor-default text-sm font-medium text-zinc-400 hover:text-white',
       )}
     >
       <Icon
         variant="Bulk"
         color="#d9e3f0"
-        className={cn('h-8 w-8 transition-all', {
-          'translate-x-[18px] duration-300': !sidebar.expanded,
+        className={cn('absolute h-8 w-8 transition-all duration-100', {
+          'translate-x-[20px]': !sidebar.expanded,
         })}
       />
       <p
-        className={cn(
-          'pt-1',
-          { hidden: !sidebar.expanded },
-          { 'text-white': active },
-        )}
+        className={cn('absolute pl-12 pt-1 transition-all', {
+          '-z-10 translate-x-[50%]': !sidebar.expanded,
+        })}
       >
         {label}
       </p>
+
       {active && (
         <div
           className={cn(

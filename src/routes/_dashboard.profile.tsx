@@ -37,7 +37,7 @@ function ProfilePage() {
   return (
     <div
       className={cn(
-        'transition-width ml-auto w-full max-w-[1192px] space-y-12 self-end p-8 duration-500',
+        'transition-width ml-auto w-full max-w-[1192px] space-y-12 self-end p-8 duration-300',
         { 'max-w-[1400px]': !sidebar.expanded },
       )}
     >
