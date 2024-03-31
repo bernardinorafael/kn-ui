@@ -1,10 +1,10 @@
+import { House } from '@phosphor-icons/react'
 import { createFileRoute } from '@tanstack/react-router'
 
 import { cn } from '@/src/util/cn'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -30,7 +30,7 @@ function ProfilePage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <House size={16} />
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

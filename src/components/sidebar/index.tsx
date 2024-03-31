@@ -31,7 +31,7 @@ export function Sidebar() {
       )}
     >
       <div className="relative flex items-center justify-between">
-        <span className="text-2xl font-extrabold tracking-tighter">kn.co</span>
+        <span className="pl-3 text-4xl font-extrabold tracking-tighter">kn.</span>
         <ToggleButton />
       </div>
       <Separator className="my-4" />

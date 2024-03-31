@@ -17,7 +17,7 @@ export function ToggleButton(props: ButtonProps) {
       size="icon"
       variant="outline"
       onClick={sidebar.toggle}
-      className={cn('absolute -right-6 top-1/2 h-7 w-7 -translate-y-1/2 shadow-lg', {
+      className={cn('absolute -right-6 top-1/2 h-7 w-7 -translate-y-1/2 shadow', {
         '-right-6': !sidebar.expanded,
       })}
       {...props}

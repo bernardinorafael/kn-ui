@@ -3,12 +3,7 @@ import * as React from 'react'
 import { cn } from '@/src/util/cn'
 
 export function Card({ className, ...props }: React.ComponentProps<'div'>) {
-  return (
-    <div
-      className={cn('w-full text-card-foreground shadow-sm', className)}
-      {...props}
-    />
-  )
+  return <div className={cn('w-full text-card-foreground', className)} {...props} />
 }
 
 export function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {

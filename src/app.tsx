@@ -13,19 +13,19 @@ import '@/src/lib/dayjs'
 export const router = createRouter({ routeTree })
 
 export function App() {
-	return (
-		<TooltipProvider delayDuration={200}>
-			<NextThemesProvider
-				enableSystem
-				disableTransitionOnChange
-				attribute="class"
-				defaultTheme="system"
-			>
-				<QueryClientProvider client={queryClient}>
-					<RouterProvider router={router} />
-				</QueryClientProvider>
-				<Toaster position="bottom-right" richColors theme="system" />
-			</NextThemesProvider>
-		</TooltipProvider>
-	)
+  return (
+    <TooltipProvider delayDuration={200}>
+      <NextThemesProvider
+        enableSystem
+        disableTransitionOnChange
+        attribute="class"
+        defaultTheme="system"
+      >
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+        <Toaster position="bottom-right" richColors theme="system" />
+      </NextThemesProvider>
+    </TooltipProvider>
+  )
 }

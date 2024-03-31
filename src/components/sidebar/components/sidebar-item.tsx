@@ -18,14 +18,13 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
     <Link
       to={href}
       className={cn(
-        'relative flex h-10 items-center p-3 text-sm font-medium focus-visible:outline-none',
-        'cursor-default rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-white',
-        { 'bg-zinc-800 text-white': active },
+        'relative flex items-center p-3 text-sm focus-visible:outline-none',
+        'h-10 cursor-default rounded-lg font-medium text-secondary-foreground/80',
+        { 'bg-background shadow': active },
       )}
     >
       <Icon
         variant="Bulk"
-        color="#d9e3f0"
         className={cn('absolute h-8 w-8 transition-all duration-100', {
           'translate-x-[8px]': !sidebar.expanded,
         })}

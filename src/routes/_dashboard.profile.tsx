@@ -1,10 +1,10 @@
+import { House } from '@phosphor-icons/react/dist/ssr'
 import { createFileRoute } from '@tanstack/react-router'
 
 import { cn } from '@/src/util/cn'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -42,7 +42,7 @@ function ProfilePage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+            <House size={16} />
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -57,7 +57,7 @@ function ProfilePage() {
             <Button
               key={item}
               variant="ghost"
-              className="w-full justify-start text-base font-normal text-zinc-300"
+              className="w-full justify-start text-base font-normal"
             >
               {item}
             </Button>
