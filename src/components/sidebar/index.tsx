@@ -7,7 +7,7 @@ import { Separator } from '@/src/components/ui/separator.tsx'
 import { SidebarItem } from '@/src/components/sidebar/components/sidebar-item.tsx'
 
 import { ProfileButton } from './components/profile-button'
-import { ToggleButton } from './components/toggle-button'
+import { ToggleSidebarButton } from './components/toggle-sidebar-button'
 
 /**
  * IMPORTANT: sidebar icons must be imported from the iconsax package
@@ -32,7 +32,7 @@ export function Sidebar() {
     >
       <div className="relative flex items-center justify-between">
         <span className="pl-3 text-4xl font-extrabold tracking-tighter">kn.</span>
-        <ToggleButton />
+        <ToggleSidebarButton />
       </div>
       <Separator className="my-4" />
 

@@ -6,7 +6,7 @@ import { Button } from '@/src/components/ui/button'
 
 type ButtonProps = React.ComponentPropsWithRef<typeof Button>
 
-export function ToggleButton(props: ButtonProps) {
+export function ToggleSidebarButton(props: ButtonProps) {
   const sidebar = useSidebar((store) => ({
     expanded: store.expanded,
     toggle: store.toggle,
