@@ -1,9 +1,9 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link } from "@tanstack/react-router"
 
-import { Button } from '@/src/components/ui/button.tsx'
-import { RegisterForm } from '@/src/modules/auth/components/register-form.tsx'
+import { Button } from "@/src/components/ui/button.tsx"
+import { RegisterForm } from "@/src/modules/auth/components/register-form.tsx"
 
-export const Route = createFileRoute('/_auth/register')({
+export const Route = createFileRoute("/_auth/register")({
 	component: RegisterPage,
 })
 

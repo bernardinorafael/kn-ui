@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react"
 
-type FormErrorProps = React.ComponentProps<'p'>
+type FormErrorProps = React.ComponentProps<"p">
 
 export function FormError(props: FormErrorProps) {
 	return (

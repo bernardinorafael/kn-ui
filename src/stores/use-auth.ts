@@ -1,10 +1,10 @@
-import { destroyCookie, setCookie } from 'nookies'
-import { create } from 'zustand'
+import { destroyCookie, setCookie } from "nookies"
+import { create } from "zustand"
 
-import { User } from '@/src/types/user'
-import { api } from '@/src/lib/axios'
+import { User } from "@/src/types/user"
+import { api } from "@/src/lib/axios"
 
-type RegisterProps = Pick<User, 'name' | 'email' | 'document' | 'surname'> & {
+type RegisterProps = Pick<User, "name" | "email" | "document" | "surname"> & {
 	password: string
 }
 
@@ -21,21 +21,21 @@ export const useAuth = create<StoreProps>((set) => ({
 	user: null,
 
 	signOut() {
-		destroyCookie(null, 'kn-token', { path: '/' })
+		destroyCookie(null, "kn-token", { path: "/" })
 		set({ isSignedIn: false })
-		window.location.href = '/login'
+		window.location.href = "/login"
 	},
 
 	async login(email, password) {
-		const res = await api.post('/auth/login', { email, password })
+		const res = await api.post("/auth/login", { email, password })
 		const access_token = res.data.access_token
 
-		setCookie(null, 'kn-token', access_token, {
+		setCookie(null, "kn-token", access_token, {
 			/**
 			 * 3 days token expiration
 			 */
 			maxAge: 60 * 60 * 72,
-			path: '/',
+			path: "/",
 		})
 
 		api.defaults.headers.token = access_token
@@ -43,7 +43,7 @@ export const useAuth = create<StoreProps>((set) => ({
 	},
 
 	async register(credentials) {
-		const res = await api.post('/auth/register', {
+		const res = await api.post("/auth/register", {
 			name: credentials.name,
 			surname: credentials.surname,
 			email: credentials.email,
@@ -53,12 +53,12 @@ export const useAuth = create<StoreProps>((set) => ({
 
 		const access_token = res.data.access_token
 
-		setCookie(null, 'kn-token', access_token, {
+		setCookie(null, "kn-token", access_token, {
 			/**
 			 * 3 days token expiration
 			 */
 			maxAge: 60 * 60 * 72,
-			path: '/',
+			path: "/",
 		})
 
 		api.defaults.headers.token = access_token

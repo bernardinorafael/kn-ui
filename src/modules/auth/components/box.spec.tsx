@@ -1,8 +1,8 @@
-import { render, type RenderResult } from '@testing-library/react'
+import { render, type RenderResult } from "@testing-library/react"
 
-import { Box } from './box'
+import { Box } from "./box"
 
-describe('box component test', async () => {
+describe("box component test", async () => {
 	let rendered: RenderResult
 
 	beforeEach(() => {
@@ -13,15 +13,15 @@ describe('box component test', async () => {
 		)
 	})
 
-	it('should render the box correctly', async () => {
-		expect(rendered.getByRole('heading', { level: 2 })).toBeVisible()
+	it("should render the box correctly", async () => {
+		expect(rendered.getByRole("heading", { level: 2 })).toBeVisible()
 	})
 
-	it('should have the heading title', async () => {
-		expect(rendered.getByText('my title')).toBeVisible()
+	it("should have the heading title", async () => {
+		expect(rendered.getByText("my title")).toBeVisible()
 	})
 
-	it('should render a children', async () => {
-		expect(rendered.getByText('my children')).toBeVisible()
+	it("should render a children", async () => {
+		expect(rendered.getByText("my children")).toBeVisible()
 	})
 })

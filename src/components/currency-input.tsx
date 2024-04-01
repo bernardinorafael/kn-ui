@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react"
 
-import { Slot } from '@radix-ui/react-slot'
-import { currency } from 'remask'
+import { Slot } from "@radix-ui/react-slot"
+import { currency } from "remask"
 
 interface InputCurrencyProps {
 	value: string
@@ -15,8 +15,8 @@ export const CurrencyInput = React.forwardRef<HTMLInputElement, InputCurrencyPro
 		const { onChange, value, ...rest } = props
 
 		const currencyOptions = {
-			currency: 'BRL',
-			locale: 'BRL',
+			currency: "BRL",
+			locale: "BRL",
 		}
 
 		const onChangeCurrencyValue = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ export const CurrencyInput = React.forwardRef<HTMLInputElement, InputCurrencyPro
 			onChange(String(unMaskedValue))
 		}
 
-		const Component = asChild ? Slot : 'input'
+		const Component = asChild ? Slot : "input"
 
 		return (
 			<Component
@@ -39,4 +39,4 @@ export const CurrencyInput = React.forwardRef<HTMLInputElement, InputCurrencyPro
 	},
 )
 
-CurrencyInput.displayName = 'CurrencyInput'
+CurrencyInput.displayName = "CurrencyInput"
