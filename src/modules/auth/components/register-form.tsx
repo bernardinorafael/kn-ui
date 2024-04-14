@@ -1,38 +1,38 @@
-import { useAuth } from "@/src/stores/use-auth"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useNavigate } from "@tanstack/react-router"
-import { isAxiosError } from "axios"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import { z } from "zod"
+import { useAuth } from "@/src/stores/use-auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "@tanstack/react-router";
+import { isAxiosError } from "axios";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import type { z } from "zod";
 
-import { sleep } from "@/src/util/sleep.ts"
-import { Button } from "@/src/components/ui/button.tsx"
-import { Input } from "@/src/components/ui/input.tsx"
-import { Label } from "@/src/components/ui/label"
-import { FormError } from "@/src/components/form-error.tsx"
-import { Loading } from "@/src/components/loading.tsx"
-import { authErrors } from "@/src/modules/auth/constants/auth-errors.ts"
-import { RegisterSchema } from "@/src/modules/auth/schemas/register-schema.ts"
+import { FormError } from "@/src/components/form-error.tsx";
+import { Loading } from "@/src/components/loading.tsx";
+import { Button } from "@/src/components/ui/button.tsx";
+import { Input } from "@/src/components/ui/input.tsx";
+import { Label } from "@/src/components/ui/label";
+import { authErrors } from "@/src/modules/auth/constants/auth-errors.ts";
+import { RegisterSchema } from "@/src/modules/auth/schemas/register-schema.ts";
+import { sleep } from "@/src/util/sleep.ts";
 
-const emailAlreadyTaken = authErrors.emailAlreadyTaken
-const documentAlreadyTaken = authErrors.documentAlreadyTaken
-const unknownError = authErrors.unknownError
+const emailAlreadyTaken = authErrors.emailAlreadyTaken;
+const documentAlreadyTaken = authErrors.documentAlreadyTaken;
+const unknownError = authErrors.unknownError;
 
 export function RegisterForm() {
-	const register = useAuth((store) => store.register)
-	const navigate = useNavigate({ from: "/register" })
+	const register = useAuth((store) => store.register);
+	const navigate = useNavigate({ from: "/register" });
 
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
-	})
+	});
 
 	async function handleRegister(data: z.infer<typeof RegisterSchema>) {
 		try {
 			/**
 			 * INFO: sleep fn is forcing a loading state to improve ui
 			 */
-			await sleep()
+			await sleep();
 
 			await register({
 				name: data.name,
@@ -40,34 +40,34 @@ export function RegisterForm() {
 				surname: data.surname,
 				password: data.password,
 				document: data.document,
-			})
+			});
 
-			await navigate({ to: "/" })
+			await navigate({ to: "/" });
 		} catch (err) {
 			if (isAxiosError(err)) {
-				const message = err.response?.data.message
+				const message = err.response?.data.message;
 				if (message.includes("email is already taken")) {
 					toast.error(emailAlreadyTaken.title, {
 						description: emailAlreadyTaken.description,
-					})
-					return
+					});
+					return;
 				}
 
 				if (message.includes("document is already taken")) {
 					toast.error(documentAlreadyTaken.title, {
 						description: documentAlreadyTaken.description,
-					})
-					return
+					});
+					return;
 				}
 
 				toast.error(unknownError.title, {
 					description: unknownError.description,
-				})
+				});
 			}
 		}
 	}
-	const errors = form.formState.errors
-	const isSubmitting = form.formState.isSubmitting
+	const errors = form.formState.errors;
+	const isSubmitting = form.formState.isSubmitting;
 
 	return (
 		<form
@@ -106,9 +106,14 @@ export function RegisterForm() {
 				{errors.password && <FormError>{errors.password.message}</FormError>}
 			</Label>
 
-			<Button className="w-full" size="lg" disabled={isSubmitting} type="submit">
+			<Button
+				className="w-full"
+				size="lg"
+				disabled={isSubmitting}
+				type="submit"
+			>
 				{isSubmitting ? <Loading /> : "Cadastrar e entrar"}
 			</Button>
 		</form>
-	)
+	);
 }

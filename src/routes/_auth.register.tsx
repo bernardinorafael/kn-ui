@@ -1,11 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router"
+import { Link, createFileRoute } from "@tanstack/react-router";
 
-import { Button } from "@/src/components/ui/button.tsx"
-import { RegisterForm } from "@/src/modules/auth/components/register-form.tsx"
+import { Button } from "@/src/components/ui/button.tsx";
+import { RegisterForm } from "@/src/modules/auth/components/register-form.tsx";
 
 export const Route = createFileRoute("/_auth/register")({
 	component: RegisterPage,
-})
+});
 
 function RegisterPage() {
 	return (
@@ -21,5 +21,5 @@ function RegisterPage() {
 				<Link to="/login">Entrar agora</Link>
 			</Button>
 		</>
-	)
+	);
 }

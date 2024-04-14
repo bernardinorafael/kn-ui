@@ -1,9 +1,9 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface StoreProps {
-	expanded: boolean
-	toggle(): void
+	expanded: boolean;
+	toggle(): void;
 }
 
 export const useSidebar = create<StoreProps>()(
@@ -12,12 +12,12 @@ export const useSidebar = create<StoreProps>()(
 			expanded: true,
 
 			toggle() {
-				const prev = get()
-				set({ expanded: !prev.expanded })
+				const prev = get();
+				set({ expanded: !prev.expanded });
 			},
 		}),
 		{
 			name: "kn_sidebar_state",
 		},
 	),
-)
+);

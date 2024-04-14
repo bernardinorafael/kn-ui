@@ -1,16 +1,16 @@
-import "./global.css"
-import "@/src/lib/dayjs"
+import "@/src/lib/dayjs";
+import "./global.css";
 
-import { routeTree } from "@/src/routeTree.gen.ts"
-import { QueryClientProvider } from "@tanstack/react-query"
-import { createRouter, RouterProvider } from "@tanstack/react-router"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { Toaster } from "sonner"
+import { routeTree } from "@/src/routeTree.gen.ts";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { Toaster } from "sonner";
 
-import { queryClient } from "@/src/lib/react-query.ts"
-import { TooltipProvider } from "@/src/components/ui/tooltip"
+import { TooltipProvider } from "@/src/components/ui/tooltip";
+import { queryClient } from "@/src/lib/react-query.ts";
 
-export const router = createRouter({ routeTree })
+export const router = createRouter({ routeTree });
 
 export function App() {
 	return (
@@ -27,5 +27,5 @@ export function App() {
 				<Toaster position="bottom-right" richColors theme="system" />
 			</NextThemesProvider>
 		</TooltipProvider>
-	)
+	);
 }

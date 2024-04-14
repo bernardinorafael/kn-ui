@@ -1,26 +1,35 @@
-import React from "react"
+import React from "react";
 
-import { useSidebar } from "@/src/stores/use-sidebar"
-import { Link } from "@tanstack/react-router"
-import { type Icon as IconSaxProps } from "iconsax-react"
+import { useSidebar } from "@/src/stores/use-sidebar";
+import { Link } from "@tanstack/react-router";
+import type { Icon as IconSaxProps } from "iconsax-react";
 
-import { cn } from "@/src/util/cn"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/src/components/ui/tooltip"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/src/components/ui/tooltip";
+import { cn } from "@/src/util/cn";
 
 type SidebarItemProps = {
-	href: string
-	label: string
-	active: boolean
-	icon: IconSaxProps
-}
+	href: string;
+	label: string;
+	active: boolean;
+	icon: IconSaxProps;
+};
 
-export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProps) {
-	const [isOpen, setIsOpen] = React.useState(false)
-	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
+export function SidebarItem({
+	icon: Icon,
+	label,
+	active,
+	href,
+}: SidebarItemProps) {
+	const [isOpen, setIsOpen] = React.useState(false);
+	const sidebar = useSidebar((store) => ({ expanded: store.expanded }));
 
 	function onOpenTooltip(open: boolean) {
-		if (sidebar.expanded) return
-		setIsOpen(open)
+		if (sidebar.expanded) return;
+		setIsOpen(open);
 	}
 
 	return (
@@ -54,5 +63,5 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
 				{label}
 			</TooltipContent>
 		</Tooltip>
-	)
+	);
 }

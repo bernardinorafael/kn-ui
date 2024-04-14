@@ -1,15 +1,14 @@
-import { House } from "@phosphor-icons/react/dist/ssr"
-import { createFileRoute } from "@tanstack/react-router"
+import { House } from "@phosphor-icons/react/dist/ssr";
+import { createFileRoute } from "@tanstack/react-router";
 
-import { cn } from "@/src/util/cn"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@/src/components/ui/breadcrumb"
-import { Button } from "@/src/components/ui/button"
+} from "@/src/components/ui/breadcrumb";
+import { Button } from "@/src/components/ui/button";
 import {
 	Card,
 	CardContent,
@@ -17,20 +16,25 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/src/components/ui/card"
+} from "@/src/components/ui/card";
+import { cn } from "@/src/util/cn";
 
-import { Box } from "../modules/auth/components/box"
-import { UpdateProfileForm } from "../modules/profile/form/update-profile-form"
-import { useSidebar } from "../stores/use-sidebar"
+import { Box } from "../modules/auth/components/box";
+import { UpdateProfileForm } from "../modules/profile/form/update-profile-form";
+import { useSidebar } from "../stores/use-sidebar";
 
 export const Route = createFileRoute("/_dashboard/profile")({
 	component: ProfilePage,
-})
+});
 
-const items = ["Informações pessoais", "Informações do perfil", "Atualizar senha"]
+const items = [
+	"Informações pessoais",
+	"Informações do perfil",
+	"Atualizar senha",
+];
 
 function ProfilePage() {
-	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
+	const sidebar = useSidebar((store) => ({ expanded: store.expanded }));
 
 	return (
 		<div
@@ -87,5 +91,5 @@ function ProfilePage() {
 				</Card>
 			</div>
 		</div>
-	)
+	);
 }

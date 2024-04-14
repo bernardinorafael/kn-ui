@@ -1,8 +1,8 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router"
+import { Outlet, createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_auth")({
 	component: AuthLayout,
-})
+});
 
 /**
  * TODO: put an illustratin conditionally login/registrer page
@@ -10,10 +10,12 @@ export const Route = createFileRoute("/_auth")({
 function AuthLayout() {
 	return (
 		<div className="grid h-full w-screen grid-cols-2">
-			<section className="w-full bg-zinc-300">{/* illustration here */}</section>
+			<section className="w-full bg-zinc-300">
+				{/* illustration here */}
+			</section>
 			<main className="flex w-full flex-col items-center justify-center space-y-6">
 				<Outlet />
 			</main>
 		</div>
-	)
+	);
 }

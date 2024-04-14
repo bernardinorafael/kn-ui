@@ -1,6 +1,6 @@
-import React from "react"
+import type React from "react";
 
-type FormErrorProps = React.ComponentProps<"p">
+type FormErrorProps = React.ComponentProps<"p">;
 
 export function FormError(props: FormErrorProps) {
 	return (
@@ -9,5 +9,5 @@ export function FormError(props: FormErrorProps) {
 			className="-mt-1 text-xs font-medium text-red-700 dark:text-red-700"
 			{...props}
 		/>
-	)
+	);
 }

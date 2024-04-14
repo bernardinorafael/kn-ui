@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const updateProfileSchema = z.object({
 	name: z
@@ -16,4 +16,4 @@ export const updateProfileSchema = z.object({
 	phone: z
 		.string()
 		.regex(/^\(\d{2}\)\s9\s\d{4}-\d{4}$/, "Favor inserir um telefone válido"),
-})
+});
