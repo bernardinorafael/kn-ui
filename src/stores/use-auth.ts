@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { api } from "@/src/lib/axios";
 import type { User } from "@/src/types/user";
 
-type RegisterProps = Pick<User, "name" | "email" | "document" | "surname"> & {
+type RegisterProps = Pick<User, "name" | "email"> & {
   password: string;
 };
 
@@ -28,7 +28,7 @@ export const useAuth = create<StoreProps>((set) => ({
 
   async login(email, password) {
     const res = await api.post("/auth/login", { email, password });
-    const access_token = res.data.access_token;
+    const access_token = res.data.token;
 
     setCookie(null, "kn-token", access_token, {
       /**
@@ -45,9 +45,7 @@ export const useAuth = create<StoreProps>((set) => ({
   async register(credentials) {
     const res = await api.post("/auth/register", {
       name: credentials.name,
-      surname: credentials.surname,
       email: credentials.email,
-      document: credentials.document,
       password: credentials.password,
     });
 

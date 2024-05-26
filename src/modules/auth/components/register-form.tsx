@@ -37,9 +37,7 @@ export function RegisterForm() {
       await register({
         name: data.name,
         email: data.email,
-        surname: data.surname,
         password: data.password,
-        document: data.document,
       });
 
       await navigate({ to: "/" });
@@ -74,30 +72,16 @@ export function RegisterForm() {
       className="w-full max-w-[620px] space-y-4 px-6"
       onSubmit={form.handleSubmit(handleRegister)}
     >
-      <div className="grid grid-cols-2 gap-4">
-        <Label>
-          Nome
-          <Input autoFocus {...form.register("name")} />
-          {errors.name && <FormError>{errors.name.message}</FormError>}
-        </Label>
-
-        <Label>
-          Sobrenome
-          <Input {...form.register("surname")} />
-          {errors.surname && <FormError>{errors.surname.message}</FormError>}
-        </Label>
-      </div>
+      <Label>
+        Nome
+        <Input autoFocus {...form.register("name")} />
+        {errors.name && <FormError>{errors.name.message}</FormError>}
+      </Label>
 
       <Label>
         E-mail
         <Input {...form.register("email")} />
         {errors.email && <FormError>{errors.email.message}</FormError>}
-      </Label>
-
-      <Label>
-        CPF
-        <Input {...form.register("document")} />
-        {errors.document && <FormError>{errors.document.message}</FormError>}
       </Label>
 
       <Label>
@@ -107,8 +91,8 @@ export function RegisterForm() {
       </Label>
 
       <Button
-        className="w-full"
         size="lg"
+        className="w-full"
         disabled={isSubmitting}
         type="submit"
       >
