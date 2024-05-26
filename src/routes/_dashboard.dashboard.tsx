@@ -1,25 +1,25 @@
-import { House } from "@phosphor-icons/react"
-import { createFileRoute } from "@tanstack/react-router"
+import { House } from "@phosphor-icons/react";
+import { createFileRoute } from "@tanstack/react-router";
 
-import { cn } from "@/src/util/cn"
 import {
 	Breadcrumb,
 	BreadcrumbItem,
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@/src/components/ui/breadcrumb"
+} from "@/src/components/ui/breadcrumb";
+import { cn } from "@/src/util/cn";
 
-import { useSidebar } from "../stores/use-sidebar"
+import { useSidebar } from "../stores/use-sidebar";
 
 export const Route = createFileRoute("/_dashboard/dashboard")({
 	component: ProfilePage,
-})
+});
 
 function ProfilePage() {
 	const sidebar = useSidebar((store) => {
-		return { expanded: store.expanded }
-	})
+		return { expanded: store.expanded };
+	});
 
 	return (
 		<div
@@ -43,5 +43,5 @@ function ProfilePage() {
 				<p className="text-3xl font-bold">under construction</p>
 			</div>
 		</div>
-	)
+	);
 }

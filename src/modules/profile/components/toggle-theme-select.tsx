@@ -1,4 +1,4 @@
-import { useTheme } from "next-themes"
+import { useTheme } from "next-themes";
 
 import {
 	Select,
@@ -6,10 +6,10 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/src/components/ui/select"
+} from "@/src/components/ui/select";
 
 export function ToggleThemeSelect() {
-	const { setTheme, theme } = useTheme()
+	const { setTheme, theme } = useTheme();
 
 	return (
 		<Select
@@ -25,5 +25,5 @@ export function ToggleThemeSelect() {
 				<SelectItem value="system">Sistema</SelectItem>
 			</SelectContent>
 		</Select>
-	)
+	);
 }

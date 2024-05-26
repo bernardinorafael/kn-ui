@@ -1,11 +1,11 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
-import { parseCookies } from "nookies"
+import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
+import { parseCookies } from "nookies";
 
-import { Sidebar } from "@/src/components/sidebar"
+import { Sidebar } from "@/src/components/sidebar";
 
-import { cn } from "../util/cn"
+import { cn } from "../util/cn";
 
-const { "kn-token": token } = parseCookies()
+const { "kn-token": token } = parseCookies();
 
 export const Route = createFileRoute("/_dashboard")({
 	component: DashboardLayout,
@@ -13,10 +13,10 @@ export const Route = createFileRoute("/_dashboard")({
 		if (!token) {
 			throw redirect({
 				to: "/login",
-			})
+			});
 		}
 	},
-})
+});
 
 function DashboardLayout() {
 	return (
@@ -33,5 +33,5 @@ function DashboardLayout() {
 				</div>
 			</main>
 		</div>
-	)
+	);
 }
