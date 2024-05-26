@@ -39,7 +39,7 @@ export function SidebarItem({
           to={href}
           className={cn(
             "group relative flex items-center p-3 text-sm focus-visible:outline-none",
-            "h-10 cursor-default rounded-lg font-medium text-secondary-foreground/80",
+            "h-10 rounded-lg font-medium text-secondary-foreground/80",
             { "bg-background shadow": active }
           )}
         >

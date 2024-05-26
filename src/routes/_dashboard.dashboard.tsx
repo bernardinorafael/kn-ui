@@ -23,7 +23,7 @@ function ProfilePage() {
 
   return (
     <div
-      className={cn("ml-auto w-full max-w-[1192px] space-y-12 self-end p-8", {
+      className={cn("mx-auto w-full max-w-[1192px] space-y-12 self-end p-8", {
         "max-w-[1400px]": !sidebar.expanded,
       })}
     >

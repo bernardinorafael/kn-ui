@@ -27,7 +27,7 @@ export function ProfileButton() {
 
   return (
     <Popover>
-      <PopoverTrigger className="group mt-auto flex cursor-default items-center gap-2 p-3 text-sm focus-visible:outline-none">
+      <PopoverTrigger className="group mt-auto flex items-center gap-2 p-3 text-sm focus-visible:outline-none">
         <Avatar
           className={cn({
             "translate-x-[8px] transition-all": !sidebar.expanded,
