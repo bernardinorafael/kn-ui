@@ -1,77 +1,78 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
-  "organizeImports": {
-    "enabled": true,
-    "ignore": ["node_modules", ".next", ".vscode", "playwright-report"]
-  },
-  "formatter": {
-    "enabled": true,
-    "formatWithErrors": false,
-    "ignore": [],
-    "attributePosition": "auto",
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "lf",
-    "lineWidth": 85
-  },
-  "javascript": {
-    "formatter": {
-      "enabled": true,
-      "jsxQuoteStyle": "double",
-      "arrowParentheses": "always",
-      "bracketSameLine": true,
-      "bracketSpacing": true,
-      "quoteProperties": "asNeeded",
-      "semicolons": "asNeeded",
-      "trailingComma": "es5"
-    }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "correctness": {
-        "noInvalidUseBeforeDeclaration": "error",
-        "noUnreachable": "error",
-        "noUnusedImports": "error",
-        "noUnusedVariables": "error",
-        "useIsNan": "error",
-        "useHookAtTopLevel": "warn"
-      },
-      "a11y": {
-        "useAltText": "error",
-        "noRedundantRoles": "error",
-        "useHtmlLang": "warn"
-      },
-      "suspicious": {
-        "noArrayIndexKey": "error",
-        "noDoubleEquals": "error",
-        "noExplicitAny": "warn",
-        "useAwait": "warn"
-      },
-      "complexity": {
-        "useFlatMap": "error"
-      },
-      "style": {
-        "noDefaultExport": "error",
-        "noImplicitBoolean": "off",
-        "noNonNullAssertion": "warn",
-        "noVar": "error",
-        "useImportType": "error",
-        "useWhile": "error"
-      },
-      "nursery": {
-        "noConsole": "warn",
-        "noDuplicateElseIf": "warn",
-        "useJsxKeyInIterable": "error",
-        "useSortedClasses": {
-          "level": "warn",
-          "options": {
-            "attributes": ["classList"],
-            "functions": ["clsx", "cva", "tw", "cn"]
-          }
-        }
-      }
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+	"organizeImports": {
+		"enabled": true,
+		"ignore": ["node_modules", ".next", ".vscode", "playwright-report"]
+	},
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": false,
+		"ignore": [],
+		"attributePosition": "auto",
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineEnding": "lf",
+		"lineWidth": 85
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"jsxQuoteStyle": "double",
+			"arrowParentheses": "always",
+			"bracketSameLine": true,
+			"bracketSpacing": true,
+			"quoteProperties": "asNeeded",
+			"semicolons": "asNeeded",
+			"trailingComma": "es5"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"noInvalidUseBeforeDeclaration": "error",
+				"noUnreachable": "error",
+				"noUnusedImports": "error",
+				"noUnusedVariables": "error",
+				"useIsNan": "error",
+				"useHookAtTopLevel": "warn"
+			},
+			"a11y": {
+				"useAltText": "error",
+				"noRedundantRoles": "error",
+				"useHtmlLang": "warn"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "error",
+				"noDoubleEquals": "error",
+				"noExplicitAny": "warn",
+				"useAwait": "warn"
+			},
+			"complexity": {
+				"useFlatMap": "error"
+			},
+			"style": {
+				"noDefaultExport": "error",
+				"noImplicitBoolean": "off",
+				"noNonNullAssertion": "warn",
+				"noVar": "error",
+				"useImportType": "error",
+				"useWhile": "error"
+			},
+			"nursery": {
+				"noConsole": "warn",
+				"noDuplicateElseIf": "warn",
+				"useJsxKeyInIterable": "error",
+				"useSortedClasses": {
+					"level": "warn",
+					"options": {
+						"attributes": ["classList"],
+						"functions": ["clsx", "cva", "tw", "cn"]
+					}
+				}
+			}
+		},
+		"ignore": ["./src/routeTree.gen.ts", "./src/components/ui/*"]
+	}
 }

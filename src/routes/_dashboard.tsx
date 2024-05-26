@@ -8,30 +8,30 @@ import { cn } from "../util/cn";
 const { "kn-token": token } = parseCookies();
 
 export const Route = createFileRoute("/_dashboard")({
-	component: DashboardLayout,
-	beforeLoad: () => {
-		if (!token) {
-			throw redirect({
-				to: "/login",
-			});
-		}
-	},
+  component: DashboardLayout,
+  beforeLoad: () => {
+    if (!token) {
+      throw redirect({
+        to: "/login",
+      });
+    }
+  },
 });
 
 function DashboardLayout() {
-	return (
-		<div className="flex h-screen w-screen items-center justify-center bg-zinc-100 pt-1.5">
-			<Sidebar />
-			<main className="h-full w-full overflow-hidden pl-2 pt-2">
-				<div
-					className={cn(
-						// 'border border-l border-t border-border',
-						"h-screen overflow-y-auto rounded-tl-2xl bg-background p-6 shadow-inner",
-					)}
-				>
-					<Outlet />
-				</div>
-			</main>
-		</div>
-	);
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-zinc-100 pt-1.5">
+      <Sidebar />
+      <main className="h-full w-full overflow-hidden pt-2 pl-2">
+        <div
+          className={cn(
+            // 'border border-l border-t border-border',
+            "h-screen overflow-y-auto rounded-tl-2xl bg-background p-6 shadow-inner"
+          )}
+        >
+          <Outlet />
+        </div>
+      </main>
+    </div>
+  );
 }

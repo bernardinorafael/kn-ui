@@ -22,7 +22,7 @@ const user = {
   username: "bernardinorafael",
 };
 
-export default function UpdateProfileForm() {
+export function UpdateProfileForm() {
   const sidebar = useSidebar((store) => ({ expanded: store.expanded }));
 
   const form = useForm<z.infer<typeof updateProfileSchema>>({
@@ -35,11 +35,7 @@ export default function UpdateProfileForm() {
       document: "***.834.***-06",
       username: user.username,
     },
-
-
   });
-
-
 
   const errors = form.formState.errors;
 

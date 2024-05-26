@@ -21,7 +21,7 @@ import { cn } from "@/src/util/cn";
 
 import { Box } from "../modules/auth/components/box";
 import { useSidebar } from "../stores/use-sidebar";
-import UpdateProfileForm from "../modules/profile/form/update-profile-form";
+import { UpdateProfileForm } from "../modules/profile/form/update-profile-form";
 
 export const Route = createFileRoute("/_dashboard/profile")({
   component: ProfilePage,
@@ -39,7 +39,7 @@ function ProfilePage() {
   return (
     <div
       className={cn(
-        "transition-width ml-auto w-full max-w-[1192px] space-y-12 self-end p-8 duration-300",
+        "ml-auto w-full max-w-[1192px] space-y-12 self-end p-8 transition-width duration-300",
         { "max-w-[1400px]": !sidebar.expanded }
       )}
     >
@@ -61,7 +61,7 @@ function ProfilePage() {
             <Button
               key={item}
               variant="ghost"
-              className="w-full justify-start text-base font-normal"
+              className="w-full justify-start font-normal text-base"
             >
               {item}
             </Button>
