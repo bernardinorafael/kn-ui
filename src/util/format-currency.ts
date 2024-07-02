@@ -10,5 +10,5 @@ export function formatCurrency(amount: number, fractionDigits?: number) {
 		style: "currency",
 		currency: "BRL",
 		minimumFractionDigits: fractionDigits || 2,
-	}).format(amount);
+	}).format(amount)
 }

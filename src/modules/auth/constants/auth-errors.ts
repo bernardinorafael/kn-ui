@@ -15,4 +15,4 @@ export const authErrors = {
 		title: "Houston, temos um problema",
 		description: "Tente novamente mais tarde",
 	},
-};
+}
