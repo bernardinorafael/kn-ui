@@ -19,7 +19,7 @@ export function App() {
 				enableSystem
 				disableTransitionOnChange
 				attribute="class"
-				defaultTheme="system">
+				defaultTheme="light">
 				<QueryClientProvider client={queryClient}>
 					<RouterProvider router={router} />
 				</QueryClientProvider>

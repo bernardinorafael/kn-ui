@@ -7,9 +7,7 @@
 	"formatter": {
 		"enabled": true,
 		"formatWithErrors": false,
-		"ignore": [],
 		"attributePosition": "auto",
-		"indentStyle": "tab",
 		"indentWidth": 2,
 		"lineEnding": "lf",
 		"lineWidth": 85
@@ -17,9 +15,11 @@
 	"javascript": {
 		"formatter": {
 			"enabled": true,
+			"indentStyle": "tab",
 			"jsxQuoteStyle": "double",
 			"arrowParentheses": "always",
 			"bracketSameLine": true,
+			"quoteStyle": "double",
 			"bracketSpacing": true,
 			"quoteProperties": "asNeeded",
 			"semicolons": "asNeeded",
