@@ -61,7 +61,6 @@
 				"useWhile": "error"
 			},
 			"nursery": {
-				"noConsole": "warn",
 				"noDuplicateElseIf": "warn",
 				"useJsxKeyInIterable": "error",
 				"useSortedClasses": {

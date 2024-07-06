@@ -17,11 +17,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/src/components/ui/card"
+import { Box } from "@/src/modules/auth/components/box.tsx"
+import { UpdateProfileForm } from "@/src/modules/profile/form/update-profile-form.tsx"
+import { useSidebar } from "@/src/stores/use-sidebar.ts"
 import { cn } from "@/src/util/cn"
-
-import { Box } from "../modules/auth/components/box"
-import { UpdateProfileForm } from "../modules/profile/form/update-profile-form"
-import { useSidebar } from "../stores/use-sidebar"
 
 export const Route = createFileRoute("/_dashboard/profile")({
 	component: ProfilePage,

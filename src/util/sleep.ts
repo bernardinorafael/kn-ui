@@ -5,7 +5,7 @@
  * @param {number} timeInMiliSeconds - time to be awaited
  */
 export async function sleep(timeInMiliSeconds: number) {
-	await new Promise((resolve) => {
-		setTimeout(resolve, timeInMiliSeconds)
-	})
+  await new Promise((resolve) => {
+    setTimeout(resolve, timeInMiliSeconds);
+  });
 }

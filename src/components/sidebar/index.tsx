@@ -1,13 +1,12 @@
 import { useSidebar } from "@/src/stores/use-sidebar"
 import { useRouterState } from "@tanstack/react-router"
-import { Activity, ProfileCircle } from "iconsax-react"
+import { Activity, BoxAdd, ProfileCircle } from "iconsax-react"
 
+import { ProfileButton } from "@/src/components/sidebar/components/profile-button.tsx"
 import { SidebarItem } from "@/src/components/sidebar/components/sidebar-item.tsx"
+import { ToggleSidebarButton } from "@/src/components/sidebar/components/toggle-sidebar-button.tsx"
 import { Separator } from "@/src/components/ui/separator.tsx"
 import { cn } from "@/src/util/cn"
-
-import { ProfileButton } from "./components/profile-button"
-import { ToggleSidebarButton } from "./components/toggle-sidebar-button"
 
 /**
  * IMPORTANT: sidebar icons must be imported from the iconsax package
@@ -15,6 +14,7 @@ import { ToggleSidebarButton } from "./components/toggle-sidebar-button"
 const routes = [
 	{ id: 1, label: "Dashboard", icon: Activity, href: "/dashboard" },
 	{ id: 2, label: "Preferências", icon: ProfileCircle, href: "/profile" },
+	{ id: 3, label: "Produtos", icon: BoxAdd, href: "/products" },
 ]
 
 export function Sidebar() {
