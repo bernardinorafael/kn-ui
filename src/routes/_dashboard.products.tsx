@@ -1,5 +1,4 @@
 import { House } from "@phosphor-icons/react/dist/ssr";
-import { Plus } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -23,7 +22,7 @@ import {
 import { formatCurrency } from "../util/format-currency";
 import { formatDate } from "../util/format-date";
 import { getProducts } from "../modules/products/helpers/get-products";
-import { Button } from "../components/ui/button";
+import { CreateProductDialog } from "../modules/products/components/create-product-dialog";
 
 export const Route = createFileRoute("/_dashboard/products")({
   component: ProductsPage,
@@ -61,11 +60,7 @@ function ProductsPage() {
         <h1 className="font-semibold text-4xl tracking-tight">
           Todos os produtos
         </h1>
-
-        <Button size="default">
-          <Plus weight="bold" size={15} />
-          Criar produto
-        </Button>
+        <CreateProductDialog />
       </div>
 
       <Table>
