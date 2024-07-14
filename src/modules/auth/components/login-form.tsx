@@ -9,6 +9,7 @@ import { Input } from "@/src/components/ui/input.tsx";
 import { Label } from "@/src/components/ui/label.tsx";
 import { loginSchema } from "@/src/modules/auth/schemas/login-schema.ts";
 import { useAuth } from "@/src/stores/use-auth";
+import { sleep } from "@/src/util/sleep";
 
 export function LoginForm() {
   const login = useAuth((store) => store.login);
@@ -18,6 +19,7 @@ export function LoginForm() {
   });
 
   async function handleLogin({ email, password }: z.infer<typeof loginSchema>) {
+    await sleep(450);
     await login(email, password);
   }
 

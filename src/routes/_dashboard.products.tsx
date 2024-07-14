@@ -1,4 +1,5 @@
 import { House } from "@phosphor-icons/react/dist/ssr";
+import { Plus } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -8,10 +9,21 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/src/components/ui/breadcrumb";
-import { api } from "@/src/lib/axios.ts";
 import { useSidebar } from "@/src/stores/use-sidebar.ts";
 import { cn } from "@/src/util/cn";
 import { useQuery } from "@tanstack/react-query";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/src/components/ui/table";
+import { formatCurrency } from "../util/format-currency";
+import { formatDate } from "../util/format-date";
+import { getProducts } from "../modules/products/helpers/get-products";
+import { Button } from "../components/ui/button";
 
 export const Route = createFileRoute("/_dashboard/products")({
   component: ProductsPage,
@@ -22,13 +34,8 @@ function ProductsPage() {
 
   const { data: products } = useQuery({
     queryKey: ["products"],
-    queryFn: async () => {
-      const res = await api.get("/products");
-      return res.data.products;
-    },
+    queryFn: getProducts,
   });
-
-  console.log(products);
 
   return (
     <div
@@ -49,6 +56,42 @@ function ProductsPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
+      <div className="flex justify-between">
+        <h1 className="font-semibold text-4xl tracking-tight">
+          Todos os produtos
+        </h1>
+
+        <Button size="default">
+          <Plus weight="bold" size={15} />
+          Criar produto
+        </Button>
+      </div>
+
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Qtd</TableHead>
+            <TableHead>Criado em</TableHead>
+            <TableHead className="text-right">Preço</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {products?.map((product) => {
+            const createdAt = formatDate(product.created_at, "short");
+            const price = formatCurrency(product.price);
+            return (
+              <TableRow key={product.public_id}>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>{product.quantity}/un</TableCell>
+                <TableCell>{createdAt}</TableCell>
+                <TableCell className="text-right">{price}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </div>
   );
 }

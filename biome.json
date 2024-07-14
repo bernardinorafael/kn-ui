@@ -7,6 +7,7 @@
 	"formatter": {
 		"enabled": true,
 		"formatWithErrors": false,
+		"indentStyle": "tab",
 		"attributePosition": "auto",
 		"indentWidth": 2,
 		"lineEnding": "lf",
@@ -56,9 +57,17 @@
 				"noDefaultExport": "error",
 				"noImplicitBoolean": "off",
 				"noNonNullAssertion": "warn",
+				"noUnusedTemplateLiteral": "error",
+				"noInferrableTypes": "error",
 				"noVar": "error",
-				"useImportType": "error",
-				"useWhile": "error"
+				"noArguments": "warn",
+				"useForOf": "warn",
+				"useWhile": "warn",
+				"useConst": "off",
+				"useCollapsedElseIf": "error",
+				"useImportType": "off",
+				"useNodejsImportProtocol": "warn",
+				"useShorthandArrayType": "error"
 			},
 			"nursery": {
 				"noDuplicateElseIf": "warn",
