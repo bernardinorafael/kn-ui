@@ -21,12 +21,14 @@ export function ProductsList({ products }: ProductCardProps) {
 					<div
 						key={product.public_id}
 						className="flex w-full select-none items-center gap-6">
-						<Avatar className="h-16 w-16 rounded-lg">
-							<AvatarImage src={product.image} />
-							<AvatarFallback className="rounded-lg">
-								<CameraSlash weight="fill" size={19} />
-							</AvatarFallback>
-						</Avatar>
+						<Link to="/products/$id" params={{ id: product.public_id }}>
+							<Avatar className="h-16 w-16 rounded-lg">
+								<AvatarImage src={product.image} />
+								<AvatarFallback className="rounded-lg">
+									<CameraSlash weight="fill" size={19} />
+								</AvatarFallback>
+							</Avatar>
+						</Link>
 
 						<div className="grid w-full">
 							<p className="font-medium text-xs text-zinc-400">Nome</p>
