@@ -13,6 +13,7 @@ import { cn } from "@/src/util/cn"
 import { getProduct } from "../modules/products/helpers/get-product"
 import { Button } from "../components/ui/button"
 import { CaretLeft } from "@phosphor-icons/react"
+import { DeleteProductSection } from "../modules/products/components/delete-product.section"
 
 export const Route = createFileRoute("/_dashboard/products/$id")({
 	loader: ({ params }) => getProduct(params.id),
@@ -48,8 +49,8 @@ function ProductPage() {
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			<div className="flex items-center justify-between">
-				<h1 className="font-semibold text-4xl uppercase tracking-tight">
+			<div className="flex items-center justify-between gap-6">
+				<h1 className="max-w-full overflow-hidden text-ellipsis font-semibold text-4xl uppercase tracking-tight">
 					{product?.name}
 				</h1>
 
@@ -61,6 +62,8 @@ function ProductPage() {
 					Voltar
 				</Button>
 			</div>
+
+			{product && <DeleteProductSection product={product} />}
 		</div>
 	)
 }

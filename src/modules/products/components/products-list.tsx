@@ -30,13 +30,13 @@ export function ProductsList({ products }: ProductCardProps) {
 							</Avatar>
 						</Link>
 
-						<div className="grid w-full">
+						<div className="flex w-full flex-col">
 							<p className="font-medium text-xs text-zinc-400">Nome</p>
 							<Link
 								to="/products/$id"
 								params={{ id: product.public_id }}
 								className={cn(
-									"overflow-hidden text-ellipsis whitespace-nowrap uppercase",
+									"self-start overflow-hidden text-ellipsis whitespace-nowrap uppercase",
 									"font-medium hover:underline hover:underline-offset-4"
 								)}>
 								{product.name}

@@ -22,12 +22,7 @@ import { z } from "zod"
 import { useNavigate } from "@tanstack/react-router"
 import { toast } from "sonner"
 import { isAxiosError } from "axios"
-
-const createProductSchema = z.object({
-	name: z.string().min(3, "O nome do produto precisa ter no mínimo 3 letras"),
-	quantity: z.coerce.number().min(1, "A quantidade mínima é 1"),
-	price: z.coerce.number().min(1, "O preço não pode ser menor que 1"),
-})
+import { createProductSchema } from "../schemas/create-product-schema"
 
 export function CreateProductForm() {
 	const navigate = useNavigate({ from: "/products/new" })

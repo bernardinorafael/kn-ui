@@ -13,6 +13,7 @@ import { cn } from "@/src/util/cn"
 import { getProducts } from "../modules/products/helpers/get-products"
 import { ProductsList } from "../modules/products/components/products-list"
 import { Button } from "../components/ui/button"
+import { EmptyProductsList } from "../modules/products/components/empty-products-list"
 
 export const Route = createFileRoute("/_dashboard/products/")({
 	component: ProductsPage,
@@ -23,11 +24,6 @@ function ProductsPage() {
 	const navigate = useNavigate({ from: "/products" })
 	const products = Route.useLoaderData()
 	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
-
-	// const { data: products } = useQuery({
-	// 	queryKey: ["products"],
-	// 	queryFn: getProducts,
-	// })
 
 	return (
 		<div
@@ -48,14 +44,21 @@ function ProductsPage() {
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			<div className="flex justify-between">
-				<h1 className="font-semibold text-4xl tracking-tight">Todos os produtos</h1>
-				<Button onClick={() => navigate({ to: "/products/new" })} size="default">
-					Criar produto
-				</Button>
-			</div>
-
-			{products && <ProductsList products={products} />}
+			{products ? (
+				<>
+					<div className="flex justify-between">
+						<h1 className="font-semibold text-4xl tracking-tight">
+							Todos os produtos
+						</h1>
+						<Button onClick={() => navigate({ to: "/products/new" })} size="default">
+							Criar produto
+						</Button>
+					</div>
+					<ProductsList products={products} />
+				</>
+			) : (
+				<EmptyProductsList />
+			)}
 		</div>
 	)
 }

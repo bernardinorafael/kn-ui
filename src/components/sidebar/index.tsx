@@ -33,7 +33,6 @@ export function Sidebar() {
 				<ToggleSidebarButton />
 			</div>
 			<Separator className="my-4" />
-
 			<div className="space-y-2">
 				{routes.map(({ id, ...route }) => (
 					<SidebarItem
