@@ -63,7 +63,11 @@ function ProductPage() {
 				</Button>
 			</div>
 
-			{product && <DeleteProductSection product={product} />}
+			{product && (
+				<section className="grid grid-cols-2">
+					<DeleteProductSection product={product} />
+				</section>
+			)}
 		</div>
 	)
 }

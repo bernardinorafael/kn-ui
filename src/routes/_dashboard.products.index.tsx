@@ -14,6 +14,7 @@ import { getProducts } from "../modules/products/helpers/get-products"
 import { ProductsList } from "../modules/products/components/products-list"
 import { Button } from "../components/ui/button"
 import { EmptyProductsList } from "../modules/products/components/empty-products-list"
+import { Input } from "../components/ui/input"
 
 export const Route = createFileRoute("/_dashboard/products/")({
 	component: ProductsPage,
@@ -47,13 +48,27 @@ function ProductsPage() {
 			{products ? (
 				<>
 					<div className="flex justify-between">
-						<h1 className="font-semibold text-4xl tracking-tight">
-							Todos os produtos
-						</h1>
-						<Button onClick={() => navigate({ to: "/products/new" })} size="default">
+						<div>
+							<h1 className="font-semibold text-3xl tracking-tight">
+								Todos os produtos
+							</h1>
+							<p className="font-medium text-sm text-zinc-400">
+								Visualize e gerencie seus produtos
+							</p>
+						</div>
+
+						<Button
+							size="default"
+							onClick={() => navigate({ to: "/products/new" })}
+							className="ml-auto">
 							Criar produto
 						</Button>
 					</div>
+
+					<div className="flex items-center gap-4">
+						<Input className="max-w-[450px]" placeholder="Buscar" />
+					</div>
+
 					<ProductsList products={products} />
 				</>
 			) : (
