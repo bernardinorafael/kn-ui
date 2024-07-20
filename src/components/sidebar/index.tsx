@@ -1,6 +1,6 @@
 import { useSidebar } from "@/src/stores/use-sidebar"
 import { useRouterState } from "@tanstack/react-router"
-import { Activity, BoxAdd, ProfileCircle } from "iconsax-react"
+import { BoxAdd, ProfileCircle } from "iconsax-react"
 
 import { ProfileButton } from "@/src/components/sidebar/components/profile-button.tsx"
 import { SidebarItem } from "@/src/components/sidebar/components/sidebar-item.tsx"
@@ -12,7 +12,6 @@ import { cn } from "@/src/util/cn"
  * IMPORTANT: sidebar icons must be imported from the iconsax package
  */
 const routes = [
-	{ id: 1, label: "Dashboard", icon: Activity, href: "/dashboard" },
 	{ id: 2, label: "Preferências", icon: ProfileCircle, href: "/profile" },
 	{ id: 3, label: "Produtos", icon: BoxAdd, href: "/products" },
 ]

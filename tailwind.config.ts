@@ -102,4 +102,5 @@ const config = {
 	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default config
