@@ -36,7 +36,11 @@ export function Sidebar() {
 
 			<div className="space-y-2">
 				{routes.map(({ id, ...route }) => (
-					<SidebarItem key={id} active={pathname === route.href} {...route} />
+					<SidebarItem
+						key={id}
+						active={pathname.startsWith(route.href)}
+						{...route}
+					/>
 				))}
 			</div>
 

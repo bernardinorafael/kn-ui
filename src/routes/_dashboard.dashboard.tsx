@@ -17,9 +17,7 @@ export const Route = createFileRoute("/_dashboard/dashboard")({
 })
 
 function ProfilePage() {
-	const sidebar = useSidebar((store) => {
-		return { expanded: store.expanded }
-	})
+	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
 
 	return (
 		<div

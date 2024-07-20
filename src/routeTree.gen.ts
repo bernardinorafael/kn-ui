@@ -15,10 +15,12 @@ import { Route as DashboardImport } from './routes/_dashboard'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardProfileImport } from './routes/_dashboard.profile'
-import { Route as DashboardProductsImport } from './routes/_dashboard.products'
 import { Route as DashboardDashboardImport } from './routes/_dashboard.dashboard'
 import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
+import { Route as DashboardProductsIndexImport } from './routes/_dashboard.products.index'
+import { Route as DashboardProductsNewImport } from './routes/_dashboard.products.new'
+import { Route as DashboardProductsIdImport } from './routes/_dashboard.products.$id'
 
 // Create/Update Routes
 
@@ -42,11 +44,6 @@ const DashboardProfileRoute = DashboardProfileImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 
-const DashboardProductsRoute = DashboardProductsImport.update({
-  path: '/products',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
 const DashboardDashboardRoute = DashboardDashboardImport.update({
   path: '/dashboard',
   getParentRoute: () => DashboardRoute,
@@ -60,6 +57,21 @@ const AuthRegisterRoute = AuthRegisterImport.update({
 const AuthLoginRoute = AuthLoginImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
+} as any)
+
+const DashboardProductsIndexRoute = DashboardProductsIndexImport.update({
+  path: '/products/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardProductsNewRoute = DashboardProductsNewImport.update({
+  path: '/products/new',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardProductsIdRoute = DashboardProductsIdImport.update({
+  path: '/products/$id',
+  getParentRoute: () => DashboardRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -90,12 +102,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDashboardImport
       parentRoute: typeof DashboardImport
     }
-    '/_dashboard/products': {
-      preLoaderRoute: typeof DashboardProductsImport
-      parentRoute: typeof DashboardImport
-    }
     '/_dashboard/profile': {
       preLoaderRoute: typeof DashboardProfileImport
+      parentRoute: typeof DashboardImport
+    }
+    '/_dashboard/products/$id': {
+      preLoaderRoute: typeof DashboardProductsIdImport
+      parentRoute: typeof DashboardImport
+    }
+    '/_dashboard/products/new': {
+      preLoaderRoute: typeof DashboardProductsNewImport
+      parentRoute: typeof DashboardImport
+    }
+    '/_dashboard/products/': {
+      preLoaderRoute: typeof DashboardProductsIndexImport
       parentRoute: typeof DashboardImport
     }
   }
@@ -108,8 +128,10 @@ export const routeTree = rootRoute.addChildren([
   AuthRoute.addChildren([AuthLoginRoute, AuthRegisterRoute]),
   DashboardRoute.addChildren([
     DashboardDashboardRoute,
-    DashboardProductsRoute,
     DashboardProfileRoute,
+    DashboardProductsIdRoute,
+    DashboardProductsNewRoute,
+    DashboardProductsIndexRoute,
   ]),
 ])
 

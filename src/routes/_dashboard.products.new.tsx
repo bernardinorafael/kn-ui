@@ -10,22 +10,14 @@ import {
 } from "@/src/components/ui/breadcrumb"
 import { useSidebar } from "@/src/stores/use-sidebar.ts"
 import { cn } from "@/src/util/cn"
-import { useQuery } from "@tanstack/react-query"
-import { getProducts } from "../modules/products/helpers/get-products"
-import { CreateProductDialog } from "../modules/products/components/create-product-dialog"
-import { ProductsList } from "../modules/products/components/products-list"
+import { CreateProductForm } from "../modules/products/components/create-product-form"
 
-export const Route = createFileRoute("/_dashboard/products")({
-	component: ProductsPage,
+export const Route = createFileRoute("/_dashboard/products/new")({
+	component: NewProductPage,
 })
 
-function ProductsPage() {
+function NewProductPage() {
 	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
-
-	const { data: products } = useQuery({
-		queryKey: ["products"],
-		queryFn: getProducts,
-	})
 
 	return (
 		<div
@@ -43,15 +35,18 @@ function ProductsPage() {
 					<BreadcrumbItem>
 						<BreadcrumbPage>Produtos</BreadcrumbPage>
 					</BreadcrumbItem>
+					<BreadcrumbSeparator />
+					<BreadcrumbItem>
+						<BreadcrumbPage>Novo</BreadcrumbPage>
+					</BreadcrumbItem>
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			<div className="flex justify-between">
-				<h1 className="font-semibold text-4xl tracking-tight">Todos os produtos</h1>
-				<CreateProductDialog />
-			</div>
+			<h1 className="font-semibold text-4xl tracking-tight">
+				Criar um novo produto
+			</h1>
 
-			{products && <ProductsList products={products} />}
+			<CreateProductForm />
 		</div>
 	)
 }

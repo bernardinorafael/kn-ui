@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
 import { CameraSlash } from "@phosphor-icons/react"
 import { useSidebar } from "@/src/stores/use-sidebar"
 import { cn } from "@/src/util/cn"
+import { Link } from "@tanstack/react-router"
 
 type ProductCardProps = {
 	products: Product[]
@@ -15,23 +16,29 @@ export function ProductsList({ products }: ProductCardProps) {
 
 	return (
 		<section className="space-y-4">
-			{products.map((p) => {
+			{products.map((product) => {
 				return (
 					<div
-						key={p.public_id}
+						key={product.public_id}
 						className="flex w-full select-none items-center gap-6">
 						<Avatar className="h-16 w-16 rounded-lg">
-							<AvatarImage src={p.image} />
+							<AvatarImage src={product.image} />
 							<AvatarFallback className="rounded-lg">
-								<CameraSlash size={19} />
+								<CameraSlash weight="fill" size={19} />
 							</AvatarFallback>
 						</Avatar>
 
 						<div className="grid w-full">
 							<p className="font-medium text-xs text-zinc-400">Nome</p>
-							<span className="overflow-hidden text-ellipsis whitespace-nowrap font-medium uppercase">
-								{p.name}
-							</span>
+							<Link
+								to="/products/$id"
+								params={{ id: product.public_id }}
+								className={cn(
+									"overflow-hidden text-ellipsis whitespace-nowrap uppercase",
+									"font-medium hover:underline hover:underline-offset-4"
+								)}>
+								{product.name}
+							</Link>
 						</div>
 
 						<div
@@ -40,7 +47,7 @@ export function ProductsList({ products }: ProductCardProps) {
 								!sidebar.expanded && "max-w-[270px]"
 							)}>
 							<p className="font-medium text-xs text-zinc-400">Qtd</p>
-							<span>{p.quantity}/un</span>
+							<span>{product.quantity}/un</span>
 						</div>
 
 						<div
@@ -49,14 +56,14 @@ export function ProductsList({ products }: ProductCardProps) {
 								!sidebar.expanded && "max-w-[270px]"
 							)}>
 							<p className="font-medium text-xs text-zinc-400">Criado em</p>
-							<span>{formatDate(p.created_at, "short")}</span>
+							<span>{formatDate(product.created_at, "short")}</span>
 						</div>
 
 						<div className="flex w-full max-w-[150px] flex-col items-end">
 							<p className="whitespace-nowrap font-medium text-xs text-zinc-400">
 								Preço de venda
 							</p>
-							<span>{formatCurrency(p.price)}</span>
+							<span>{formatCurrency(product.price)}</span>
 						</div>
 					</div>
 				)
