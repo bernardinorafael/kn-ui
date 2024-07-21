@@ -1,4 +1,4 @@
-import { House } from "@phosphor-icons/react/dist/ssr"
+import { House } from "@phosphor-icons/react"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 
 import {
@@ -14,6 +14,7 @@ import { getProduct } from "../modules/products/helpers/get-product"
 import { Button } from "../components/ui/button"
 import { CaretLeft } from "@phosphor-icons/react"
 import { DeleteProductSection } from "../modules/products/components/delete-product.section"
+import { ToggleProductStatus } from "../modules/products/components/toggle-product.status"
 
 export const Route = createFileRoute("/_dashboard/products/$id")({
 	loader: ({ params }) => getProduct(params.id),
@@ -57,15 +58,16 @@ function ProductPage() {
 				<Button
 					size="default"
 					variant="secondary"
-					onClick={() => navigate({ to: "/products" })}>
+					onClick={() => navigate({ to: "/products", search: { disabled: false } })}>
 					<CaretLeft />
 					Voltar
 				</Button>
 			</div>
 
 			{product && (
-				<section className="grid grid-cols-2">
+				<section className="grid grid-cols-2 gap-6">
 					<DeleteProductSection product={product} />
+					<ToggleProductStatus product={product} />
 				</section>
 			)}
 		</div>

@@ -21,21 +21,22 @@ import { Switch } from "../components/ui/switch"
 import { Label } from "../components/ui/label"
 import { z } from "zod"
 
-const productSearchSchema = z.object({
-	inactive: z.boolean().optional(),
-	query: z.string().optional(),
+const searchParamsSchema = z.object({
+	disabled: z.boolean().default(false),
+	q: z.string().optional(),
 })
 
 export const Route = createFileRoute("/_dashboard/products/")({
-	validateSearch: (search) => productSearchSchema.parse(search),
 	component: ProductsPage,
-	loader: getProducts,
+	validateSearch: searchParamsSchema.parse,
+	loaderDeps: ({ search }) => ({ disabled: search.disabled }),
+	loader: ({ deps }) => getProducts({ disabled: deps.disabled }),
 })
 
 function ProductsPage() {
-	const navigate = useNavigate({ from: "/products" })
 	const search = Route.useSearch()
 	const products = Route.useLoaderData()
+	const navigate = useNavigate({ from: "/products" })
 	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
 
 	const inputRef = React.useRef<React.ElementRef<"input">>(null)
@@ -51,19 +52,13 @@ function ProductsPage() {
 		return () => document.removeEventListener("keydown", down)
 	}, [])
 
-	function handleQuerySearchProduct(query: string) {
-		navigate({
-			search: {
-				query: query.length ? query : undefined,
-			},
-		})
+	function handleQuerySearch(event: React.ChangeEvent<HTMLInputElement>) {
+		navigate({ search: { ...search, q: event.target.value } })
 	}
 
-	function handleSearchInactive(checked: boolean) {
+	function handleSearchDeleted(checked: boolean) {
 		navigate({
-			search: {
-				inactive: checked,
-			},
+			search: { ...search, disabled: checked },
 		})
 	}
 
@@ -86,56 +81,45 @@ function ProductsPage() {
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			{products ? (
-				<>
-					<div className="flex justify-between">
-						<div>
-							<h1 className="font-semibold text-2xl tracking-tight">
-								Meus produtos
-							</h1>
-							<p className="font-medium text-sm text-zinc-400">
-								Visualize e gerencie os produtos
-							</p>
-						</div>
+			<div className="flex justify-between">
+				<div>
+					<h1 className="font-semibold text-2xl tracking-tight">Meus produtos</h1>
+					<p className="font-medium text-sm text-zinc-400">
+						Visualize e gerencie os produtos
+					</p>
+				</div>
 
-						<Button
-							size="default"
-							onClick={() => navigate({ to: "/products/new" })}
-							className="ml-auto">
-							Criar produto
-						</Button>
-					</div>
+				<Button
+					size="default"
+					onClick={() => navigate({ to: "/products/new" })}
+					className={cn("ml-auto", !products && "hidden")}>
+					Criar produto
+				</Button>
+			</div>
 
-					<div className="flex items-center gap-4">
-						<Input.Root className="max-w-[350px]">
-							<MagnifyingGlass
-								size={16}
-								weight="regular"
-								className="text-zinc-500"
-							/>
-							<Input.Input
-								ref={inputRef}
-								value={search.query}
-								onChange={(event) => handleQuerySearchProduct(event.target.value)}
-								placeholder="Buscar"
-							/>
-							<Input.Shortcut>/</Input.Shortcut>
-						</Input.Root>
+			<div className="flex items-center gap-4">
+				<Input.Root className="max-w-[350px]">
+					<MagnifyingGlass size={16} weight="regular" className="text-zinc-500" />
+					<Input.Input
+						ref={inputRef}
+						value={search.q}
+						onChange={handleQuerySearch}
+						placeholder="Buscar"
+					/>
+					<Input.Shortcut>/</Input.Shortcut>
+				</Input.Root>
 
-						<Label className="ml-auto flex items-center">
-							Ver todos
-							<Switch
-								checked={search.inactive}
-								onCheckedChange={handleSearchInactive}
-							/>
-						</Label>
-					</div>
+				<Label className="ml-auto flex items-center">
+					Ver todos
+					<Switch
+						disabled={!products}
+						checked={search.disabled}
+						onCheckedChange={handleSearchDeleted}
+					/>
+				</Label>
+			</div>
 
-					<ProductsList products={products} />
-				</>
-			) : (
-				<EmptyProductsList />
-			)}
+			{products ? <ProductsList products={products} /> : <EmptyProductsList />}
 		</div>
 	)
 }

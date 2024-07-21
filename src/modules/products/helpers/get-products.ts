@@ -1,15 +1,23 @@
 import { api } from "@/src/lib/axios"
 import type { Product } from "@/src/types/product"
-import { isAxiosError } from "axios"
+import { isAxiosError, type AxiosRequestConfig } from "axios"
 import { toast } from "sonner"
 
 type ProductsResponse = {
 	products: Product[]
 }
 
-export async function getProducts() {
+type ProductQueryParams = {
+	disabled?: boolean
+}
+
+export async function getProducts(props: ProductQueryParams) {
+	const params: AxiosRequestConfig["params"] = {
+		disabled: props.disabled,
+	}
+
 	try {
-		const res = await api.get<ProductsResponse>("/products")
+		const res = await api.get<ProductsResponse>("/products", { params })
 		return res.data.products
 	} catch (err) {
 		if (isAxiosError(err)) {

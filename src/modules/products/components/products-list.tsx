@@ -22,7 +22,7 @@ export function ProductsList({ products }: ProductCardProps) {
 						key={product.public_id}
 						className="flex w-full select-none items-center gap-6">
 						<Link to="/products/$id" params={{ id: product.public_id }}>
-							<Avatar className="h-16 w-16 rounded-lg transition-all duration-300 hover:scale-110">
+							<Avatar className="h-16 w-16 rounded-lg transition-all duration-200 hover:scale-110">
 								<AvatarImage src={product.image} />
 								<AvatarFallback className="rounded-lg">
 									<CameraSlash weight="fill" size={19} />
@@ -37,7 +37,7 @@ export function ProductsList({ products }: ProductCardProps) {
 								params={{ id: product.public_id }}
 								className={cn(
 									"self-start overflow-hidden text-ellipsis whitespace-nowrap uppercase",
-									"font-medium hover:underline hover:underline-offset-4"
+									"flex items-center gap-2 font-medium hover:underline hover:underline-offset-4"
 								)}>
 								{product.name}
 							</Link>
@@ -45,7 +45,7 @@ export function ProductsList({ products }: ProductCardProps) {
 
 						<div
 							className={cn(
-								"grid w-full max-w-[150px] transition-all duration-300",
+								"grid w-full max-w-[150px] transition-all duration-200",
 								!sidebar.expanded && "max-w-[270px]"
 							)}>
 							<p className="font-medium text-xs text-zinc-400">Qtd</p>
@@ -54,7 +54,7 @@ export function ProductsList({ products }: ProductCardProps) {
 
 						<div
 							className={cn(
-								"grid w-full max-w-[150px] transition-all duration-300",
+								"grid w-full max-w-[150px] transition-all duration-200",
 								!sidebar.expanded && "max-w-[270px]"
 							)}>
 							<p className="font-medium text-xs text-zinc-400">Criado em</p>

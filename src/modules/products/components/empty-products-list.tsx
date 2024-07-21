@@ -7,7 +7,7 @@ export function EmptyProductsList() {
 	const navigate = useNavigate({ from: "/products" })
 
 	return (
-		<div className="flex w-full flex-col items-center justify-center">
+		<div className="flex w-full flex-col items-center justify-center rounded-lg border border-border py-12 shadow-sm">
 			<img width={280} src={notFoundIllustration} alt="" />
 
 			<div className="flex flex-col items-center">

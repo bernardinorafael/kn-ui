@@ -42,7 +42,7 @@ function NewProductPage() {
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			<h1 className="font-semibold text-4xl tracking-tight">
+			<h1 className="font-semibold text-2xl tracking-tight">
 				Criar um novo produto
 			</h1>
 

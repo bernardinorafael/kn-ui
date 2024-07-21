@@ -57,11 +57,11 @@ export function CreateProductForm() {
 
 		try {
 			await api.post("/products", formData)
+
+			form.setFocus("name")
 			clearProductForm()
 
-			toast.success("Produto criado com sucesso", {
-				description: "Confira o produto criado na seção de Produtos",
-			})
+			toast.success("Um novo produto foi criado")
 		} catch (err) {
 			if (isAxiosError(err)) {
 				if (err.response?.data.error === "Conflict") {
@@ -96,7 +96,7 @@ export function CreateProductForm() {
 					<form
 						id="create-product"
 						onSubmit={form.handleSubmit(handleCreateProduct)}
-						className="my-4 flex flex-col gap-4 p-4">
+						className="my-4 flex flex-col gap-4">
 						<Label>
 							Nome
 							<Input autoFocus {...form.register("name")} />
@@ -174,7 +174,7 @@ export function CreateProductForm() {
 					variant="secondary"
 					onClick={() => {
 						onResetFile()
-						navigate({ to: "/products" })
+						navigate({ to: "/products", search: { disabled: false } })
 					}}>
 					Voltar
 				</Button>

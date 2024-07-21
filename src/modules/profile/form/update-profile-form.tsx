@@ -52,7 +52,7 @@ export function UpdateProfileForm() {
 	}, [form, phone])
 
 	return (
-		<form className="space-y-4 p-4" onSubmit={form.handleSubmit(handleEditProfile)}>
+		<form className="space-y-4" onSubmit={form.handleSubmit(handleEditProfile)}>
 			<div
 				className={cn("grid grid-cols-1 gap-4", {
 					"grid-cols-2": !sidebar.expanded,
