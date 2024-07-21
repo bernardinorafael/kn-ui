@@ -145,7 +145,8 @@ export function CreateProductForm() {
 									<label
 										className={cn(
 											"relative flex aspect-square h-full w-full cursor-pointer flex-col",
-											"items-center justify-center rounded-lg border-2 border-dashed"
+											"items-center justify-center rounded-lg border-2 border-dashed",
+											"focus-within:ring focus-within:ring-black focus-within:ring-offset-2"
 										)}>
 										<Camera weight="fill" size={26} />
 										<p className="font-medium text-sm">

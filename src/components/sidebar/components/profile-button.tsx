@@ -24,17 +24,17 @@ export function ProfileButton() {
 	return (
 		<Popover>
 			<PopoverTrigger className="group mt-auto flex items-center gap-2 p-3 text-sm focus-visible:outline-none">
-				<Avatar
-					className={cn({
-						"translate-x-[8px] transition-all": !sidebar.expanded,
-					})}>
+				<Avatar>
 					<AvatarFallback className="bg-white">RB</AvatarFallback>
 				</Avatar>
 
 				<div
-					className={cn("absolute flex flex-col items-start pl-12 transition-all", {
-						"-z-10 translate-x-[50%]": !sidebar.expanded,
-					})}>
+					className={cn(
+						"absolute flex flex-col items-start pl-12 transition-all duration-150",
+						{
+							"-z-10 translate-x-[50%]": !sidebar.expanded,
+						}
+					)}>
 					<h2 className="mt-1 font-semibold underline-offset-2 group-hover:underline">
 						Rafael Bernardino
 					</h2>
