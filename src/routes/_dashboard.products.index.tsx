@@ -14,17 +14,58 @@ import { getProducts } from "../modules/products/helpers/get-products"
 import { ProductsList } from "../modules/products/components/products-list"
 import { Button } from "../components/ui/button"
 import { EmptyProductsList } from "../modules/products/components/empty-products-list"
-import { Input } from "../components/ui/input"
+import * as Input from "@/src/components/ui/input/index"
+import { MagnifyingGlass } from "@phosphor-icons/react"
+import React from "react"
+import { Switch } from "../components/ui/switch"
+import { Label } from "../components/ui/label"
+import { z } from "zod"
+
+const productSearchSchema = z.object({
+	inactive: z.boolean().optional(),
+	query: z.string().optional(),
+})
 
 export const Route = createFileRoute("/_dashboard/products/")({
+	validateSearch: (search) => productSearchSchema.parse(search),
 	component: ProductsPage,
 	loader: getProducts,
 })
 
 function ProductsPage() {
 	const navigate = useNavigate({ from: "/products" })
+	const search = Route.useSearch()
 	const products = Route.useLoaderData()
 	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
+
+	const inputRef = React.useRef<React.ElementRef<"input">>(null)
+
+	React.useEffect(() => {
+		function down(event: KeyboardEvent) {
+			if (event.key === "/") {
+				event.preventDefault()
+				inputRef.current?.focus()
+			}
+		}
+		document.addEventListener("keydown", down)
+		return () => document.removeEventListener("keydown", down)
+	}, [])
+
+	function handleQuerySearchProduct(query: string) {
+		navigate({
+			search: {
+				query: query.length ? query : undefined,
+			},
+		})
+	}
+
+	function handleSearchInactive(checked: boolean) {
+		navigate({
+			search: {
+				inactive: checked,
+			},
+		})
+	}
 
 	return (
 		<div
@@ -49,11 +90,11 @@ function ProductsPage() {
 				<>
 					<div className="flex justify-between">
 						<div>
-							<h1 className="font-semibold text-3xl tracking-tight">
-								Todos os produtos
+							<h1 className="font-semibold text-2xl tracking-tight">
+								Meus produtos
 							</h1>
 							<p className="font-medium text-sm text-zinc-400">
-								Visualize e gerencie seus produtos
+								Visualize e gerencie os produtos
 							</p>
 						</div>
 
@@ -66,7 +107,28 @@ function ProductsPage() {
 					</div>
 
 					<div className="flex items-center gap-4">
-						<Input className="max-w-[450px]" placeholder="Buscar" />
+						<Input.Root className="max-w-[350px]">
+							<MagnifyingGlass
+								size={16}
+								weight="regular"
+								className="text-zinc-500"
+							/>
+							<Input.Input
+								ref={inputRef}
+								value={search.query}
+								onChange={(event) => handleQuerySearchProduct(event.target.value)}
+								placeholder="Buscar"
+							/>
+							<Input.Shortcut>/</Input.Shortcut>
+						</Input.Root>
+
+						<Label className="ml-auto flex items-center">
+							Ver todos
+							<Switch
+								checked={search.inactive}
+								onCheckedChange={handleSearchInactive}
+							/>
+						</Label>
 					</div>
 
 					<ProductsList products={products} />

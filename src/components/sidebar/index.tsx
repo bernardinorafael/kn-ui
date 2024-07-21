@@ -25,18 +25,18 @@ export function Sidebar() {
 	return (
 		<aside
 			className={cn(
-				"ease flex h-full w-full max-w-[310px] flex-col py-4 pl-2 duration-300",
-				{ "max-w-[80px]": !sidebar.expanded }
+				"ease flex h-full w-full max-w-[310px] flex-col py-4 pl-2 duration-200",
+				!sidebar.expanded && "max-w-[65px]"
 			)}>
 			<div className="relative flex items-center justify-between">
-				<span className="pl-3 font-extrabold text-4xl tracking-tighter">kn.</span>
+				<span className="pl-3 font-extrabold text-3xl tracking-tighter">kn.</span>
 				<ToggleSidebarButton />
 			</div>
 			<Separator className="my-4" />
 			<div className="space-y-2">
-				{routes.map(({ id, ...route }) => (
+				{routes.map((route) => (
 					<SidebarItem
-						key={id}
+						key={route.id}
 						active={pathname.startsWith(route.href)}
 						{...route}
 					/>

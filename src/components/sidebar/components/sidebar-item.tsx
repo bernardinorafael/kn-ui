@@ -31,19 +31,18 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
 					className={cn(
 						"group relative flex items-center p-3 text-sm focus-visible:outline-none",
 						"h-10 rounded-lg font-medium text-secondary-foreground/80",
-						{ "bg-background shadow": active }
+						"hover:bg-background hover:shadow",
+						active && "bg-background shadow"
 					)}>
 					<Icon
 						variant="Bulk"
-						className={cn(
-							"absolute h-8 w-8 transition-all duration-100 group-active:scale-90",
-							{ "translate-x-[8px]": !sidebar.expanded }
-						)}
+						className="absolute h-8 w-8 transition-all duration-100 group-active:scale-90"
 					/>
 					<p
-						className={cn("absolute pt-1 pl-12 transition-all", {
-							"-z-10 translate-x-[50%]": !sidebar.expanded,
-						})}>
+						className={cn(
+							"absolute pt-1 pl-12 transition-all",
+							!sidebar.expanded && "-z-10 translate-x-[50%]"
+						)}>
 						{label}
 					</p>
 				</Link>

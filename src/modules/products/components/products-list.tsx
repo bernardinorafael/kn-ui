@@ -22,7 +22,7 @@ export function ProductsList({ products }: ProductCardProps) {
 						key={product.public_id}
 						className="flex w-full select-none items-center gap-6">
 						<Link to="/products/$id" params={{ id: product.public_id }}>
-							<Avatar className="h-16 w-16 rounded-lg">
+							<Avatar className="h-16 w-16 rounded-lg transition-all duration-300 hover:scale-110">
 								<AvatarImage src={product.image} />
 								<AvatarFallback className="rounded-lg">
 									<CameraSlash weight="fill" size={19} />
