@@ -23,6 +23,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { toast } from "sonner"
 import { isAxiosError } from "axios"
 import { createProductSchema } from "../schemas/create-product-schema"
+import { OrderByEnum } from "@/src/enum/order-by"
 
 export function CreateProductForm() {
 	const navigate = useNavigate({ from: "/products/new" })
@@ -83,6 +84,17 @@ export function CreateProductForm() {
 
 	const isButtonSaveProductDisabled = !file || isCreatingProduct
 
+	function handleGoBackToProducts() {
+		onResetFile()
+		navigate({
+			to: "/products",
+			search: {
+				disabled: false,
+				orderBy: OrderByEnum.CreatedAt,
+			},
+		})
+	}
+
 	return (
 		<Card className="max-w-[820px]">
 			<CardHeader>
@@ -123,7 +135,7 @@ export function CreateProductForm() {
 									file && "w-24"
 								)}>
 								{file ? (
-									<div className="group relative h-24 w-24">
+									<div className="group relative aspect-square h-24 w-24">
 										<img
 											className="rounded-lg border border-zinc-200 shadow"
 											src={String(imagePreview)}
@@ -169,13 +181,7 @@ export function CreateProductForm() {
 				</Box>
 			</CardContent>
 			<CardFooter>
-				<Button
-					size="sm"
-					variant="secondary"
-					onClick={() => {
-						onResetFile()
-						navigate({ to: "/products", search: { disabled: false } })
-					}}>
+				<Button size="sm" variant="secondary" onClick={handleGoBackToProducts}>
 					Voltar
 				</Button>
 				<Button

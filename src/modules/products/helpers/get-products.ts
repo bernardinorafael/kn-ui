@@ -1,3 +1,4 @@
+import type { OrderByEnum } from "@/src/enum/order-by"
 import { api } from "@/src/lib/axios"
 import type { Product } from "@/src/types/product"
 import { isAxiosError, type AxiosRequestConfig } from "axios"
@@ -8,12 +9,14 @@ type ProductsResponse = {
 }
 
 type ProductQueryParams = {
-	disabled?: boolean
+	disabled: boolean
+	orderBy: OrderByEnum
 }
 
 export async function getProducts(props: ProductQueryParams) {
 	const params: AxiosRequestConfig["params"] = {
 		disabled: props.disabled,
+		order_by: props.orderBy,
 	}
 
 	try {

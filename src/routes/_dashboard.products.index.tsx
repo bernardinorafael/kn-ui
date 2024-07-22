@@ -20,17 +20,34 @@ import React from "react"
 import { Switch } from "../components/ui/switch"
 import { Label } from "../components/ui/label"
 import { z } from "zod"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "../components/ui/select"
+import { OrderByEnum } from "../enum/order-by"
 
 const searchParamsSchema = z.object({
 	disabled: z.boolean().default(false),
+	orderBy: z.nativeEnum(OrderByEnum).default(OrderByEnum.CreatedAt),
 	q: z.string().optional(),
 })
 
 export const Route = createFileRoute("/_dashboard/products/")({
 	component: ProductsPage,
 	validateSearch: searchParamsSchema.parse,
-	loaderDeps: ({ search }) => ({ disabled: search.disabled }),
-	loader: ({ deps }) => getProducts({ disabled: deps.disabled }),
+	loaderDeps: ({ search }) => ({
+		disabled: search.disabled,
+		orderBy: search.orderBy,
+	}),
+	loader: ({ deps }) => {
+		return getProducts({
+			disabled: deps.disabled,
+			orderBy: deps.orderBy,
+		})
+	},
 })
 
 function ProductsPage() {
@@ -59,6 +76,12 @@ function ProductsPage() {
 	function handleSearchDeleted(checked: boolean) {
 		navigate({
 			search: { ...search, disabled: checked },
+		})
+	}
+
+	function handleSelectOrderByList(orderBy: OrderByEnum) {
+		navigate({
+			search: { ...search, orderBy },
 		})
 	}
 
@@ -109,13 +132,23 @@ function ProductsPage() {
 					<Input.Shortcut>/</Input.Shortcut>
 				</Input.Root>
 
+				<Select
+					defaultValue={search.orderBy}
+					onValueChange={handleSelectOrderByList}>
+					<SelectTrigger className="w-[190px] gap-1">
+						<p className="font-semibold">Ordernar:</p>
+						<SelectValue placeholder="Ordernar por" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value={OrderByEnum.CreatedAt}>Criado em</SelectItem>
+						<SelectItem value={OrderByEnum.Quantity}>Quantidade</SelectItem>
+						<SelectItem value={OrderByEnum.Price}>Preço</SelectItem>
+					</SelectContent>
+				</Select>
+
 				<Label className="ml-auto flex items-center">
-					Ver todos
-					<Switch
-						disabled={!products}
-						checked={search.disabled}
-						onCheckedChange={handleSearchDeleted}
-					/>
+					Ver inativos
+					<Switch checked={search.disabled} onCheckedChange={handleSearchDeleted} />
 				</Label>
 			</div>
 
