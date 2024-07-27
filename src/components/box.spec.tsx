@@ -1,4 +1,4 @@
-import { type RenderResult, render } from "@testing-library/react"
+import { render, type RenderResult } from "@testing-library/react"
 
 import { Box } from "./box"
 

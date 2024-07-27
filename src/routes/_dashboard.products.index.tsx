@@ -1,5 +1,4 @@
-import { House } from "@phosphor-icons/react/dist/ssr"
-import { createFileRoute, useNavigate } from "@tanstack/react-router"
+import React from "react"
 
 import {
 	Breadcrumb,
@@ -8,18 +7,16 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/src/components/ui/breadcrumb"
+import * as Input from "@/src/components/ui/input/index"
 import { useSidebar } from "@/src/stores/use-sidebar.ts"
 import { cn } from "@/src/util/cn"
-import { getProducts } from "../modules/products/helpers/get-products"
-import { ProductsList } from "../modules/products/components/products-list"
-import { Button } from "../components/ui/button"
-import { EmptyProductsList } from "../modules/products/components/empty-products-list"
-import * as Input from "@/src/components/ui/input/index"
 import { MagnifyingGlass } from "@phosphor-icons/react"
-import React from "react"
-import { Switch } from "../components/ui/switch"
-import { Label } from "../components/ui/label"
+import { House } from "@phosphor-icons/react/dist/ssr"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import { z } from "zod"
+
+import { Button } from "../components/ui/button"
+import { Label } from "../components/ui/label"
 import {
 	Select,
 	SelectContent,
@@ -27,7 +24,11 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "../components/ui/select"
+import { Switch } from "../components/ui/switch"
 import { OrderByEnum } from "../enum/order-by"
+import { EmptyProductsList } from "../modules/products/components/empty-products-list"
+import { ProductsList } from "../modules/products/components/products-list"
+import { getProducts } from "../modules/products/helpers/get-products"
 
 const searchParamsSchema = z.object({
 	disabled: z.boolean().default(false),
@@ -89,9 +90,10 @@ function ProductsPage() {
 		<div
 			className={cn(
 				"mx-auto w-full max-w-[1292px] space-y-12",
-				"self-end p-8 transition-width duration-300",
+				"transition-width self-end p-8 duration-300",
 				!sidebar.expanded && "max-w-[1500px]"
-			)}>
+			)}
+		>
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
@@ -106,8 +108,8 @@ function ProductsPage() {
 
 			<div className="flex justify-between">
 				<div>
-					<h1 className="font-semibold text-2xl tracking-tight">Meus produtos</h1>
-					<p className="font-medium text-sm text-zinc-400">
+					<h1 className="text-2xl font-semibold tracking-tight">Meus produtos</h1>
+					<p className="text-sm font-medium text-zinc-400">
 						Visualize e gerencie os produtos
 					</p>
 				</div>
@@ -115,7 +117,8 @@ function ProductsPage() {
 				<Button
 					size="default"
 					onClick={() => navigate({ to: "/products/new" })}
-					className={cn("ml-auto", !products && "hidden")}>
+					className={cn("ml-auto", !products && "hidden")}
+				>
 					Criar produto
 				</Button>
 			</div>
@@ -134,7 +137,8 @@ function ProductsPage() {
 
 				<Select
 					defaultValue={search.orderBy}
-					onValueChange={handleSelectOrderByList}>
+					onValueChange={handleSelectOrderByList}
+				>
 					<SelectTrigger className="w-[190px] gap-1">
 						<p className="font-semibold">Ordernar:</p>
 						<SelectValue placeholder="Ordernar por" />

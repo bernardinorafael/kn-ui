@@ -1,6 +1,5 @@
-import axios from "axios"
-
 import { env } from "@/src/env"
+import axios from "axios"
 import { parseCookies } from "nookies"
 
 const { "kn-token": token } = parseCookies()

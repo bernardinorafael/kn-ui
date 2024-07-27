@@ -1,6 +1,3 @@
-import { House } from "@phosphor-icons/react"
-import { createFileRoute } from "@tanstack/react-router"
-
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -9,6 +6,8 @@ import {
 	BreadcrumbSeparator,
 } from "@/src/components/ui/breadcrumb"
 import { cn } from "@/src/util/cn"
+import { House } from "@phosphor-icons/react"
+import { createFileRoute } from "@tanstack/react-router"
 
 import { useSidebar } from "../stores/use-sidebar"
 
@@ -23,9 +22,10 @@ function ProfilePage() {
 		<div
 			className={cn(
 				"mx-auto w-full max-w-[1292px] space-y-12",
-				"self-end p-8 transition-width duration-300",
+				"transition-width self-end p-8 duration-300",
 				!sidebar.expanded && "max-w-[1500px]"
-			)}>
+			)}
+		>
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
@@ -39,7 +39,7 @@ function ProfilePage() {
 			</Breadcrumb>
 
 			<div className="flex h-full w-full items-center justify-center">
-				<p className="font-bold text-3xl">under construction</p>
+				<p className="text-3xl font-bold">under construction</p>
 			</div>
 		</div>
 	)

@@ -1,3 +1,4 @@
+import { Box } from "@/src/components/box"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -9,6 +10,7 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/src/components/ui/alert-dialog"
+import { Button } from "@/src/components/ui/button"
 import {
 	Card,
 	CardContent,
@@ -16,13 +18,12 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/src/components/ui/card"
-import { useNavigate } from "@tanstack/react-router"
-import { Button } from "@/src/components/ui/button"
+import { OrderByEnum } from "@/src/enum/order-by"
+import { api } from "@/src/lib/axios"
 import type { Product } from "@/src/types/product"
+import { useNavigate } from "@tanstack/react-router"
 import { isAxiosError } from "axios"
 import { toast } from "sonner"
-import { Box } from "@/src/components/box"
-import { api } from "@/src/lib/axios"
 
 type DeleteProductProps = {
 	product: Product
@@ -34,7 +35,10 @@ export function DeleteProductSection({ product }: DeleteProductProps) {
 	async function handleDeleteProduct(productId: string) {
 		try {
 			await api.delete(`/products/${productId}`)
-			await navigate({ to: "/products", search: { disabled: false } })
+			await navigate({
+				to: "/products",
+				search: { disabled: false, orderBy: OrderByEnum.CreatedAt },
+			})
 		} catch (err) {
 			if (isAxiosError(err)) {
 				toast.error("Não foi possível deletar o produto", {
@@ -73,7 +77,8 @@ export function DeleteProductSection({ product }: DeleteProductProps) {
 							<AlertDialogFooter>
 								<AlertDialogCancel>Cancelar</AlertDialogCancel>
 								<AlertDialogAction
-									onClick={() => handleDeleteProduct(product.public_id)}>
+									onClick={() => handleDeleteProduct(product.public_id)}
+								>
 									Excluir o produto
 								</AlertDialogAction>
 							</AlertDialogFooter>

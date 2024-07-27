@@ -1,6 +1,3 @@
-import { House } from "@phosphor-icons/react/dist/ssr"
-import { createFileRoute } from "@tanstack/react-router"
-
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -10,6 +7,9 @@ import {
 } from "@/src/components/ui/breadcrumb"
 import { useSidebar } from "@/src/stores/use-sidebar.ts"
 import { cn } from "@/src/util/cn"
+import { House } from "@phosphor-icons/react/dist/ssr"
+import { createFileRoute } from "@tanstack/react-router"
+
 import { CreateProductForm } from "../modules/products/components/create-product-form"
 
 export const Route = createFileRoute("/_dashboard/products/new")({
@@ -23,9 +23,10 @@ function NewProductPage() {
 		<div
 			className={cn(
 				"mx-auto w-full max-w-[1292px] space-y-12",
-				"self-end p-8 transition-width duration-300",
+				"transition-width self-end p-8 duration-300",
 				!sidebar.expanded && "max-w-[1500px]"
-			)}>
+			)}
+		>
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
@@ -42,7 +43,7 @@ function NewProductPage() {
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			<h1 className="font-semibold text-2xl tracking-tight">
+			<h1 className="text-2xl font-semibold tracking-tight">
 				Criar um novo produto
 			</h1>
 

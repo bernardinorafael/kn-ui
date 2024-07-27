@@ -1,8 +1,7 @@
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router"
-import { parseCookies } from "nookies"
-
 import { Sidebar } from "@/src/components/sidebar"
 import { cn } from "@/src/util/cn"
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
+import { parseCookies } from "nookies"
 
 const cookies = parseCookies()
 
@@ -24,9 +23,9 @@ function DashboardLayout() {
 			<main className="h-full w-full overflow-hidden pl-2">
 				<div
 					className={cn(
-						"border border-border border-t border-l",
-						"h-screen overflow-y-auto bg-background p-6"
-					)}>
+						"h-screen overflow-y-auto border border-l border-t border-border bg-background p-6"
+					)}
+				>
 					<Outlet />
 				</div>
 			</main>

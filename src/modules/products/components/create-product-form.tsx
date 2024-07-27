@@ -1,4 +1,8 @@
+import React from "react"
+
 import { Box } from "@/src/components/box"
+import { FormError } from "@/src/components/form-error"
+import { Button } from "@/src/components/ui/button"
 import {
 	Card,
 	CardContent,
@@ -7,23 +11,21 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/src/components/ui/card"
-import { FormError } from "@/src/components/form-error"
-import { Button } from "@/src/components/ui/button"
 import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
+import { OrderByEnum } from "@/src/enum/order-by"
 import { useFilesContext } from "@/src/hooks/use-files"
 import { api } from "@/src/lib/axios"
 import { cn } from "@/src/util/cn"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Camera, Trash } from "@phosphor-icons/react"
-import React from "react"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { useNavigate } from "@tanstack/react-router"
-import { toast } from "sonner"
 import { isAxiosError } from "axios"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import { z } from "zod"
+
 import { createProductSchema } from "../schemas/create-product-schema"
-import { OrderByEnum } from "@/src/enum/order-by"
 
 export function CreateProductForm() {
 	const navigate = useNavigate({ from: "/products/new" })
@@ -108,7 +110,8 @@ export function CreateProductForm() {
 					<form
 						id="create-product"
 						onSubmit={form.handleSubmit(handleCreateProduct)}
-						className="my-4 flex flex-col gap-4">
+						className="my-4 flex flex-col gap-4"
+					>
 						<Label>
 							Nome
 							<Input autoFocus {...form.register("name")} />
@@ -128,12 +131,13 @@ export function CreateProductForm() {
 						</div>
 
 						<div className="grid gap-2">
-							<p className="font-medium text-sm">Imagem</p>
+							<p className="text-sm font-medium">Imagem</p>
 							<div
 								className={cn(
 									"h-24 cursor-pointer self-start rounded-lg bg-white",
 									file && "w-24"
-								)}>
+								)}
+							>
 								{file ? (
 									<div className="group relative aspect-square h-24 w-24">
 										<img
@@ -147,9 +151,10 @@ export function CreateProductForm() {
 											variant="destructive"
 											onClick={onResetFile}
 											className={cn(
-												"absolute top-1/2 left-1/2 hidden h-8 w-8 rounded-full",
+												"absolute left-1/2 top-1/2 hidden h-8 w-8 rounded-full",
 												"-translate-x-1/2 -translate-y-1/2 group-hover:flex"
-											)}>
+											)}
+										>
 											<Trash size={18} weight="bold" />
 										</Button>
 									</div>
@@ -159,9 +164,10 @@ export function CreateProductForm() {
 											"relative flex aspect-square h-full w-full cursor-pointer flex-col",
 											"items-center justify-center rounded-lg border-2 border-dashed",
 											"focus-within:ring focus-within:ring-black focus-within:ring-offset-2"
-										)}>
+										)}
+									>
 										<Camera weight="fill" size={26} />
-										<p className="font-medium text-sm">
+										<p className="text-sm font-medium">
 											Selecione uma imagem para o produto
 										</p>
 										<input
@@ -173,7 +179,7 @@ export function CreateProductForm() {
 									</label>
 								)}
 							</div>
-							<p className="font-medium text-xs text-zinc-400">
+							<p className="text-xs font-medium text-zinc-400">
 								Quantidade mínima de 1 foto
 							</p>
 						</div>
@@ -188,7 +194,8 @@ export function CreateProductForm() {
 					size="sm"
 					type="submit"
 					form="create-product"
-					disabled={isButtonSaveProductDisabled}>
+					disabled={isButtonSaveProductDisabled}
+				>
 					Criar produto
 				</Button>
 			</CardFooter>

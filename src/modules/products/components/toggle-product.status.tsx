@@ -1,3 +1,4 @@
+import { Box } from "@/src/components/box"
 import {
 	Card,
 	CardContent,
@@ -5,13 +6,13 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/src/components/ui/card"
-import type { Product } from "@/src/types/product"
-import { Box } from "@/src/components/box"
 import { Switch } from "@/src/components/ui/switch"
+import { OrderByEnum } from "@/src/enum/order-by"
+import { api } from "@/src/lib/axios"
+import type { Product } from "@/src/types/product"
+import { useRouter } from "@tanstack/react-router"
 import { isAxiosError } from "axios"
 import { toast } from "sonner"
-import { api } from "@/src/lib/axios"
-import { useRouter } from "@tanstack/react-router"
 
 type DeleteProductProps = {
 	product: Product
@@ -25,7 +26,10 @@ export function ToggleProductStatus({ product }: DeleteProductProps) {
 			await api.put(`/products/${product.public_id}/status`, { status })
 
 			if (status === false) {
-				router.navigate({ to: "/products", search: { disabled: false } })
+				router.navigate({
+					to: "/products",
+					search: { disabled: false, orderBy: OrderByEnum.CreatedAt },
+				})
 				return
 			}
 

@@ -1,4 +1,4 @@
-import { type ZodFormattedError, z } from "zod"
+import { z, type ZodFormattedError } from "zod"
 
 const EnvSchema = z.object({
 	MODE: z.enum(["production", "development", "test"]).default("development"),

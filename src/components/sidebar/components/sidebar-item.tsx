@@ -1,11 +1,10 @@
 import React from "react"
 
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/src/components/ui/tooltip"
 import { useSidebar } from "@/src/stores/use-sidebar"
+import { cn } from "@/src/util/cn"
 import { Link } from "@tanstack/react-router"
 import type { Icon as IconSaxProps } from "iconsax-react"
-
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/src/components/ui/tooltip"
-import { cn } from "@/src/util/cn"
 
 type SidebarItemProps = {
 	href: string
@@ -33,16 +32,18 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
 						"h-10 rounded-lg font-medium text-secondary-foreground/80",
 						"hover:bg-background hover:shadow",
 						active && "bg-background shadow"
-					)}>
+					)}
+				>
 					<Icon
 						variant="Bulk"
 						className="absolute h-8 w-8 transition-all duration-100 group-active:scale-90"
 					/>
 					<p
 						className={cn(
-							"absolute pt-1 pl-12 transition-all",
+							"absolute pl-12 pt-1 transition-all",
 							!sidebar.expanded && "-z-10 translate-x-[50%]"
-						)}>
+						)}
+					>
 						{label}
 					</p>
 				</Link>

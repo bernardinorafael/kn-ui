@@ -1,6 +1,5 @@
-import { type Page, expect, test } from "@playwright/test"
-
 import { authErrors } from "@/src/modules/auth/constants/auth-errors.ts"
+import { expect, test, type Page } from "@playwright/test"
 
 const email = "john_doe@email.com"
 const password = "my_testing_password"
@@ -8,8 +7,6 @@ const password = "my_testing_password"
 /**
  * yes, any... I swear it's for type safe
  */
-
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 async function httpLoginMockFn(page: Page, status: number, response?: any) {
 	await page.route("**/login", async (route) =>
 		route.fulfill({
@@ -19,7 +16,6 @@ async function httpLoginMockFn(page: Page, status: number, response?: any) {
 	)
 }
 
-// biome-ignore lint/suspicious/useAwait: <explanation>
 test.describe("login page flow", async () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto("/login", { waitUntil: "networkidle" })

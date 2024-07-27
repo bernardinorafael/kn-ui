@@ -1,6 +1,3 @@
-import { House } from "@phosphor-icons/react"
-import { createFileRoute, useNavigate } from "@tanstack/react-router"
-
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -10,11 +7,14 @@ import {
 } from "@/src/components/ui/breadcrumb"
 import { useSidebar } from "@/src/stores/use-sidebar.ts"
 import { cn } from "@/src/util/cn"
-import { getProduct } from "../modules/products/helpers/get-product"
+import { CaretLeft, House } from "@phosphor-icons/react"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
+
 import { Button } from "../components/ui/button"
-import { CaretLeft } from "@phosphor-icons/react"
+import { OrderByEnum } from "../enum/order-by"
 import { DeleteProductSection } from "../modules/products/components/delete-product.section"
 import { ToggleProductStatus } from "../modules/products/components/toggle-product.status"
+import { getProduct } from "../modules/products/helpers/get-product"
 
 export const Route = createFileRoute("/_dashboard/products/$id")({
 	loader: ({ params }) => getProduct(params.id),
@@ -31,9 +31,10 @@ function ProductPage() {
 		<div
 			className={cn(
 				"mx-auto w-full max-w-[1292px] space-y-12",
-				"self-end p-8 transition-width duration-300",
+				"transition-width self-end p-8 duration-300",
 				!sidebar.expanded && "max-w-[1500px]"
-			)}>
+			)}
+		>
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
@@ -51,14 +52,23 @@ function ProductPage() {
 			</Breadcrumb>
 
 			<div className="flex items-center justify-between gap-6">
-				<h1 className="max-w-full overflow-hidden text-ellipsis font-semibold text-4xl uppercase tracking-tight">
+				<h1 className="max-w-full overflow-hidden text-ellipsis text-4xl font-semibold uppercase tracking-tight">
 					{product?.name}
 				</h1>
 
 				<Button
 					size="default"
 					variant="secondary"
-					onClick={() => navigate({ to: "/products", search: { disabled: false } })}>
+					onClick={() =>
+						navigate({
+							to: "/products",
+							search: {
+								disabled: false,
+								orderBy: OrderByEnum.CreatedAt,
+							},
+						})
+					}
+				>
 					<CaretLeft />
 					Voltar
 				</Button>

@@ -1,5 +1,3 @@
-import { useTheme } from "next-themes"
-
 import {
 	Select,
 	SelectContent,
@@ -7,6 +5,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/src/components/ui/select"
+import { useTheme } from "next-themes"
 
 export function ToggleThemeSelect() {
 	const { setTheme, theme } = useTheme()
@@ -14,7 +13,8 @@ export function ToggleThemeSelect() {
 	return (
 		<Select
 			onValueChange={(value) => setTheme(value)}
-			defaultValue={theme || "system"}>
+			defaultValue={theme || "system"}
+		>
 			<SelectTrigger className="w-[260px]">
 				<SelectValue placeholder="selecionar" />
 			</SelectTrigger>

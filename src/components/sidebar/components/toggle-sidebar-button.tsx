@@ -1,8 +1,7 @@
-import { useSidebar } from "@/src/stores/use-sidebar"
-import { CaretLeft } from "@phosphor-icons/react"
-
 import { Button } from "@/src/components/ui/button"
+import { useSidebar } from "@/src/stores/use-sidebar"
 import { cn } from "@/src/util/cn"
+import { CaretLeft } from "@phosphor-icons/react"
 
 type ButtonProps = React.ComponentPropsWithRef<typeof Button>
 
@@ -18,10 +17,11 @@ export function ToggleSidebarButton(props: ButtonProps) {
 			variant="outline"
 			onClick={sidebar.toggle}
 			className={cn(
-				"-right-6 -translate-y-1/2 absolute top-1/2 h-7 w-7 shadow",
+				"absolute -right-6 top-1/2 h-7 w-7 -translate-y-1/2 shadow",
 				!sidebar.expanded && "-right-6"
 			)}
-			{...props}>
+			{...props}
+		>
 			<CaretLeft
 				weight="bold"
 				className={cn(

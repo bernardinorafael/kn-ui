@@ -1,9 +1,8 @@
 import * as React from "react"
 
+import { cn } from "@/src/util/cn.ts"
 import { CaretRight, DotsThreeVertical } from "@phosphor-icons/react"
 import { Slot } from "@radix-ui/react-slot"
-
-import { cn } from "@/src/util/cn.ts"
 
 type BreadcrumbRoot = React.ComponentProps<"nav"> & {
 	separator?: React.ReactNode
@@ -91,7 +90,8 @@ const BreadcrumbSeparator = ({
 		role="presentation"
 		aria-hidden="true"
 		className={cn("[&>svg]:size-3.5", className)}
-		{...props}>
+		{...props}
+	>
 		{children ?? <CaretRight weight="bold" size={16} />}
 	</li>
 )
@@ -105,7 +105,8 @@ const BreadcrumbEllipsis = ({
 		role="presentation"
 		aria-hidden="true"
 		className={cn("flex h-9 w-9 items-center justify-center", className)}
-		{...props}>
+		{...props}
+	>
 		<DotsThreeVertical className="h-4 w-4" />
 		<span className="sr-only">More</span>
 	</span>

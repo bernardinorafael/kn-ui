@@ -1,7 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import type { z } from "zod"
-
 import { FormError } from "@/src/components/form-error.tsx"
 import { Loading } from "@/src/components/loading.tsx"
 import { Button } from "@/src/components/ui/button.tsx"
@@ -10,6 +6,9 @@ import { Label } from "@/src/components/ui/label.tsx"
 import { loginSchema } from "@/src/modules/auth/schemas/login-schema.ts"
 import { useAuth } from "@/src/stores/use-auth"
 import { sleep } from "@/src/util/sleep"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import type { z } from "zod"
 
 export function LoginForm() {
 	const login = useAuth((store) => store.login)
@@ -29,7 +28,8 @@ export function LoginForm() {
 	return (
 		<form
 			className="w-full max-w-[620px] space-y-4 px-6"
-			onSubmit={form.handleSubmit(handleLogin)}>
+			onSubmit={form.handleSubmit(handleLogin)}
+		>
 			<Label>
 				E-mail
 				<Input autoFocus {...form.register("email")} />
