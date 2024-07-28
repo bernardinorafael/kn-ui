@@ -14,7 +14,7 @@ type StoreProps = {
 	isSignedIn: boolean
 	register(credentials: RegisterProps): void
 	login(email: string, password: string): void
-	getSigned(): Promise<User>
+	getSigned(): Promise<void>
 	signOut(): void
 }
 
@@ -31,7 +31,7 @@ export const useAuth = create<StoreProps>((set) => ({
 	async getSigned() {
 		try {
 			const res = await api.get("/users/me")
-			return res.data.user
+			set({ user: res.data.user, isSignedIn: true })
 		} catch (err) {
 			if (isAxiosError(err)) {
 				toast.error("Ocorreu um erro ao tentar efetuar o login", {

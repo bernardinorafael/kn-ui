@@ -5,8 +5,6 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/src/components/ui/breadcrumb"
-import { useSidebar } from "@/src/stores/use-sidebar.ts"
-import { cn } from "@/src/util/cn"
 import { CaretLeft, House } from "@phosphor-icons/react"
 import { createFileRoute, useNavigate } from "@tanstack/react-router"
 
@@ -25,16 +23,8 @@ function ProductPage() {
 	const navigate = useNavigate({ from: "/products/$id" })
 	const product = Route.useLoaderData()
 
-	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
-
 	return (
-		<div
-			className={cn(
-				"mx-auto w-full max-w-[1292px] space-y-12",
-				"transition-width self-end p-8 duration-300",
-				!sidebar.expanded && "max-w-[1500px]"
-			)}
-		>
+		<>
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
@@ -80,6 +70,6 @@ function ProductPage() {
 					<ToggleProductStatus product={product} />
 				</section>
 			)}
-		</div>
+		</>
 	)
 }

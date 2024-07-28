@@ -13,45 +13,67 @@ import {
 } from "@/src/components/ui/card"
 import { Input } from "@/src/components/ui/input"
 import { Label } from "@/src/components/ui/label"
+import { api } from "@/src/lib/axios"
 import { updateProfileSchema } from "@/src/modules/profile/schemas/update-profile-schema.ts"
+import { useAuth } from "@/src/stores/use-auth"
+import type { User } from "@/src/types/user"
 import { sleep } from "@/src/util/sleep"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { isAxiosError } from "axios"
 import { useForm } from "react-hook-form"
-import { mask } from "remask"
+import { mask, unmask } from "remask"
 import { toast } from "sonner"
 import type { z } from "zod"
 
-const user = {
-	name: "rafael bernardino",
-	email: "rafaelferreirab2@gmail.com",
-	phone: "48988566239",
+type UpdateProfileProps = {
+	user: User
 }
 
-export function UpdateProfileForm() {
+export function UpdateProfileForm({ user }: UpdateProfileProps) {
+	const { getSigned } = useAuth((store) => ({ getSigned: store.getSigned }))
+
 	const form = useForm<z.infer<typeof updateProfileSchema>>({
 		resolver: zodResolver(updateProfileSchema),
 		defaultValues: {
 			name: user.name,
 			email: user.email,
 			phone: user.phone,
+			document: user.document,
 		},
 	})
 
-	const errors = form.formState.errors
-
 	async function handleEditProfile(data: z.infer<typeof updateProfileSchema>) {
-		await sleep(350)
-		toast.success("Suas informações foram atualizadas")
-		console.log(data)
+		try {
+			/**
+			 * sleep fn to improve loading state
+			 */
+			await sleep(350)
+			await api.put(`/users/${user.public_id}`, {
+				name: data.name,
+				email: data.email,
+				document: unmask(data.document),
+				phone: unmask(data.phone),
+			})
+
+			await getSigned()
+			toast.success("Suas informações foram atualizadas")
+		} catch (err) {
+			if (isAxiosError(err)) {
+				toast.error("Não foi possível atualizar suas informações")
+			}
+		}
 	}
 
 	const phone = form.watch("phone")
+	const document = form.watch("document")
 
 	React.useEffect(() => {
 		form.setValue("phone", mask(phone, "(99) 9 9999-9999"))
-	}, [form, phone])
+		form.setValue("document", mask(document, "999.999.999-99"))
+	}, [form, phone, document])
 
 	const isSubmitButtonDisabled = form.formState.isSubmitting
+	const errors = form.formState.errors
 
 	return (
 		<Card className="max-w-[720px]">
@@ -86,7 +108,7 @@ export function UpdateProfileForm() {
 
 						<Label className="w-full transition-all duration-300">
 							CPF
-							<Input disabled value="***.834.***-06" />
+							<Input {...form.register("document")} />
 						</Label>
 					</form>
 				</Box>

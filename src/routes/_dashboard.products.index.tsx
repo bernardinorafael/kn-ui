@@ -8,7 +8,6 @@ import {
 	BreadcrumbSeparator,
 } from "@/src/components/ui/breadcrumb"
 import * as Input from "@/src/components/ui/input/index"
-import { useSidebar } from "@/src/stores/use-sidebar.ts"
 import { cn } from "@/src/util/cn"
 import { MagnifyingGlass } from "@phosphor-icons/react"
 import { House } from "@phosphor-icons/react/dist/ssr"
@@ -55,7 +54,6 @@ function ProductsPage() {
 	const search = Route.useSearch()
 	const products = Route.useLoaderData()
 	const navigate = useNavigate({ from: "/products" })
-	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
 
 	const inputRef = React.useRef<React.ElementRef<"input">>(null)
 
@@ -87,13 +85,7 @@ function ProductsPage() {
 	}
 
 	return (
-		<div
-			className={cn(
-				"mx-auto w-full max-w-[1292px] space-y-12",
-				"transition-width self-end p-8 duration-300",
-				!sidebar.expanded && "max-w-[1500px]"
-			)}
-		>
+		<>
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
@@ -157,6 +149,6 @@ function ProductsPage() {
 			</div>
 
 			{products ? <ProductsList products={products} /> : <EmptyProductsList />}
-		</div>
+		</>
 	)
 }

@@ -13,22 +13,17 @@ import { useAuth } from "@/src/stores/use-auth"
 import { useSidebar } from "@/src/stores/use-sidebar"
 import { cn } from "@/src/util/cn"
 import { SignOut as SignOutIcon } from "@phosphor-icons/react"
-import { useQuery } from "@tanstack/react-query"
 
 import { AlertDialogFooter, AlertDialogHeader } from "../../ui/alert-dialog"
 
 export function ProfileButton() {
 	const sidebar = useSidebar((store) => ({ expanded: store.expanded }))
 
-	const { getSigned, signOut } = useAuth((store) => ({
-		signOut: store.signOut,
+	const { signOut, user } = useAuth((store) => ({
 		getSigned: store.getSigned,
+		signOut: store.signOut,
+		user: store.user,
 	}))
-
-	const { data: user } = useQuery({
-		queryFn: getSigned,
-		queryKey: ["user"],
-	})
 
 	function getInitialsName(name: string) {
 		const splitted = name.split(" ")
@@ -41,7 +36,7 @@ export function ProfileButton() {
 				<Avatar>
 					{user && (
 						<AvatarFallback className="bg-white uppercase">
-							{getInitialsName(user?.name)}
+							{getInitialsName(user.name)}
 						</AvatarFallback>
 					)}
 				</Avatar>

@@ -1,9 +1,9 @@
 export interface User {
-	id: string
+	public_id: string
 	name: string
 	email: string
 	document: string
 	phone: string
-	createdAt: string
-	updatedAt: string
+	created_at: string
+	enabled: boolean
 }

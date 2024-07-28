@@ -19,6 +19,8 @@ import { Route as DashboardDashboardImport } from './routes/_dashboard.dashboard
 import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
 import { Route as DashboardProductsIndexImport } from './routes/_dashboard.products.index'
+import { Route as DashboardProfileRecoverImport } from './routes/_dashboard.profile.recover'
+import { Route as DashboardProfileChangeImport } from './routes/_dashboard.profile.change'
 import { Route as DashboardProductsNewImport } from './routes/_dashboard.products.new'
 import { Route as DashboardProductsIdImport } from './routes/_dashboard.products.$id'
 
@@ -62,6 +64,16 @@ const AuthLoginRoute = AuthLoginImport.update({
 const DashboardProductsIndexRoute = DashboardProductsIndexImport.update({
   path: '/products/',
   getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardProfileRecoverRoute = DashboardProfileRecoverImport.update({
+  path: '/recover',
+  getParentRoute: () => DashboardProfileRoute,
+} as any)
+
+const DashboardProfileChangeRoute = DashboardProfileChangeImport.update({
+  path: '/change',
+  getParentRoute: () => DashboardProfileRoute,
 } as any)
 
 const DashboardProductsNewRoute = DashboardProductsNewImport.update({
@@ -114,6 +126,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProductsNewImport
       parentRoute: typeof DashboardImport
     }
+    '/_dashboard/profile/change': {
+      preLoaderRoute: typeof DashboardProfileChangeImport
+      parentRoute: typeof DashboardProfileImport
+    }
+    '/_dashboard/profile/recover': {
+      preLoaderRoute: typeof DashboardProfileRecoverImport
+      parentRoute: typeof DashboardProfileImport
+    }
     '/_dashboard/products/': {
       preLoaderRoute: typeof DashboardProductsIndexImport
       parentRoute: typeof DashboardImport
@@ -128,7 +148,10 @@ export const routeTree = rootRoute.addChildren([
   AuthRoute.addChildren([AuthLoginRoute, AuthRegisterRoute]),
   DashboardRoute.addChildren([
     DashboardDashboardRoute,
-    DashboardProfileRoute,
+    DashboardProfileRoute.addChildren([
+      DashboardProfileChangeRoute,
+      DashboardProfileRecoverRoute,
+    ]),
     DashboardProductsIdRoute,
     DashboardProductsNewRoute,
     DashboardProductsIndexRoute,
