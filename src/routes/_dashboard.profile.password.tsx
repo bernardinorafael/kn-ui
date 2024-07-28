@@ -15,14 +15,19 @@ import { api } from "@/src/lib/axios"
 import { useAuth } from "@/src/stores/use-auth"
 import { sleep } from "@/src/util/sleep"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { createFileRoute } from "@tanstack/react-router"
 import { isAxiosError } from "axios"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import type { z } from "zod"
 
-import { updatePasswordSchema } from "../schemas/update-password-schema"
+import { updatePasswordSchema } from "../modules/profile/schemas/update-password-schema"
 
-export function UpdatePasswordForm() {
+export const Route = createFileRoute("/_dashboard/profile/password")({
+	component: RecoverPasswordPage,
+})
+
+function RecoverPasswordPage() {
 	const user = useAuth((store) => store.user)
 
 	const form = useForm<z.infer<typeof updatePasswordSchema>>({

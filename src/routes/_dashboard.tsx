@@ -34,7 +34,7 @@ function DashboardLayout() {
 	}, [])
 
 	return (
-		<div className="flex h-screen w-screen items-center justify-center bg-zinc-100">
+		<div className="relative flex h-screen w-screen items-center justify-center bg-zinc-100">
 			<Sidebar />
 			<main className="h-full w-full overflow-hidden pl-2">
 				<div className="h-screen overflow-y-auto border border-l border-t border-border bg-background p-6">

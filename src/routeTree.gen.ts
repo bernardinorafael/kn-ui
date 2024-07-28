@@ -15,11 +15,10 @@ import { Route as DashboardImport } from './routes/_dashboard'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardProfileImport } from './routes/_dashboard.profile'
-import { Route as DashboardDashboardImport } from './routes/_dashboard.dashboard'
 import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
 import { Route as DashboardProductsIndexImport } from './routes/_dashboard.products.index'
-import { Route as DashboardProfileRecoverImport } from './routes/_dashboard.profile.recover'
+import { Route as DashboardProfilePasswordImport } from './routes/_dashboard.profile.password'
 import { Route as DashboardProfileEditImport } from './routes/_dashboard.profile.edit'
 import { Route as DashboardProductsNewImport } from './routes/_dashboard.products.new'
 import { Route as DashboardProductsIdImport } from './routes/_dashboard.products.$id'
@@ -46,11 +45,6 @@ const DashboardProfileRoute = DashboardProfileImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 
-const DashboardDashboardRoute = DashboardDashboardImport.update({
-  path: '/dashboard',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
 const AuthRegisterRoute = AuthRegisterImport.update({
   path: '/register',
   getParentRoute: () => AuthRoute,
@@ -66,8 +60,8 @@ const DashboardProductsIndexRoute = DashboardProductsIndexImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 
-const DashboardProfileRecoverRoute = DashboardProfileRecoverImport.update({
-  path: '/recover',
+const DashboardProfilePasswordRoute = DashboardProfilePasswordImport.update({
+  path: '/password',
   getParentRoute: () => DashboardProfileRoute,
 } as any)
 
@@ -110,10 +104,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRegisterImport
       parentRoute: typeof AuthImport
     }
-    '/_dashboard/dashboard': {
-      preLoaderRoute: typeof DashboardDashboardImport
-      parentRoute: typeof DashboardImport
-    }
     '/_dashboard/profile': {
       preLoaderRoute: typeof DashboardProfileImport
       parentRoute: typeof DashboardImport
@@ -130,8 +120,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProfileEditImport
       parentRoute: typeof DashboardProfileImport
     }
-    '/_dashboard/profile/recover': {
-      preLoaderRoute: typeof DashboardProfileRecoverImport
+    '/_dashboard/profile/password': {
+      preLoaderRoute: typeof DashboardProfilePasswordImport
       parentRoute: typeof DashboardProfileImport
     }
     '/_dashboard/products/': {
@@ -147,10 +137,9 @@ export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRoute.addChildren([AuthLoginRoute, AuthRegisterRoute]),
   DashboardRoute.addChildren([
-    DashboardDashboardRoute,
     DashboardProfileRoute.addChildren([
       DashboardProfileEditRoute,
-      DashboardProfileRecoverRoute,
+      DashboardProfilePasswordRoute,
     ]),
     DashboardProductsIdRoute,
     DashboardProductsNewRoute,
