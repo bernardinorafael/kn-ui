@@ -1,3 +1,5 @@
+import React from "react"
+
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -25,6 +27,10 @@ function ProfilePage() {
 	const router = useRouterState()
 	const pathname = router.location.pathname
 
+	React.useEffect(() => {
+		navigate({ to: "/profile/edit" })
+	}, [])
+
 	return (
 		<>
 			<Breadcrumb>
@@ -43,10 +49,10 @@ function ProfilePage() {
 				<aside className="flex w-full max-w-[320px] flex-col items-start gap-1">
 					<Button
 						variant="ghost"
-						onClick={() => navigate({ to: "/profile/change" })}
+						onClick={() => navigate({ to: "/profile/edit" })}
 						className={cn(
 							"w-full justify-start text-base font-normal",
-							pathname.endsWith("change") && "bg-accent text-accent-foreground"
+							pathname.endsWith("edit") && "bg-accent text-accent-foreground"
 						)}
 					>
 						Informações pessoais

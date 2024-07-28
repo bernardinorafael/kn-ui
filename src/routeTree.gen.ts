@@ -20,7 +20,7 @@ import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
 import { Route as DashboardProductsIndexImport } from './routes/_dashboard.products.index'
 import { Route as DashboardProfileRecoverImport } from './routes/_dashboard.profile.recover'
-import { Route as DashboardProfileChangeImport } from './routes/_dashboard.profile.change'
+import { Route as DashboardProfileEditImport } from './routes/_dashboard.profile.edit'
 import { Route as DashboardProductsNewImport } from './routes/_dashboard.products.new'
 import { Route as DashboardProductsIdImport } from './routes/_dashboard.products.$id'
 
@@ -71,8 +71,8 @@ const DashboardProfileRecoverRoute = DashboardProfileRecoverImport.update({
   getParentRoute: () => DashboardProfileRoute,
 } as any)
 
-const DashboardProfileChangeRoute = DashboardProfileChangeImport.update({
-  path: '/change',
+const DashboardProfileEditRoute = DashboardProfileEditImport.update({
+  path: '/edit',
   getParentRoute: () => DashboardProfileRoute,
 } as any)
 
@@ -126,8 +126,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardProductsNewImport
       parentRoute: typeof DashboardImport
     }
-    '/_dashboard/profile/change': {
-      preLoaderRoute: typeof DashboardProfileChangeImport
+    '/_dashboard/profile/edit': {
+      preLoaderRoute: typeof DashboardProfileEditImport
       parentRoute: typeof DashboardProfileImport
     }
     '/_dashboard/profile/recover': {
@@ -149,7 +149,7 @@ export const routeTree = rootRoute.addChildren([
   DashboardRoute.addChildren([
     DashboardDashboardRoute,
     DashboardProfileRoute.addChildren([
-      DashboardProfileChangeRoute,
+      DashboardProfileEditRoute,
       DashboardProfileRecoverRoute,
     ]),
     DashboardProductsIdRoute,
