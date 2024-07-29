@@ -13,6 +13,7 @@ import { Fingerprint, IdentificationCard } from "@phosphor-icons/react"
 import { House } from "@phosphor-icons/react/dist/ssr"
 import {
 	createFileRoute,
+	Link,
 	Outlet,
 	useNavigate,
 	useRouterState,
@@ -49,31 +50,35 @@ function ProfilePage() {
 			<div className="flex items-start gap-12">
 				<aside className="flex w-full max-w-[320px] flex-col items-start gap-1">
 					<Button
+						asChild
 						variant="ghost"
 						size="default"
-						onClick={() => navigate({ to: "/profile/edit" })}
 						className={cn(
 							"w-full justify-start gap-2 text-sm font-normal",
 							pathname.endsWith("edit") &&
 								"bg-accent font-semibold text-accent-foreground"
 						)}
 					>
-						<IdentificationCard size={22} />
-						Informações pessoais
+						<Link to="/profile/edit">
+							<IdentificationCard size={22} />
+							Informações pessoais
+						</Link>
 					</Button>
 
 					<Button
+						asChild
 						variant="ghost"
 						size="default"
-						onClick={() => navigate({ to: "/profile/password" })}
 						className={cn(
 							"w-full justify-start gap-2 text-sm font-normal",
 							pathname.endsWith("password") &&
 								"bg-accent font-semibold text-accent-foreground"
 						)}
 					>
-						<Fingerprint size={22} />
-						Alterar senha
+						<Link to="/profile/password">
+							<Fingerprint size={22} />
+							Alterar senha
+						</Link>
 					</Button>
 				</aside>
 
