@@ -40,7 +40,7 @@ function RecoverPasswordPage() {
 			 * sleep fn to improve loading state
 			 */
 			await sleep(350)
-			await api.patch(`/auth/${user?.public_id}/password`, {
+			await api.patch(`/users/${user?.public_id}/password`, {
 				old_password: data.old,
 				new_password: data.new,
 			})

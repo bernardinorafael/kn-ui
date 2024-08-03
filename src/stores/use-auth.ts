@@ -71,6 +71,7 @@ export const useAuth = create<StoreProps>((set) => ({
 		}
 	},
 
+	// TODO: improve error handling
 	async register(credentials) {
 		try {
 			await api.post("/auth/register", {
@@ -82,15 +83,16 @@ export const useAuth = create<StoreProps>((set) => ({
 			})
 
 			toast.success("Usuário criado com sucesso", {
-				description: "Navegue até a tela de Login para entrar",
+				description: "Navegue até o login para entrar",
 			})
 		} catch (err) {
 			if (isAxiosError(err)) {
-				if (err.response?.data.code === 409) {
-					toast.error("Credenciais inválidas")
+				const message = err.response?.data.message
+				if (message === "email already taken") {
+					toast.error("Já um existe uma conta vinculada neste e-mail")
 					return
 				}
-				toast.error("Ocorreu um erro ao tentar efetuar o login", {
+				toast.error("Ocorreu um erro ao realizar o cadastro", {
 					description: "Por favor, tente novamente mais tarde",
 				})
 			}

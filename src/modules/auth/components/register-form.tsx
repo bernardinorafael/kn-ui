@@ -7,6 +7,7 @@ import { Input } from "@/src/components/ui/input.tsx"
 import { Label } from "@/src/components/ui/label"
 import { registerSchema } from "@/src/modules/auth/schemas/register-schema.ts"
 import { useAuth } from "@/src/stores/use-auth"
+import { sleep } from "@/src/util/sleep"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { mask, unmask } from "remask"
@@ -20,20 +21,24 @@ export function RegisterForm() {
 	})
 
 	async function handleRegister(data: z.infer<typeof registerSchema>) {
+		await sleep(450)
 		await register({
 			name: data.name,
 			email: data.email,
 			phone: unmask(data.phone),
-			document: data.document,
+			document: unmask(data.document),
 			password: data.password,
 		})
+		form.reset()
 	}
 
 	const phone = form.watch("phone")
+	const document = form.watch("document")
 
 	React.useEffect(() => {
 		form.setValue("phone", mask(phone, "(99) 9 9999-9999"))
-	}, [form, phone])
+		form.setValue("document", mask(document, "999.999.999-99"))
+	}, [form, phone, document])
 
 	const errors = form.formState.errors
 	const isSubmitting = form.formState.isSubmitting
@@ -75,7 +80,7 @@ export function RegisterForm() {
 			</Label>
 
 			<Button size="lg" className="w-full" disabled={isSubmitting} type="submit">
-				{isSubmitting ? <Loading /> : "Cadastrar e entrar"}
+				{isSubmitting ? <Loading /> : "Cadastrar"}
 			</Button>
 		</form>
 	)
