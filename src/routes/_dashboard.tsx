@@ -5,6 +5,7 @@ import { cn } from "@/src/util/cn"
 import { createFileRoute, Link, Outlet, redirect } from "@tanstack/react-router"
 import { parseCookies } from "nookies"
 
+import { StatusAccountAlert } from "../components/status-account-alert"
 import { Button } from "../components/ui/button"
 import { api } from "../lib/axios"
 import { useAuth } from "../stores/use-auth"
@@ -42,20 +43,7 @@ function DashboardLayout() {
 
 	return (
 		<div className="relative flex h-screen w-screen flex-col items-center justify-center bg-zinc-100">
-			{!user.enabled && (
-				<div className="flex h-[32px] w-full items-center justify-center gap-2 bg-yellow-600 text-sm text-white">
-					<p>
-						Você precisa ativar sua conta para ter acesso a todas as funcionalidades.
-					</p>
-					<Button
-						asChild
-						variant="link"
-						className="p-0 text-sm font-semibold text-white"
-					>
-						<Link to="/profile/edit">Ativar agora</Link>
-					</Button>
-				</div>
-			)}
+			{!user.enabled && <StatusAccountAlert />}
 			<div
 				className={cn(
 					"relative flex h-full w-screen items-center justify-center bg-zinc-100",
