@@ -7,7 +7,6 @@ import { Input } from "@/src/components/ui/input.tsx"
 import { Label } from "@/src/components/ui/label"
 import { registerSchema } from "@/src/modules/auth/schemas/register-schema.ts"
 import { useAuth } from "@/src/stores/use-auth"
-import { sleep } from "@/src/util/sleep"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { mask, unmask } from "remask"
@@ -25,18 +24,15 @@ export function RegisterForm() {
 			name: data.name,
 			email: data.email,
 			phone: unmask(data.phone),
-			document: unmask(data.document),
 			password: data.password,
 		})
 	}
 
 	const phone = form.watch("phone")
-	const document = form.watch("document")
 
 	React.useEffect(() => {
 		form.setValue("phone", mask(phone, "(99) 9 9999-9999"))
-		form.setValue("document", mask(document, "999.999.999-99"))
-	}, [form, phone, document])
+	}, [form, phone])
 
 	const errors = form.formState.errors
 	const isSubmitting = form.formState.isSubmitting
@@ -61,12 +57,6 @@ export function RegisterForm() {
 					{errors.phone && <FormError>{errors.phone.message}</FormError>}
 				</Label>
 			</div>
-
-			<Label>
-				CPF
-				<Input {...form.register("document")} />
-				{errors.document && <FormError>{errors.document.message}</FormError>}
-			</Label>
 
 			<Label>
 				Senha

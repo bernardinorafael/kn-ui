@@ -106,11 +106,6 @@ function ChangeProfile() {
 							<Input {...form.register("phone")} />
 							{errors.phone && <FormError>{errors.phone.message}</FormError>}
 						</Label>
-
-						<Label className="w-full transition-all duration-300">
-							CPF
-							<Input disabled value={mask(user.document, "999.999.999-99")} />
-						</Label>
 					</form>
 				</Box>
 			</CardContent>

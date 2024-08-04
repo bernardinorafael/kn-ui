@@ -5,7 +5,7 @@ import { destroyCookie, setCookie } from "nookies"
 import { toast } from "sonner"
 import { create } from "zustand"
 
-type RegisterProps = Pick<User, "name" | "email" | "document" | "phone"> & {
+type RegisterProps = Pick<User, "name" | "email" | "phone"> & {
 	password: string
 }
 
@@ -111,7 +111,6 @@ export const useAuth = create<StoreProps>((set) => ({
 				name: credentials.name,
 				email: credentials.email,
 				phone: credentials.phone,
-				document: credentials.document,
 				password: credentials.password,
 			})
 
@@ -127,10 +126,6 @@ export const useAuth = create<StoreProps>((set) => ({
 				}
 				if (message === "phone already taken") {
 					toast.error("Já um existe uma conta vinculada neste telefone")
-					return
-				}
-				if (message === "document already taken") {
-					toast.error("Já existe uma conta vinculada neste CPF")
 					return
 				}
 				toast.error("Ocorreu um erro ao realizar o cadastro", {
