@@ -26,10 +26,7 @@ export function LoginForm() {
 	const isSubmitting = form.formState.isSubmitting
 
 	return (
-		<form
-			className="w-full max-w-[620px] space-y-4 px-6"
-			onSubmit={form.handleSubmit(handleLogin)}
-		>
+		<form className="w-full space-y-4" onSubmit={form.handleSubmit(handleLogin)}>
 			<Label>
 				E-mail
 				<Input autoFocus {...form.register("email")} />

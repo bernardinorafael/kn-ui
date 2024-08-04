@@ -61,6 +61,12 @@ export const useAuth = create<StoreProps>((set) => ({
 			window.location.href = "/products"
 		} catch (err) {
 			if (isAxiosError(err)) {
+				if (err.response?.data.message === "invalid otp code") {
+					toast.error("Código incorreto", {
+						description: "Verifique novamente o código inserido",
+					})
+					return
+				}
 				toast.error("Ocorreu um erro ao tentar efetuar o login", {
 					description: "Por favor, tente novamente mais tarde",
 				})
@@ -117,6 +123,14 @@ export const useAuth = create<StoreProps>((set) => ({
 				const message = err.response?.data.message
 				if (message === "email already taken") {
 					toast.error("Já um existe uma conta vinculada neste e-mail")
+					return
+				}
+				if (message === "phone already taken") {
+					toast.error("Já um existe uma conta vinculada neste telefone")
+					return
+				}
+				if (message === "document already taken") {
+					toast.error("Já existe uma conta vinculada neste CPF")
 					return
 				}
 				toast.error("Ocorreu um erro ao realizar o cadastro", {

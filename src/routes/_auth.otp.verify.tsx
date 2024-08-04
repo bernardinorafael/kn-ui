@@ -7,10 +7,10 @@ import { createFileRoute, Link } from "@tanstack/react-router"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
-const phoneSchema = z.object({ phone: z.string() })
+import { Loading } from "../components/loading"
 
 export const Route = createFileRoute("/_auth/otp/verify")({
-	validateSearch: phoneSchema.parse,
+	validateSearch: z.object({ phone: z.string() }).parse,
 	component: VerifyOtpPage,
 })
 
@@ -20,11 +20,17 @@ function VerifyOtpPage() {
 
 	const form = useForm<z.infer<typeof otpCodeSchema>>({
 		resolver: zodResolver(otpCodeSchema),
+		defaultValues: { code: "" },
 	})
 
 	async function handleVerifyOtpLogin(data: z.infer<typeof otpCodeSchema>) {
 		await loginOtp(search.phone, data.code)
 	}
+
+	const code = form.watch("code")
+
+	const iSubmitButtonDisabled = code.length !== 6
+	const isSubmitting = form.formState.isSubmitting
 
 	return (
 		<>
@@ -48,20 +54,25 @@ function VerifyOtpPage() {
 						return (
 							<InputOTP maxLength={6} onChange={field.onChange} value={field.value}>
 								<InputOTPGroup className="flex w-full items-center justify-between">
-									<InputOTPSlot className="aspect-square h-full w-full" index={0} />
-									<InputOTPSlot className="aspect-square h-full w-full" index={1} />
-									<InputOTPSlot className="aspect-square h-full w-full" index={2} />
-									<InputOTPSlot className="aspect-square h-full w-full" index={3} />
-									<InputOTPSlot className="aspect-square h-full w-full" index={4} />
-									<InputOTPSlot className="aspect-square h-full w-full" index={5} />
+									<InputOTPSlot className="aspect-square h-20 w-20" index={0} />
+									<InputOTPSlot className="aspect-square h-20 w-20" index={1} />
+									<InputOTPSlot className="aspect-square h-20 w-20" index={2} />
+									<InputOTPSlot className="aspect-square h-20 w-20" index={3} />
+									<InputOTPSlot className="aspect-square h-20 w-20" index={4} />
+									<InputOTPSlot className="aspect-square h-20 w-20" index={5} />
 								</InputOTPGroup>
 							</InputOTP>
 						)
 					}}
 				/>
 
-				<Button className="w-full" size="lg" type="submit">
-					Confirmar
+				<Button
+					size="lg"
+					type="submit"
+					className="w-full"
+					disabled={isSubmitting || iSubmitButtonDisabled}
+				>
+					{isSubmitting ? <Loading /> : "Enviar código"}
 				</Button>
 			</form>
 

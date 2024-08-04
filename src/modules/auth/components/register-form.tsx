@@ -21,7 +21,6 @@ export function RegisterForm() {
 	})
 
 	async function handleRegister(data: z.infer<typeof registerSchema>) {
-		await sleep(450)
 		await register({
 			name: data.name,
 			email: data.email,
@@ -29,7 +28,6 @@ export function RegisterForm() {
 			document: unmask(data.document),
 			password: data.password,
 		})
-		form.reset()
 	}
 
 	const phone = form.watch("phone")
@@ -44,10 +42,7 @@ export function RegisterForm() {
 	const isSubmitting = form.formState.isSubmitting
 
 	return (
-		<form
-			className="w-full max-w-[620px] space-y-4 px-6"
-			onSubmit={form.handleSubmit(handleRegister)}
-		>
+		<form className="w-full space-y-4" onSubmit={form.handleSubmit(handleRegister)}>
 			<Label>
 				Nome
 				<Input autoFocus {...form.register("name")} />
