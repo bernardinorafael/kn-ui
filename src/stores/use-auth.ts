@@ -14,6 +14,7 @@ type StoreProps = {
 	isSignedIn: boolean
 	register(credentials: RegisterProps): void
 	login(email: string, password: string): void
+	loginOtp(phone: string, code: string): void
 	getSigned(): Promise<void>
 	signOut(): void
 }
@@ -32,6 +33,32 @@ export const useAuth = create<StoreProps>((set) => ({
 		try {
 			const res = await api.get("/users/me")
 			set({ user: res.data.user, isSignedIn: true })
+		} catch (err) {
+			if (isAxiosError(err)) {
+				toast.error("Ocorreu um erro ao tentar efetuar o login", {
+					description: "Por favor, tente novamente mais tarde",
+				})
+			}
+		}
+	},
+
+	async loginOtp(phone: string, code: string) {
+		try {
+			const res = await api.post("/auth/verify-otp", { phone, code })
+			const accessToken = res.data.token
+
+			setCookie(null, "kn-token", accessToken, {
+				/**
+				 * 3 days token expiration
+				 */
+				maxAge: 60 * 60 * 72,
+				path: "/",
+			})
+
+			api.defaults.headers.token = accessToken
+			set({ isSignedIn: true })
+
+			window.location.href = "/products"
 		} catch (err) {
 			if (isAxiosError(err)) {
 				toast.error("Ocorreu um erro ao tentar efetuar o login", {

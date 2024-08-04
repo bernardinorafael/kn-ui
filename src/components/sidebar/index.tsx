@@ -5,7 +5,7 @@ import { Separator } from "@/src/components/ui/separator.tsx"
 import { useSidebar } from "@/src/stores/use-sidebar"
 import { cn } from "@/src/util/cn"
 import { useRouterState } from "@tanstack/react-router"
-import { BoxAdd, Setting2 } from "iconsax-react"
+import { BoxAdd, Profile2User, Setting2 } from "iconsax-react"
 
 /**
  * IMPORTANT: sidebar icons must be imported from the iconsax package
@@ -13,6 +13,7 @@ import { BoxAdd, Setting2 } from "iconsax-react"
 const routes = [
 	{ id: 2, label: "Preferências", icon: Setting2, href: "/profile" },
 	{ id: 3, label: "Produtos", icon: BoxAdd, href: "/products" },
+	{ id: 3, label: "Meu time", icon: Profile2User, href: "/teams" },
 ]
 
 export function Sidebar() {

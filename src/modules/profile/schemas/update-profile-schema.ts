@@ -7,5 +7,4 @@ export const updateProfileSchema = z.object({
 		.transform((name) => name.trim()),
 	email: z.string().email("Favor inserir um e-mail válido"),
 	phone: z.string(),
-	document: z.string(),
 })

@@ -31,7 +31,7 @@ export function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProp
 						"group relative flex items-center p-3 text-sm focus-visible:outline-none",
 						"h-10 rounded-lg font-medium text-secondary-foreground/80",
 						"hover:bg-background hover:shadow",
-						active && "bg-background shadow"
+						active && "pointer-events-none bg-background shadow"
 					)}
 				>
 					<Icon

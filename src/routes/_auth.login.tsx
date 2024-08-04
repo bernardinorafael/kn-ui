@@ -11,9 +11,14 @@ function LoginPage() {
 		<>
 			<h1 className="text-4xl font-extrabold tracking-tight">Entrar</h1>
 			<LoginForm />
-			<Button asChild className="mt-5 text-zinc-400" variant="link" size="default">
-				<Link to="/register">Não possui uma conta? Cadastre-se</Link>
-			</Button>
+			<div className="flex w-full max-w-[620px] items-center justify-between px-6">
+				<Button asChild variant="secondary" size="default">
+					<Link to="/otp">Entrar com o telefone</Link>
+				</Button>
+				<Button asChild className="text-zinc-400" variant="link" size="default">
+					<Link to="/register">Não possui uma conta? Cadastre-se</Link>
+				</Button>
+			</div>
 		</>
 	)
 }

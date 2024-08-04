@@ -21,6 +21,17 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import type { z } from "zod"
 
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "../components/ui/dialog"
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../components/ui/input-otp"
 import { updatePasswordSchema } from "../modules/profile/schemas/update-password-schema"
 
 export const Route = createFileRoute("/_dashboard/profile/password")({
@@ -92,14 +103,49 @@ function RecoverPasswordPage() {
 				</Box>
 			</CardContent>
 			<CardFooter>
-				<Button
-					size="sm"
-					type="submit"
-					form="update-password"
-					disabled={isSubmitButtonDisabled}
-				>
-					Salvar alterações
-				</Button>
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button size="sm" type="button">
+							Salvar alterações
+						</Button>
+					</DialogTrigger>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>SMS Enviado para o Número de Cadastro</DialogTitle>
+							<DialogDescription>
+								Para confirmar a alteração da senha, por favor insira o código
+								enviado para o seu celular
+							</DialogDescription>
+						</DialogHeader>
+						<div className="mt-4 flex flex-col gap-1">
+							<InputOTP maxLength={6}>
+								<InputOTPGroup className="flex w-full items-center justify-between">
+									<InputOTPSlot className="aspect-square h-full w-full" index={0} />
+									<InputOTPSlot className="aspect-square h-full w-full" index={1} />
+									<InputOTPSlot className="aspect-square h-full w-full" index={2} />
+									<InputOTPSlot className="aspect-square h-full w-full" index={3} />
+									<InputOTPSlot className="aspect-square h-full w-full" index={4} />
+									<InputOTPSlot className="aspect-square h-full w-full" index={5} />
+								</InputOTPGroup>
+							</InputOTP>
+							<Button className="self-start px-0" variant="link">
+								Reenviar código
+							</Button>
+						</div>
+						<DialogFooter className="mt-6">
+							<DialogClose asChild>
+								<Button variant="secondary">Cancelar</Button>
+							</DialogClose>
+							<Button
+								type="submit"
+								form="update-password"
+								disabled={isSubmitButtonDisabled}
+							>
+								Confirmar
+							</Button>
+						</DialogFooter>
+					</DialogContent>
+				</Dialog>
 			</CardFooter>
 		</Card>
 	)

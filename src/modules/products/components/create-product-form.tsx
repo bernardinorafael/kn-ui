@@ -51,7 +51,7 @@ export function CreateProductForm() {
 		const formData = new FormData()
 
 		formData.append("name", data.name)
-		formData.append("price", String(data.price))
+		formData.append("price", String(data.price * 100))
 		formData.append("quantity", String(data.quantity))
 
 		if (file) {

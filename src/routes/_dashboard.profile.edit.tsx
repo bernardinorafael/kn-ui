@@ -43,7 +43,6 @@ function ChangeProfile() {
 			name: user.name,
 			email: user.email,
 			phone: user.phone,
-			document: user.document,
 		},
 	})
 
@@ -56,7 +55,6 @@ function ChangeProfile() {
 			await api.put(`/users/${user.public_id}`, {
 				name: data.name,
 				email: data.email,
-				document: unmask(data.document),
 				phone: unmask(data.phone),
 			})
 
@@ -70,12 +68,10 @@ function ChangeProfile() {
 	}
 
 	const phone = form.watch("phone")
-	const document = form.watch("document")
 
 	React.useEffect(() => {
 		form.setValue("phone", mask(phone, "(99) 9 9999-9999"))
-		form.setValue("document", mask(document, "999.999.999-99"))
-	}, [form, phone, document])
+	}, [form, phone])
 
 	const isSubmitButtonDisabled = form.formState.isSubmitting
 	const errors = form.formState.errors
@@ -113,7 +109,7 @@ function ChangeProfile() {
 
 						<Label className="w-full transition-all duration-300">
 							CPF
-							<Input {...form.register("document")} />
+							<Input disabled value={mask(user.document, "999.999.999-99")} />
 						</Label>
 					</form>
 				</Box>

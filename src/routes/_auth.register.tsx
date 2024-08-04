@@ -13,11 +13,11 @@ function RegisterPage() {
 			<RegisterForm />
 			<Button
 				asChild
-				className="max-w-[620px] p-0 text-zinc-400"
 				variant="link"
-				size="lg"
+				size="default"
+				className="max-w-[620px] text-zinc-400"
 			>
-				<Link to="/login">Entrar agora</Link>
+				<Link to="/login">Ir para o login</Link>
 			</Button>
 		</>
 	)

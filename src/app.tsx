@@ -27,7 +27,7 @@ export function App() {
 						<RouterProvider router={router} />
 					</FileProvider>
 				</QueryClientProvider>
-				<Toaster richColors closeButton position="top-center" theme="light" />
+				<Toaster richColors closeButton position="bottom-right" theme="light" />
 			</NextThemesProvider>
 		</TooltipProvider>
 	)
