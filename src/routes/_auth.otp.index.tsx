@@ -31,6 +31,9 @@ function OtpPage() {
 
 	async function handleLoginOtp(data: z.infer<typeof otpLoginSchema>) {
 		try {
+			/**
+			 * sleep fn improves loading ui state
+			 */
 			await sleep(450)
 			const phone = unmask(data.phone)
 

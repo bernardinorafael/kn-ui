@@ -18,6 +18,9 @@ export function LoginForm() {
 	})
 
 	async function handleLogin({ email, password }: z.infer<typeof loginSchema>) {
+		/**
+		 * sleep fn improves loading ui state
+		 */
 		await sleep(450)
 		await login(email, password)
 	}

@@ -48,7 +48,7 @@ function RecoverPasswordPage() {
 	async function handleUpdatePassword(data: z.infer<typeof updatePasswordSchema>) {
 		try {
 			/**
-			 * sleep fn to improve loading state
+			 * sleep fn improves loading ui state
 			 */
 			await sleep(350)
 			await api.patch(`/users/${user?.public_id}/password`, {

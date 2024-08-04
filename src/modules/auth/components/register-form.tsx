@@ -5,27 +5,55 @@ import { Loading } from "@/src/components/loading.tsx"
 import { Button } from "@/src/components/ui/button.tsx"
 import { Input } from "@/src/components/ui/input.tsx"
 import { Label } from "@/src/components/ui/label"
+import { api } from "@/src/lib/axios"
 import { registerSchema } from "@/src/modules/auth/schemas/register-schema.ts"
-import { useAuth } from "@/src/stores/use-auth"
+import { sleep } from "@/src/util/sleep"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { isAxiosError } from "axios"
 import { useForm } from "react-hook-form"
 import { mask, unmask } from "remask"
+import { toast } from "sonner"
 import { z } from "zod"
 
 export function RegisterForm() {
-	const register = useAuth((store) => store.register)
-
 	const form = useForm<z.infer<typeof registerSchema>>({
 		resolver: zodResolver(registerSchema),
 	})
 
 	async function handleRegister(data: z.infer<typeof registerSchema>) {
-		await register({
-			name: data.name,
-			email: data.email,
-			phone: unmask(data.phone),
-			password: data.password,
-		})
+		try {
+			/**
+			 * sleep fn improves loading ui state
+			 */
+			await sleep(350)
+			await api.post("/auth/register", {
+				name: data.name,
+				email: data.email,
+				phone: unmask(data.phone),
+				password: data.password,
+			})
+
+			toast.success("Seu cadastro foi efetuado com sucesso", {
+				description: "Navegue até o login para entrar",
+			})
+
+			form.reset()
+		} catch (err) {
+			if (isAxiosError(err)) {
+				const message = err.response?.data.message
+				if (message === "email already taken") {
+					toast.error("Já um existe uma conta vinculada neste e-mail")
+					return
+				}
+				if (message === "phone already taken") {
+					toast.error("Já um existe uma conta vinculada neste telefone")
+					return
+				}
+				toast.error("Ocorreu um erro ao realizar o cadastro", {
+					description: "Por favor, tente novamente mais tarde",
+				})
+			}
+		}
 	}
 
 	const phone = form.watch("phone")

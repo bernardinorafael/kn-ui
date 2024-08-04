@@ -49,7 +49,7 @@ function ChangeProfile() {
 	async function handleEditProfile(data: z.infer<typeof updateProfileSchema>) {
 		try {
 			/**
-			 * sleep fn to improve loading state
+			 * sleep fn improves loading ui state
 			 */
 			await sleep(350)
 			await api.put(`/users/${user.public_id}`, {

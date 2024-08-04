@@ -5,18 +5,18 @@ import { destroyCookie, setCookie } from "nookies"
 import { toast } from "sonner"
 import { create } from "zustand"
 
-type RegisterProps = Pick<User, "name" | "email" | "phone"> & {
-	password: string
-}
+// type RegisterProps = Pick<User, "name" | "email" | "phone"> & {
+// 	password: string
+// }
 
 type StoreProps = {
 	user: User | null
 	isSignedIn: boolean
-	register(credentials: RegisterProps): void
 	login(email: string, password: string): void
 	loginOtp(phone: string, code: string): void
 	getSigned(): Promise<void>
 	signOut(): void
+	// register(credentials: RegisterProps): void
 }
 
 export const useAuth = create<StoreProps>((set) => ({
@@ -104,34 +104,33 @@ export const useAuth = create<StoreProps>((set) => ({
 		}
 	},
 
-	// TODO: improve error handling
-	async register(credentials) {
-		try {
-			await api.post("/auth/register", {
-				name: credentials.name,
-				email: credentials.email,
-				phone: credentials.phone,
-				password: credentials.password,
-			})
+	// async register(credentials) {
+	// 	try {
+	// 		await api.post("/auth/register", {
+	// 			name: credentials.name,
+	// 			email: credentials.email,
+	// 			phone: credentials.phone,
+	// 			password: credentials.password,
+	// 		})
 
-			toast.success("Usuário criado com sucesso", {
-				description: "Navegue até o login para entrar",
-			})
-		} catch (err) {
-			if (isAxiosError(err)) {
-				const message = err.response?.data.message
-				if (message === "email already taken") {
-					toast.error("Já um existe uma conta vinculada neste e-mail")
-					return
-				}
-				if (message === "phone already taken") {
-					toast.error("Já um existe uma conta vinculada neste telefone")
-					return
-				}
-				toast.error("Ocorreu um erro ao realizar o cadastro", {
-					description: "Por favor, tente novamente mais tarde",
-				})
-			}
-		}
-	},
+	// 		toast.success("Usuário criado com sucesso", {
+	// 			description: "Navegue até o login para entrar",
+	// 		})
+	// 	} catch (err) {
+	// 		if (isAxiosError(err)) {
+	// 			const message = err.response?.data.message
+	// 			if (message === "email already taken") {
+	// 				toast.error("Já um existe uma conta vinculada neste e-mail")
+	// 				return
+	// 			}
+	// 			if (message === "phone already taken") {
+	// 				toast.error("Já um existe uma conta vinculada neste telefone")
+	// 				return
+	// 			}
+	// 			toast.error("Ocorreu um erro ao realizar o cadastro", {
+	// 				description: "Por favor, tente novamente mais tarde",
+	// 			})
+	// 		}
+	// 	}
+	// },
 }))

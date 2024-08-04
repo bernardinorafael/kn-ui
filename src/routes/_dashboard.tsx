@@ -2,11 +2,11 @@ import React from "react"
 
 import { Sidebar } from "@/src/components/sidebar"
 import { cn } from "@/src/util/cn"
-import { createFileRoute, Link, Outlet, redirect } from "@tanstack/react-router"
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"
 import { parseCookies } from "nookies"
 
 import { StatusAccountAlert } from "../components/status-account-alert"
-import { Button } from "../components/ui/button"
+import { StatusUser } from "../enum/user-status"
 import { api } from "../lib/axios"
 import { useAuth } from "../stores/use-auth"
 import { useSidebar } from "../stores/use-sidebar"
@@ -41,13 +41,16 @@ function DashboardLayout() {
 		if (!isSignedIn) getSigned()
 	}, [])
 
+	const isStatusAlertVisible =
+		user.status === StatusUser.Pending || user.status === StatusUser.ActivationSent
+
 	return (
 		<div className="relative flex h-screen w-screen flex-col items-center justify-center bg-zinc-100">
-			{!user.enabled && <StatusAccountAlert />}
+			{isStatusAlertVisible && <StatusAccountAlert status={user.status} />}
 			<div
 				className={cn(
 					"relative flex h-full w-screen items-center justify-center bg-zinc-100",
-					!user.enabled && "h-[calc(100vh-32px)]"
+					isStatusAlertVisible && "h-[calc(100vh-42px)]"
 				)}
 			>
 				<Sidebar />
